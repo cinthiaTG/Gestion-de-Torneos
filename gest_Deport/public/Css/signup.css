@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter, sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 15px;
+}
+
+.main-text {
+    color: #FF0000;
+    font-size: 40px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-box {
+    width: 340px;
+    height: 28px;
+    background: white;
+    border: 1px black solid;
+    margin-bottom: 30px;
+}
+
+.input-label {
+    color: black;
+    font-size: 13px;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: black;
+}
+
+.checkbox {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    background: white;
+    border: 1px solid black;
+}
+
+.register-link {
+    color: #00B5FF;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.login-button {
+    width: 230px;
+    height: 35px;
+    margin-left: 60px;
+    background: #E03131;
+    border: 1px #E03131 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    margin-top: 20px;
+}
