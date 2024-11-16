@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AficionadoController;
 use App\Http\Controllers\EntrenadorController;
@@ -11,47 +12,51 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Aquí es donde puedes registrar rutas web para tu aplicación. Estas
+| rutas son cargadas por el RouteServiceProvider y estarán asignadas
+| al grupo "web". ¡Crea algo genial!
 |
 */
 
+// Página de bienvenida
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Ruta para el dashboard principal
+// Ruta para redireccionar al dashboard según el rol del usuario
 Route::get('/dashboard', function () {
     $user = auth()->user();
 
-    if ($user->rol_id == 1) {
-        // Redirige al dashboard de aficionado
-        return redirect()->route('aficionado.dashboard');
-    } elseif ($user->rol_id == 2) {
-        // Redirige al dashboard de entrenador
-        return redirect()->route('entrenador.dashboard');
+    switch ($user->rol_id) {
+        case 1:
+            return redirect()->route('aficionado.dashboard');
+        case 2:
+            return redirect()->route('entrenador.dashboard');
+        case 3:
+            return redirect()->route('jugador.dashboard');
+        case 4:
+            return redirect()->route('arbitro.dashboard');
+        default:
+            return redirect('/')->with('error', 'Rol no válido.');
     }
-    elseif ($user->rol_id == 3) {
-        // Redirige al dashboard de entrenador
-        return redirect()->route('jugador.dashboard');
-    }
-    elseif ($user->rol_id == 4) {
-        // Redirige al dashboard de entrenador
-        return redirect()->route('arbitro.dashboard');
-    }
-
-    // Si el rol no coincide, redirige a una ruta predeterminada, por ejemplo, el home
-    return redirect()->route('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Rutas específicas para los dashboards de cada tipo de usuario protegidas con middleware de roles
+Route::middleware(['auth', 'role:1'])->group(function () {
+    Route::get('/aficionado/dashboard', [AficionadoController::class, 'dashboard'])->name('aficionado.dashboard');
+});
 
-//dashboard de cada usuario
-Route::get('/aficionado/dashboard', [AficionadoController::class, 'dashboard'])->name('aficionado.dashboard');
-Route::get('/entrenador/dashboard', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
-Route::get('/jugador/dashboard', [JugadorController::class, 'dashboard'])->name('jugador.dashboard');
-Route::get('/arbitro/dashboard', [ArbitroController::class, 'dashboard'])->name('arbitro.dashboard');
+Route::middleware(['auth', 'role:2'])->group(function () {
+    Route::get('/entrenador/dashboard', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
+});
 
+Route::middleware(['auth', 'role:3'])->group(function () {
+    Route::get('/jugador/dashboard', [JugadorController::class, 'dashboard'])->name('jugador.dashboard');
+});
+
+Route::middleware(['auth', 'role:4'])->group(function () {
+    Route::get('/arbitro/dashboard', [ArbitroController::class, 'dashboard'])->name('arbitro.dashboard');
+});
 
 // Rutas protegidas para el perfil del usuario
 Route::middleware('auth')->group(function () {
@@ -60,4 +65,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Rutas de autenticación generadas automáticamente
+require __DIR__ . '/auth.php';
