@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class EntrenadorController extends Controller{
+class ArbitroController extends Controller{
     public function dashboard(){
-        return view("entrenador.dashboard");
+        return view("arbitro.dashboard");
     }
 }
