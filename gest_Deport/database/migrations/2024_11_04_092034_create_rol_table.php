@@ -22,9 +22,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // aqui esta metiendo los roles por defecto la pregunta es xq me haces daño daniel, la respuesta es:
-        // como estas haciendo referencia a la tabla roles y aun no tenia datos, como lo hacias primero la creas
-
         DB::table('roles')->insert([
             ['id' => 1, 'nombre_rol' => 'Aficionado'],
             ['id' => 2, 'nombre_rol' => 'Entrenador'],
