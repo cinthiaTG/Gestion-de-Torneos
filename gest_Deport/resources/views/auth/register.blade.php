@@ -19,26 +19,35 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="new-password" />
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" />
-
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- Role Selection -->
+        <div class="mt-4">
+            <x-input-label for="rol" :value="__('Role')" />
+            <select id="rol" name="rol_id" class="block mt-1 w-full" required>
+                <option value="" disabled selected>{{ __('Select a role') }}</option>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->nombre_rol }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('rol_id')" class="mt-2" />
+        </div>
+
+        <!-- Already Registered Link -->
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
