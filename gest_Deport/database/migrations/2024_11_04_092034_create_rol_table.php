@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;  // Asegúrate de agregar esta línea
+use Illuminate\Support\Facades\DB;
 
 
 // SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key

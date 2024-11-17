@@ -48,6 +48,15 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/entrenador/dashboard', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
+    Route::get('/entrenador/jugadores/create', [JugadorController::class, 'create'])->name('entrenador.registrarJugador');//form p/crear jugador
+    Route::post('/entrenador/jugadores/store', [JugadorController::class, 'store'])->name('jugadores.store'); // guardar jugador
+    Route::get('/entrenador/jugadores/{id}', [JugadorController::class, 'show'])->name('jugadores.show'); // ver jugador
+    Route::get('/entrenador/jugadores/{id}/edit', [JugadorController::class, 'edit'])->name('jugadores.edit'); // form de edición
+    Route::get('/entrenador/jugadores/{id}/read', [JugadorController::class, 'edit'])->name('jugadores.edit'); // form de edición
+
+    Route::put('/entrenador/jugadores/{id}', [JugadorController::class, 'update'])->name('jugadores.update'); // actuliz jugador
+    Route::delete('/entrenador/jugadores/{id}', [JugadorController::class, 'destroy'])->name('jugadores.destroy'); // elimin jugador
+
 });
 
 Route::middleware(['auth', 'role:3'])->group(function () {
@@ -64,6 +73,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 
 // Rutas de autenticación generadas automáticamente
 require __DIR__ . '/auth.php';

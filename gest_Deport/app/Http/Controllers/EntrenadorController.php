@@ -9,4 +9,6 @@ class EntrenadorController extends Controller{
     public function dashboard(){
         return view("entrenador.dashboard");
     }
+
+    
 }
