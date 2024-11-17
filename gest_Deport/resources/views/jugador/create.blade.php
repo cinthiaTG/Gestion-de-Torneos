@@ -5,7 +5,7 @@
 
 @section('content')
     
-<div class="container">
+<div class="results-table">
     <div class="form-title">Registrar Jugador</div>
     <form class="player-form" action="{{ route('jugadores.store') }}" method="POST">
         @csrf

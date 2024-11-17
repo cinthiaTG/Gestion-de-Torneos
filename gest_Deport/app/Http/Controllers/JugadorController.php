@@ -44,7 +44,7 @@ class JugadorController extends Controller{
             'id_deporte' => $request->id_deporte,
         ]);
 
-        return redirect()->route('jugador.create')->with('success', 'Jugador registrado exitosamente');
+        return redirect()->route('jugadores.create')->with('success', 'Jugador registrado exitosamente');
     }
 
 
@@ -83,14 +83,14 @@ class JugadorController extends Controller{
             'faltas' => $request->faltas,
         ]);
 
-        return redirect()->route('editarjugador.index')->with('success', 'Jugador actualizado con éxito');
+        return redirect()->route('jugador.read')->with('success', 'Jugador actualizado con éxito');
     }
 
     public function destroy($id)
     {
         $jugador = Jugador::findOrFail($id);
         $jugador->delete();
-        return redirect()->route('editarjugador.index')->with('success', 'Jugador eliminado con éxito');
+        return redirect()->route('jugador.read')->with('success', 'Jugador eliminado con éxito');
     }
 
     public function create()
@@ -101,7 +101,9 @@ class JugadorController extends Controller{
 
     public function read()
     {
-        return view('modulos.editarjugador.index', compact('jugadores'));
+        $jugadores = Jugador::all();
+
+        return view('jugador.read', compact('jugadores'));
     }
 
 }
