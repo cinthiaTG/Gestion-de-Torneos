@@ -66,6 +66,14 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update'); // Actualizar equipo
         Route::delete('/{id}', [EquiposController::class, 'destroy'])->name('equipos.destroy'); // Eliminar equipo
     });
+    Route::group(['prefix' => 'entrenador/torneo'], function () {
+        Route::get('/read', [EquiposController::class, 'read'])->name('equipos.read'); // Mostrar todos los equipos
+        Route::get('/create', [EquiposController::class, 'create'])->name('equipos.create'); // Formulario para crear
+        Route::post('/store', [EquiposController::class, 'store'])->name('equipos.store'); // Guardar nuevo equipo
+        Route::get('/{id}/edit', [EquiposController::class, 'edit'])->name('equipos.edit'); // Formulario de edición
+        Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update'); // Actualizar equipo
+        Route::delete('/{id}', [EquiposController::class, 'destroy'])->name('equipos.destroy'); // Eliminar equipo
+    });
     
 
 });
