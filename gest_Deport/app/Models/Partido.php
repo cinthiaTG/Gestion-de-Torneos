@@ -8,21 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Partido extends Model
 {
     use HasFactory;
-    protected $table = 'partidos';
-    protected $fillable =['fecha','hora','lugar'];
 
+    protected $fillable = [
+        'id_torneo', 'id_equipo_local', 'id_equipo_visitante', 'fecha', 'hora', 'lugar',
+    ];
+
+    // Relación con Torneo
     public function torneo()
     {
-        return $this->belongsTo(Torneo::class);
+        return $this->belongsTo(Torneo::class, 'id_torneo');
     }
 
-    public function equipo_local()
+    // Relación con Equipo Local
+    public function equipoLocal()
     {
-        return $this->belongsTo(Equipo::class);
+        return $this->belongsTo(Equipo::class, 'id_equipo_local');
     }
 
-    public function equipo_visitante()
+    // Relación con Equipo Visitante
+    public function equipoVisitante()
     {
-        return $this->belongsTo(Equipo::class);
+        return $this->belongsTo(Equipo::class, 'id_equipo_visitante');
     }
 }
+

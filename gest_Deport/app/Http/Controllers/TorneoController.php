@@ -3,103 +3,79 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Torneo;
 use App\Models\Jugador;
 use App\Models\Equipo;
 
 
-class JugadorController extends Controller{
+class TorneoController extends Controller{
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:255',
-            'apellido_materno' => 'required|string|max:255',
-            'edad' => 'required|integer',
-            'equipo_id' => 'required|exists:equipos,id',
-            'posicion' => 'required|string|max:255',
-            'puntos' => 'required|integer',
-            'asistencias' => 'required|integer',
-            'tarjetas_rojas' => 'required|integer',
-            'tarjetas_amarillas' => 'required|integer',
-            'faltas' => 'required|integer',
+            'nombre_torneo' => 'required|string|max:255',
+            'tipo_torneo' => 'required|string|max:255',
+            'numero_equipos' => 'required|integer',
+            'deporte_id' => 'required|integer',
         ]);
 
-        Jugador::create([
-            'nombre' => $request->nombre,
-            'apellido_paterno' => $request->apellido_paterno,
-            'apellido_materno' => $request->apellido_materno,
-            'edad' => $request->edad,
-            'id_equipo' => $request->equipo_id,
-            'posicion' => $request->posicion,
-            'puntos' => $request->puntos,
-            'asistencias' => $request->asistencias,
-            'tarjetas_rojas' => $request->tarjetas_rojas,
-            'tarjetas_amarillas' => $request->tarjetas_amarillas,
-            'faltas' => $request->faltas,
-            'id_deporte' => $request->id_deporte,
+        Torneo::create([
+            'nombre_torneo'  => $request->nombre_torneo,
+            'tipo_torneo'  => $request->tipo_torneo,
+            'numero_equipos'  => $request->numero_equipos,
+            'deporte_id'  => $request->deporte_id,
+
         ]);
 
-        return redirect()->route('jugadores.create')->with('success', 'Jugador registrado exitosamente');
+        return redirect()->route('torneo.create')->with('success', 'Torneo registrado exitosamente');
     }
 
 
     public function edit($id)
     {
-        $jugador = Jugador::findOrFail($id);
-        return view('jugador.edit', compact('jugador'));
+        $torneo = Torneo::findOrFail($id);
+        return view('torneo.edit', compact('torneo'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required',
-            'apellido_paterno' => 'required',
-            'apellido_materno' => 'required',
-            'edad' => 'required|integer',
-            'posicion' => 'required',
-            'puntos' => 'required|integer',
-            'asistencias' => 'required|integer',
-            'tarjetas_amarillas' => 'required|integer',
-            'tarjetas_rojas' => 'required|integer',
-            'faltas' => 'required|integer',
+            'nombre_torneo' => 'required',
+            'tipo_torneo' => 'required',
+            'numero_equipos' => 'required|integer',
+            'deporte_id' => 'required|integer',
+
         ]);
 
-        $jugador = Jugador::findOrFail($id);
-        $jugador->update([
-            'nombre' => $request->nombre,
-            'apellido_paterno' => $request->apellido_paterno,
-            'apellido_materno' => $request->apellido_materno,
-            'edad' => $request->edad,
-            'posicion' => $request->posicion,
-            'puntos' => $request->puntos,
-            'asistencias' => $request->asistencias,
-            'tarjetas_amarillas' => $request->tarjetas_amarillas,
-            'tarjetas_rojas' => $request->tarjetas_rojas,
-            'faltas' => $request->faltas,
+        $torneo = Torneo::findOrFail($id);
+        $torneo->update([
+            'nombre_torneo' => $request->nombre_torneo,
+            'tipo_torneo' => $request->tipo_torneo,
+            'numero_equipos' => $request->numero_equipos,
+            'deporte_id'  => $request->deporte_id,
+
         ]);
 
-        return redirect()->route('jugador.read')->with('success', 'Jugador actualizado con éxito');
+        return redirect()->route('torneo.read')->with('success', 'Torneo actualizado con éxito');
     }
 
     public function destroy($id)
     {
-        $jugador = Jugador::findOrFail($id);
-        $jugador->delete();
-        return redirect()->route('jugador.read')->with('success', 'Jugador eliminado con éxito');
+        $torneo = Torneo::findOrFail($id);
+        $torneo->delete();
+        return redirect()->route('torneo.read')->with('success', 'Torneo eliminado con éxito');
     }
 
     public function create()
     {
-        $equipos = Equipo::all();
-        return view('jugador.create', ['equipos' => $equipos]);
+        return view('torneo.create');
     }
 
     public function read()
     {
-        $jugadores = Jugador::all();
+        $torneo = Torneo::all();
 
-        return view('jugador.read', compact('jugadores'));
+        return view('torneo.read', compact('torneo'));
     }
 
 }

@@ -6,6 +6,9 @@ use App\Http\Controllers\EntrenadorController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\ArbitroController;
+use App\Http\Controllers\PartidosController;
+use App\Http\Controllers\TorneoController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,28 +54,37 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/entrenador/dashboard', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
   
     Route::group(['prefix' => 'entrenador/jugadores'], function() {
-        Route::get('/create', [JugadorController::class, 'create'])->name('jugadores.create');//form p/crear jugador
-        Route::post('/store', [JugadorController::class, 'store'])->name('jugadores.store'); // guardar jugador
-        Route::get('/{id}/edit', [JugadorController::class, 'edit'])->name('jugadores.edit'); // form de edición
-        Route::get('/read', [JugadorController::class, 'read'])->name('jugador.read'); // form de read
-        Route::put('/{id}', [JugadorController::class, 'update'])->name('jugadores.update'); // actuliz jugador
-        Route::delete('/{id}', [JugadorController::class, 'destroy'])->name('jugadores.destroy'); // elimin jugador
+        Route::get('/create', [JugadorController::class, 'create'])->name('jugadores.create');
+        Route::post('/store', [JugadorController::class, 'store'])->name('jugadores.store'); 
+        Route::get('/{id}/edit', [JugadorController::class, 'edit'])->name('jugadores.edit'); 
+        Route::get('/read', [JugadorController::class, 'read'])->name('jugador.read'); 
+        Route::put('/{id}', [JugadorController::class, 'update'])->name('jugadores.update');
+        Route::delete('/{id}', [JugadorController::class, 'destroy'])->name('jugadores.destroy');
     });
     Route::group(['prefix' => 'entrenador/equipos'], function () {
-        Route::get('/read', [EquiposController::class, 'read'])->name('equipos.read'); // Mostrar todos los equipos
-        Route::get('/create', [EquiposController::class, 'create'])->name('equipos.create'); // Formulario para crear
-        Route::post('/store', [EquiposController::class, 'store'])->name('equipos.store'); // Guardar nuevo equipo
-        Route::get('/{id}/edit', [EquiposController::class, 'edit'])->name('equipos.edit'); // Formulario de edición
-        Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update'); // Actualizar equipo
-        Route::delete('/{id}', [EquiposController::class, 'destroy'])->name('equipos.destroy'); // Eliminar equipo
+        Route::get('/read', [EquiposController::class, 'read'])->name('equipos.read'); 
+        Route::get('/create', [EquiposController::class, 'create'])->name('equipos.create'); 
+        Route::post('/store', [EquiposController::class, 'store'])->name('equipos.store'); 
+        Route::get('/{id}/edit', [EquiposController::class, 'edit'])->name('equipos.edit'); 
+        Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update'); 
+        Route::delete('/{id}', [EquiposController::class, 'destroy'])->name('equipos.destroy');
     });
     Route::group(['prefix' => 'entrenador/torneo'], function () {
-        Route::get('/read', [EquiposController::class, 'read'])->name('equipos.read'); // Mostrar todos los equipos
-        Route::get('/create', [EquiposController::class, 'create'])->name('equipos.create'); // Formulario para crear
-        Route::post('/store', [EquiposController::class, 'store'])->name('equipos.store'); // Guardar nuevo equipo
-        Route::get('/{id}/edit', [EquiposController::class, 'edit'])->name('equipos.edit'); // Formulario de edición
-        Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update'); // Actualizar equipo
-        Route::delete('/{id}', [EquiposController::class, 'destroy'])->name('equipos.destroy'); // Eliminar equipo
+        Route::get('/read', [TorneoController::class, 'read'])->name('torneo.read');
+        Route::get('/create', [TorneoController::class, 'create'])->name('torneo.create');
+        Route::post('/store', [TorneoController::class, 'store'])->name('torneo.store');
+        Route::get('/{id}/edit', [TorneoController::class, 'edit'])->name('torneo.edit');
+        Route::put('/{id}', [TorneoController::class, 'update'])->name('torneo.update');
+        Route::delete('/{id}', [TorneoController::class, 'destroy'])->name('torneo.destroy');
+    });
+    
+    Route::group(['prefix' => 'entrenador/partidos'], function () {
+        Route::get('/create', [PartidosController::class, 'create'])->name('partidos.create');
+        Route::post('/store', [PartidosController::class, 'store'])->name('partidos.store');
+        Route::get('/read', [PartidosController::class, 'read'])->name('partidos.read');
+        Route::get('/edit/{id}', [PartidosController::class, 'edit'])->name('partidos.edit');
+        Route::post('/update/{id}', [PartidosController::class, 'update'])->name('partidos.update');
+        Route::delete('/destroy/{id}', [PartidosController::class, 'destroy'])->name('partidos.destroy');
     });
     
 
