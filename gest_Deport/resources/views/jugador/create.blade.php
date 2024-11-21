@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    
+
 <div class="results-table">
     <div class="form-title">Registrar Jugador</div>
     <form class="player-form" action="{{ route('jugadores.store') }}" method="POST">
@@ -21,14 +21,14 @@
         <label>Edad</label>
         <input type="number" name="edad" required>
 
-        <label for="deporte_id">Deportes</label>
+        {{-- <label for="deporte_id">Deportes</label>
         <select class="input-label" id="deporte_id" name="deporte_id" required>
             <option value="" selected>Selecciona un deporte</option>
             <option value="1">Futbol Americano</option>
             <option value="2">Futbol Soccer</option>
             <option value="3">Volleyball</option>
             <option value="4">Basketball</option>
-        </select>
+        </select> --}}
 
         <label>Posicion</label>
         <select class="input-label" id="posicion" name="posicion">
@@ -46,7 +46,7 @@
             @endforeach
         </select>
 
-        <div class="section-title">Estadísticas</div>
+        {{-- <div class="section-title">Estadísticas</div>
         <label>Puntos</label>
         <input type="number" name="puntos" required>
 
@@ -60,7 +60,7 @@
         <input type="number" name="tarjetas_amarillas" required>
 
         <label>Faltas</label>
-        <input type="number" name="faltas" required>
+        <input type="number" name="faltas" required> --}}
 
         <button type="submit" class="save-button">Guardar</button>
     </form>

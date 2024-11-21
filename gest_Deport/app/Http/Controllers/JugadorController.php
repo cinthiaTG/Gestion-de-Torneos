@@ -22,11 +22,11 @@ class JugadorController extends Controller{
             'edad' => 'required|integer',
             'equipo_id' => 'required|exists:equipos,id',
             'posicion' => 'required|string|max:255',
-            'puntos' => 'required|integer',
-            'asistencias' => 'required|integer',
-            'tarjetas_rojas' => 'required|integer',
-            'tarjetas_amarillas' => 'required|integer',
-            'faltas' => 'required|integer',
+            // 'puntos' => 'required|integer',
+            // 'asistencias' => 'required|integer',
+            // 'tarjetas_rojas' => 'required|integer',
+            // 'tarjetas_amarillas' => 'required|integer',
+            // 'faltas' => 'required|integer',
         ]);
 
         Jugador::create([
@@ -36,12 +36,12 @@ class JugadorController extends Controller{
             'edad' => $request->edad,
             'id_equipo' => $request->equipo_id,
             'posicion' => $request->posicion,
-            'puntos' => $request->puntos,
-            'asistencias' => $request->asistencias,
-            'tarjetas_rojas' => $request->tarjetas_rojas,
-            'tarjetas_amarillas' => $request->tarjetas_amarillas,
-            'faltas' => $request->faltas,
-            'id_deporte' => $request->id_deporte,
+            // 'puntos' => $request->puntos,
+            // 'asistencias' => $request->asistencias,
+            // 'tarjetas_rojas' => $request->tarjetas_rojas,
+            // 'tarjetas_amarillas' => $request->tarjetas_amarillas,
+            // 'faltas' => $request->faltas,
+            // 'id_deporte' => $request->id_deporte,
         ]);
 
         return redirect()->route('jugadores.create')->with('success', 'Jugador registrado exitosamente');

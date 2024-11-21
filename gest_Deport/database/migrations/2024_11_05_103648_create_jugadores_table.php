@@ -21,11 +21,12 @@ return new class extends Migration
             $table->foreign('id_deporte')->references('id')->on('deportes')->onDelete('cascade');
 
             // Stats fields
-            $table->integer('puntos');
-            $table->integer('asistencias');
-            $table->integer('tarjetas_amarillas');
-            $table->integer('tarjetas_rojas');
-            $table->integer('faltas');
+            $table->integer('puntos')->default(0);
+            $table->integer('asistencias')->default(0);
+            $table->integer('tarjetas_amarillas')->default(0);
+            $table->integer('tarjetas_rojas')->default(0);
+            $table->integer('faltas')->default(0);
+
 
             $table->timestamps();
         });
