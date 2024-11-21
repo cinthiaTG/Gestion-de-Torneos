@@ -8,6 +8,7 @@ use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\ArbitroController;
 use App\Http\Controllers\PartidosController;
 use App\Http\Controllers\TorneoController;
+use App\Http\Controllers\InstalacionController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,21 +53,21 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/entrenador/dashboard', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
-  
+
     Route::group(['prefix' => 'entrenador/jugadores'], function() {
         Route::get('/create', [JugadorController::class, 'create'])->name('jugadores.create');
-        Route::post('/store', [JugadorController::class, 'store'])->name('jugadores.store'); 
-        Route::get('/{id}/edit', [JugadorController::class, 'edit'])->name('jugadores.edit'); 
-        Route::get('/read', [JugadorController::class, 'read'])->name('jugador.read'); 
+        Route::post('/store', [JugadorController::class, 'store'])->name('jugadores.store');
+        Route::get('/{id}/edit', [JugadorController::class, 'edit'])->name('jugadores.edit');
+        Route::get('/read', [JugadorController::class, 'read'])->name('jugador.read');
         Route::put('/{id}', [JugadorController::class, 'update'])->name('jugadores.update');
         Route::delete('/{id}', [JugadorController::class, 'destroy'])->name('jugadores.destroy');
     });
     Route::group(['prefix' => 'entrenador/equipos'], function () {
-        Route::get('/read', [EquiposController::class, 'read'])->name('equipos.read'); 
-        Route::get('/create', [EquiposController::class, 'create'])->name('equipos.create'); 
-        Route::post('/store', [EquiposController::class, 'store'])->name('equipos.store'); 
-        Route::get('/{id}/edit', [EquiposController::class, 'edit'])->name('equipos.edit'); 
-        Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update'); 
+        Route::get('/read', [EquiposController::class, 'read'])->name('equipos.read');
+        Route::get('/create', [EquiposController::class, 'create'])->name('equipos.create');
+        Route::post('/store', [EquiposController::class, 'store'])->name('equipos.store');
+        Route::get('/{id}/edit', [EquiposController::class, 'edit'])->name('equipos.edit');
+        Route::put('/{id}', [EquiposController::class, 'update'])->name('equipos.update');
         Route::delete('/{id}', [EquiposController::class, 'destroy'])->name('equipos.destroy');
     });
     Route::group(['prefix' => 'entrenador/torneo'], function () {
@@ -77,7 +78,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::put('/{id}', [TorneoController::class, 'update'])->name('torneo.update');
         Route::delete('/{id}', [TorneoController::class, 'destroy'])->name('torneo.destroy');
     });
-    
+
     Route::group(['prefix' => 'entrenador/partidos'], function () {
         Route::get('/create', [PartidosController::class, 'create'])->name('partidos.create');
         Route::post('/store', [PartidosController::class, 'store'])->name('partidos.store');
@@ -86,7 +87,17 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::post('/update/{id}', [PartidosController::class, 'update'])->name('partidos.update');
         Route::delete('/destroy/{id}', [PartidosController::class, 'destroy'])->name('partidos.destroy');
     });
-    
+
+    Route::group(['prefix' => 'entrenador/instalacion'], function () {
+        Route::get('/create', [InstalacionController::class, 'create'])->name('instalacion.create');
+        Route::post('/store', [InstalacionController::class, 'store'])->name('instalacion.store');
+        Route::get('/read', [InstalacionController::class, 'read'])->name('instalacion.read');
+        Route::get('/edit/{id}', [InstalacionController::class, 'edit'])->name('instalacion.edit');
+        Route::put('/update/{id}', [InstalacionController::class, 'update'])->name('instalacion.update');
+        Route::delete('/destroy/{id}', [InstalacionController::class, 'destroy'])->name('instalacion.destroy');
+    });
+
+
 
 });
 

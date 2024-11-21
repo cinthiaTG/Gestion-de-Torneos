@@ -9,5 +9,5 @@ class Instalacion extends Model
 {
     protected $table = 'instalaciones';
     use HasFactory;
-    protected $fillable = ['nombre_instalacion','ubicacion'];
+    protected $fillable = ['nombre_instalacion','ubicacion', 'id_deporte'];
 }

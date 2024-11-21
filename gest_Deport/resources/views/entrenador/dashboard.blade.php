@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<!-- Contenedor principal para las tarjetas 
+<!-- Contenedor principal para las tarjetas
 Route::group(['prefix' => 'entrenador/partidos'], function () {
         Route::get('/create', [PartidosController::class, 'create'])->name('partidos.create');
         Route::post('/store', [PartidosController::class, 'store'])->name('partidos.store');
@@ -50,12 +50,12 @@ Route::group(['prefix' => 'entrenador/partidos'], function () {
     <a href="#" class="card">
         <div class="card-label">Registrar Resultado</div>
     </a>
-    <a href="#" class="card">
-        <div class="card-label">Registrar Instalación</div>
+    <a href="{{route('instalacion.create')}}" class="card">
+        <div class="card-label">Registrar Instalacion</div>
     </a>
-    <a href="#" class="card">
-        <div class="card-label">Editar Instalación</div>
+    <a href="{{route('instalacion.read')}}" class="card">
+        <div class="card-label">Editar Instalacion</div>
     </a>
-    
+
 </div>
 @endsection
