@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('styles')
-    <link rel="stylesheet" href="{{asset('Css/registrarjugadores.css')}}">
+    <link rel="stylesheet" href="{{asset('Css/creartorneo.css')}}">
 @endsection
 
 @section('content')
@@ -34,10 +34,6 @@
 
         <button type="submit" class="save-button">Guardar</button>
     </form>
-
-    <div class="circle-wrapper">
-        <div class="circle"></div>
-    </div>
 </div>
 
 @endsection

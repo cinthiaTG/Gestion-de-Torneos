@@ -1,23 +1,21 @@
 @extends('layouts.dashboard')
+
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('Css/editarjugador.css') }}">
+<link rel="stylesheet" href="{{ asset('Css/read.css') }}">
 @endsection
 
 @section('content')
 <div class="container">
-    <h1 class="form-title">Editar Instalacion</h1>
+    <!-- Título de la sección -->
+    <h1 class="form-title">Editar Instalación</h1>
+    
+    <!-- Sección de resultados -->
     <div class="results-section">
-        <br>
-        <table class="results-table">
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre Instalacion</th>
-                    <th>Ubicacion</th>
-                    {{-- <th>Puntos</th>
-                    <th>Asistencias</th>
-                    <th>Tarjetas Amarillas</th>
-                    <th>Tarjetas Rojas</th>
-                    <th>Faltas</th> --}}
+                    <th>Nombre Instalación</th>
+                    <th>Ubicación</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -26,19 +24,16 @@
                 <tr>
                     <td>{{ $instalacion->nombre_instalacion }}</td>
                     <td>{{ $instalacion->ubicacion }}</td>
-                    {{-- <td>{{ $jugador->puntos }}</td>
-                    <td>{{ $jugador->asistencias }}</td>
-                    <td>{{ $jugador->tarjetas_amarillas }}</td>
-                    <td>{{ $jugador->tarjetas_rojas }}</td>
-                    <td>{{ $jugador->faltas }}</td> --}}
                     <td>
-                        <a href="{{ route('instalacion.edit', ['id' => $instalacion->id]) }}"><button class="edit-button">Editar</button></a>
+                        <!-- Botón de editar -->
+                        <a href="{{ route('instalacion.edit', ['id' => $instalacion->id]) }}" class="btn btn-warning">Editar</a>
+                        
+                        <!-- Botón de eliminar -->
                         <form action="{{ route('instalacion.destroy', ['id' => $instalacion->id]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="quit-button">Eliminar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
-
                     </td>
                 </tr>
                 @endforeach

@@ -1,14 +1,12 @@
 @extends('layouts.dashboard')
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('Css/editarjugador.css') }}">
+    <link rel="stylesheet" href="{{ asset('Css/read.css') }}">
 @endsection
-
 @section('content')
 <div class="container">
-    <h1 class="form-title">Editar Jugador</h1>
+    <div class="form-title">Jugadores Registrados</div>
     <div class="results-section">
-        <br>
-        <table class="results-table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -16,11 +14,6 @@
                     <th>Apellido Materno</th>
                     <th>Edad</th>
                     <th>Posición</th>
-                    {{-- <th>Puntos</th>
-                    <th>Asistencias</th>
-                    <th>Tarjetas Amarillas</th>
-                    <th>Tarjetas Rojas</th>
-                    <th>Faltas</th> --}}    
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -32,19 +25,13 @@
                     <td>{{ $jugador->apellido_materno }}</td>
                     <td>{{ $jugador->edad }}</td>
                     <td>{{ $jugador->posicion }}</td>
-                    {{-- <td>{{ $jugador->puntos }}</td>
-                    <td>{{ $jugador->asistencias }}</td>
-                    <td>{{ $jugador->tarjetas_amarillas }}</td>
-                    <td>{{ $jugador->tarjetas_rojas }}</td>
-                    <td>{{ $jugador->faltas }}</td> --}}
                     <td>
-                        <a href="{{ route('jugadores.edit', ['id' => $jugador->id]) }}"><button class="edit-button">Editar</button></a>
+                        <a href="{{ route('jugadores.edit', ['id' => $jugador->id]) }}" class="btn btn-warning">Editar</a>
                         <form action="{{ route('jugadores.destroy', ['id' => $jugador->id]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="quit-button">Eliminar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
-                        
                     </td>
                 </tr>
                 @endforeach

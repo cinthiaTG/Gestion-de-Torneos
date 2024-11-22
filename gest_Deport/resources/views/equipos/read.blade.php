@@ -1,15 +1,12 @@
 @extends('layouts.dashboard')
 @section('styles')
-<link rel="stylesheet" href="{{ asset('Css/editarequipo.css') }}">
+<link rel="stylesheet" href="{{ asset('Css/read.css') }}">
 @endsection
-
 @section('content')
-
 <div class="container">
-    <h1 class="form-title">Editar Equipo</h1>
+    <div class="form-title">Equipos Registrados</div>
     <div class="results-section">
-        <br>
-        <table class="results-table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nombre del Equipo</th>
@@ -25,13 +22,11 @@
                         <img src="{{ asset('storage/logos/' . $equipo->logo) }}" alt="Logo del equipo" class="team-logo">
                     </td>
                     <td>
-                        <a href="{{ route('equipos.edit', $equipo->id) }}">
-                            <button class="edit-button">Editar</button>
-                        </a>
+                        <a href="{{ route('equipos.edit', $equipo->id) }}" class="btn btn-warning">Editar</a>
                         <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="quit-button">Eliminar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
                 </tr>
@@ -40,5 +35,4 @@
         </table>
     </div>
 </div>
-
 @endsection
