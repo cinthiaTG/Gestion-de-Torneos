@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Jugador;
 use App\Models\Equipo;
-
 
 class JugadorController extends Controller{
     public function dashboard(){//este va a ser el nuevo index
@@ -106,4 +106,15 @@ class JugadorController extends Controller{
         return view('jugador.read', compact('jugadores'));
     }
 
+    public function buscar(Request $request)
+    {
+        $nombre = $request->input('nombre');
+        $jugadores = Jugador::where('nombre', 'LIKE', "%$nombre%")
+            ->with('equipo')
+            ->get();
+
+        return response()->json($jugadores);
+    }
+
 }
+
