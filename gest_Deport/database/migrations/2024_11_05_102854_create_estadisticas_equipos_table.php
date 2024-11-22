@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('equipo_id');
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
-            
-            $table->integer('partidos_jugados');
-            $table->integer('victorias');
-            $table->integer('empates');
-            $table->integer('derrotas');
-            $table->integer('diferencia_goles');
+
+            // $table->integer('partidos_jugados');
+            // $table->integer('victorias');
+            // $table->integer('empates');
+            // $table->integer('derrotas');
+            // $table->integer('diferencia_goles');
             $table->timestamps();
         });
     }

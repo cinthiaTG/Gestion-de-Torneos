@@ -12,6 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_equipo');
             $table->string('escudo');
+            $table->integer('partidos_jugados')->default(0);
+            $table->integer('victorias')->default(0);
+            $table->integer('empates')->default(0);
+            $table->integer('derrotas')->default(0);
             $table->unsignedBigInteger('id_deporte')->nullable();
             $table->foreign('id_deporte')->references('id')->on('deportes')->onDelete('cascade');
             $table->timestamps();
