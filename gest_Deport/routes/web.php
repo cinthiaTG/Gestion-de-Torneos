@@ -9,6 +9,8 @@ use App\Http\Controllers\ArbitroController;
 use App\Http\Controllers\PartidosController;
 use App\Http\Controllers\TorneoController;
 use App\Http\Controllers\InstalacionController;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -122,5 +124,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
     Route::get('/entrenador/jugadores/buscar', [JugadorController::class, 'buscar'])->name('jugadores.buscar');
     Route::get('/entrenador/equipos/buscar', [EquiposController::class, 'buscar']);
-// Rutas de autenticación generadas automáticamente
-require __DIR__ . '/auth.php';
+    Route::get('/generar-pdf', [App\Http\Controllers\JugadorController::class, 'generarPDF'])->name('generar.pdf');
+    // Rutas de autenticación generadas automáticamente
+
+    require __DIR__ . '/auth.php';

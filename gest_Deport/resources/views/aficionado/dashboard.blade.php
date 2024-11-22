@@ -16,7 +16,6 @@
 <div class="container mt-4">
     <h1>Lista de Usuarios</h1>
 
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -43,8 +42,6 @@
     <br>
     <br>
 
-
-
     <h2>Resultados de la Búsqueda</h2>
     <table class="table table-striped" id="playersTable">
         <thead>
@@ -55,13 +52,15 @@
             <th>Apellido Materno</th>
             <th>Edad</th>
             <th>Posición</th>
-            <th>Equipo</th>
+            <th>ID de Equipo</th>
         </tr>
         </thead>
         <tbody>
         <!-- Para mostrar los resultados -->
         </tbody>
     </table>
+
+    <button id="downloadPdfButton" class="btn btn-success" style="display:none;">Generar PDF</button>
 
     <script>
         $(document).ready(function () {
@@ -74,134 +73,86 @@
                     $('#searchSection').hide();
                 }
             });
-        });
 
-        $('#searchButton').click(function () {
-            const searchValue = $('#searchInput').val();
+            $('#searchButton').click(function () {
+                const searchValue = $('#searchInput').val();
 
-            if (!searchValue.trim()) {
-                alert('Por favor, ingrese un nombre para buscar.');
-                return;
-            }
-
-            // Realizar la petición AJAX para buscar jugadores
-            $.ajax({
-                url: '/entrenador/jugadores/buscar',
-                type: 'GET',
-                data: {
-                    nombre: searchValue
-                },
-                success: function (jugadores) {
-                    const jugadoresContainer = $('#playersTable tbody');
-                    jugadoresContainer.empty();
-
-                    if (Array.isArray(jugadores) && jugadores.length > 0) {
-                        jugadores.forEach(function (jugador) {
-                            const idEquipo = jugador.id_equipo;
-
-                            // Crear fila con datos básicos
-                            const row = $(`
-                        <tr>
-                            <td>${jugador.id}</td>
-                            <td>${jugador.nombre}</td>
-                            <td>${jugador.apellido_paterno}</td>
-                            <td>${jugador.apellido_materno}</td>
-                            <td>${jugador.edad}</td>
-                            <td>${jugador.posicion}</td>
-                            <td id="equipo-${jugador.id}">${idEquipo}</td>
-                        </tr>
-                    `);
-
-                            jugadoresContainer.append(row);
-
-                            // Realizar otra consulta para obtener el nombre del equipo
-                            $.ajax({
-                                url: '/entrenador/equipos/buscar', // Nueva ruta para buscar equipos
-                                type: 'GET',
-                                data: {
-                                    id: idEquipo
-                                },
-                                success: function (equipo) {
-                                    if (equipo && equipo.nombre) {
-                                        $(`#equipo-${jugador.id}`).text(equipo.nombre);
-                                    }
-                                },
-                                error: function () {
-                                    $(`#equipo-${jugador.id}`).text('No asignado');
-                                }
-                            });
-                        });
-                    } else {
-                        alert('No se encontraron jugadores.');
-                    }
-                },
-                error: function () {
-                    alert('Ocurrió un error al buscar los jugadores.');
+                if (!searchValue.trim()) {
+                    alert('Por favor, ingrese un nombre para buscar.');
+                    return;
                 }
+
+                // Realizar la petición AJAX para buscar jugadores
+                $.ajax({
+                    url: '/entrenador/jugadores/buscar',
+                    type: 'GET',
+                    data: {
+                        nombre: searchValue
+                    },
+                    success: function (jugadores) {
+                        const jugadoresContainer = $('#playersTable tbody');
+                        jugadoresContainer.empty();
+
+                        if (Array.isArray(jugadores) && jugadores.length > 0) {
+                            jugadores.forEach(function (jugador) {
+                                const idEquipo = jugador.id_equipo;
+
+                                // Crear fila con datos básicos
+                                const row = $(`
+                                    <tr>
+                                        <td>${jugador.id}</td>
+                                        <td>${jugador.nombre}</td>
+                                        <td>${jugador.apellido_paterno}</td>
+                                        <td>${jugador.apellido_materno}</td>
+                                        <td>${jugador.edad}</td>
+                                        <td>${jugador.posicion}</td>
+                                        <td id="equipo-${jugador.id}">${idEquipo}</td>
+                                    </tr>
+                                `);
+
+                                jugadoresContainer.append(row);
+
+                                // Realizar otra consulta para obtener el nombre del equipo
+                                $.ajax({
+                                    url: '/entrenador/equipos/buscar', // Nueva ruta para buscar equipos
+                                    type: 'GET',
+                                    data: {
+                                        id: idEquipo // Usa idEquipo en lugar de id_equipo
+                                    },
+                                    success: function (equipo) {
+                                        if (equipo && equipo.nombre) {
+                                            $(`#equipo-${jugador.id}`).text(equipo.nombre);
+                                        }
+                                    },
+                                    error: function () {
+                                        $(`#equipo-${jugador.id}`).text('No asignado');
+                                    }
+                                });
+                            });
+
+                            // Mostrar el botón de descarga de PDF
+                            $('#downloadPdfButton').show();
+                        } else {
+                            alert('No se encontraron jugadores.');
+                        }
+                    },
+                    error: function () {
+                        alert('Ocurrió un error al buscar los jugadores.');
+                    }
+                });
             });
-        });
-        $('#searchButton').click(function () {
-            const searchValue = $('#searchInput').val();
 
-            if (!searchValue.trim()) {
-                alert('Por favor, ingrese un nombre para buscar.');
-                return;
-            }
+            // Evento para descargar el PDF
+            $('#downloadPdfButton').click(function () {
+                const searchValue = $('#searchInput').val();
 
-            // Realizar la petición AJAX para buscar jugadores
-            $.ajax({
-                url: '/entrenador/jugadores/buscar',
-                type: 'GET',
-                data: {
-                    nombre: searchValue
-                },
-                success: function (jugadores) {
-                    const jugadoresContainer = $('#playersTable tbody');
-                    jugadoresContainer.empty();
-
-                    if (Array.isArray(jugadores) && jugadores.length > 0) {
-                        jugadores.forEach(function (jugador) {
-                            const idEquipo = jugador.id_equipo;
-
-                            // Crear fila con datos básicos
-                            const row = $(`
-                                <tr>
-                                    <td>${jugador.id}</td>
-                                    <td>${jugador.nombre}</td>
-                                    <td>${jugador.apellido_paterno}</td>
-                                    <td>${jugador.apellido_materno}</td>
-                                    <td>${jugador.edad}</td>
-                                    <td>${jugador.posicion}</td>
-                                    <td id="equipo-${jugador.id}">${idEquipo}</td>
-                                </tr>
-                            `);
-
-                            jugadoresContainer.append(row);
-
-                            // Realizar otra consulta para obtener el nombre del equipo
-                            $.ajax({
-                                url: '/entrenador/equipos/buscar', // Nueva ruta para buscar equipos
-                                type: 'GET',
-                                data: {
-                                    id: id_equipo
-                                },
-                                success: function (equipo) {
-                                    if (equipo && equipo.nombre) {
-                                        $(`#equipo-${jugador.id}`).text(equipo.nombre);
-                                    }
-                                },
-                                error: function () {
-                                    $(`#equipo-${jugador.id}`).text('No asignado');
-                                }
-                            });
-                        });
-                    } else {
-                        alert('No se encontraron jugadores.');
-                    }
-                },
-                error: function () {
-                    alert('Ocurrió un error al buscar los jugadores.');
+                if (!searchValue.trim()) {
+                    alert('Por favor, ingrese un nombre para generar el PDF.');
+                    return;
                 }
+
+                // Redirigir al controlador para generar el PDF
+                window.location.href = '/generar-pdf?nombre=' + searchValue;
             });
         });
     </script>

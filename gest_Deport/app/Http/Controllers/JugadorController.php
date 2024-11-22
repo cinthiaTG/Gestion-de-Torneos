@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Jugador;
 use App\Models\Equipo;
 
+
 class JugadorController extends Controller{
-    public function dashboard(){//este va a ser el nuevo index
+    public function dashboard(){ // este va a ser el nuevo index
         return view("jugador.dashboard");
     }
 
@@ -114,6 +114,17 @@ class JugadorController extends Controller{
 
         return response()->json($jugadores);
     }
+
+    public function generarPDF(Request $request): \Illuminate\Http\Response
+    {
+        $jugadores = Jugador::where('nombre', 'like', '%' . $request->nombre . '%')->get();
+
+
+        $pdf = PDF::loadView('pdf.jugadores', compact('jugadores'));
+
+        return $pdf->download('jugadores.pdf');
+    }
+
 
 }
 
