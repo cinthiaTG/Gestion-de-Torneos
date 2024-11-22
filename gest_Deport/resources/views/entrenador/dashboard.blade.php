@@ -29,6 +29,7 @@ Route::group(['prefix' => 'entrenador/partidos'], function () {
 
     <a href="{{route('partidos.create')}}" class="card">
         <div class="card-label">Crear Partido</div>
+        
     <a href="{{route('partidos.read')}}" class="card">
         <div class="card-label">Editar Partido</div>
     </a>

@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    
+
 <div class="results-table">
     <div class="form-title">Registrar Torneo</div>
     <form class="player-form" action="{{ route('torneo.store') }}" method="POST">

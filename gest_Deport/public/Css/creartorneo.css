@@ -1,9 +1,6 @@
-.results-table {
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+* {
+    margin: 0;
+    padding: 0;
 }
 
 .form-title {
@@ -11,52 +8,36 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: #333;
-    text-align: center;
-}
-
-.player-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .player-form label {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 5px;
-    width: 100%;
-    text-align: left;
+    display: block;
     color: #333;
 }
 
 .player-form input[type="text"],
-.player-form input[type="int"],
-.player-form select {
+.player-form input[type="number"] {
     width: 100%;
-    max-width: 500px;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #0a0a0a;
     border-radius: 5px;
     font-size: 14px;
-    background-color: #fff;
-    color: #333;
 }
 
-.player-form select.input-label {
-    background-color: #f0f0f0;
-}
-
-.player-form select:focus,
-.player-form input:focus {
-    border-color: #53AA51;
-    outline: none;
-    box-shadow: 0 0 5px rgba(83, 170, 81, 0.5);
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #444;
 }
 
 .save-button {
     width: 100%;
-    max-width: 200px;
     padding: 12px;
     font-size: 16px;
     font-weight: bold;
@@ -73,4 +54,17 @@
     background-color: #555;
 }
 
+.input-label, select {
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 10px 20px;
+    width: 180px;
+    background-color: gray;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}   
 
+.content-section{
+    margin-top: 50%;
+}

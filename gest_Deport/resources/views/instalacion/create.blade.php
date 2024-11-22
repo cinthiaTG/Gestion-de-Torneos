@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('styles')
-    <link rel="stylesheet" href="{{asset('Css/registrarjugadores.css')}}">
+    <link rel="stylesheet" href="{{asset('Css/registrarcancha.css')}}">
 @endsection
 
 @section('content')

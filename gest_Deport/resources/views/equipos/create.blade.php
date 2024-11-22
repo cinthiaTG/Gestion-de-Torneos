@@ -1,12 +1,14 @@
 @extends('layouts.dashboard')
+
 @section('styles')
-<link rel="stylesheet" href="{{ asset('Css/registrarequipo.css') }}">
+    <link rel="stylesheet" href="{{ asset('Css/registrarequipo.css') }}">
 @endsection
 
 @section('content')
+
 <div class="container">
-    <h1>Registrar Equipo</h1>
-    <br>
+    <div class="form-title">Registrar Equipo</div>
+
     @if(session('success'))
         <p>{{ session('success') }}</p>
     @endif

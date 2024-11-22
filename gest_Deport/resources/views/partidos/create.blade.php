@@ -5,8 +5,9 @@
 @endsection
 
 @section('content')
+
 <div class="container">
-    <h1>Registrar Partido</h1>
+    <div class="form-title">Crear Partido</div>
     <form action="{{ route('partidos.store') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -21,7 +22,7 @@
 
         <div class="mb-3">
             <label for="id_equipo_local" class="form-label">Equipo Local</label>
-            <select name="id_equipo_local" id="id_equipo_local" class="form-select" required>
+            <select name="id_equipo_local" id="id_equipo_local" class="form-select2" required>
                 <option value="">Selecciona un equipo</option>
                 @foreach ($equipos as $equipo)
                     <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
@@ -31,7 +32,7 @@
 
         <div class="mb-3">
             <label for="id_equipo_visitante" class="form-label">Equipo Visitante</label>
-            <select name="id_equipo_visitante" id="id_equipo_visitante" class="form-select" required>
+            <select name="id_equipo_visitante" id="id_equipo_visitante" class="form-select3" required>
                 <option value="">Selecciona un equipo</option>
                 @foreach ($equipos as $equipo)
                     <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
@@ -46,15 +47,15 @@
 
         <div class="mb-3">
             <label for="hora" class="form-label">Hora</label>
-            <input type="time" name="hora" id="hora" class="form-control" required>
+            <input type="time" name="hora" id="hora" class="form-control2" required>
         </div>
 
         <div class="mb-3">
             <label for="lugar" class="form-label">Lugar</label>
-            <input type="text" name="lugar" id="lugar" class="form-control" required>
+            <input type="text" name="lugar" id="lugar" class="form-control3" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <button type="submit" class="btn-primary">Registrar</button>
     </form>
 </div>
 @endsection

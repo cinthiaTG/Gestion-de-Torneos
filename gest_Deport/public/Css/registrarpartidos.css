@@ -36,7 +36,7 @@
     color: #444;
 }
 
-.save-button {
+.btn-primary{
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -50,7 +50,7 @@
     text-transform: uppercase;
 }
 
-.save-button:hover {
+.btn-primary:hover {
     background-color: #555;
 }
 
@@ -58,10 +58,35 @@
     margin-bottom: 15px;
     display: inline-block;
     padding: 10px 20px;
-    width: 215px;
+    width: 210px;
     background-color: gray;
     cursor: pointer;
     color: white;
     border-radius: 5px;
+}   
+
+.form-control{
+    margin-left: 7.8%;
+    
 }
 
+.form-control2{
+    margin-left: 8.5%;
+}
+
+.form-control3{
+    margin-left: 8%;
+}
+
+.form-select{
+    margin-left: 7%
+    
+}
+
+.form-select2{
+    margin-left: 3.5%;
+}
+
+.form-select3{
+    margin-left: 1.4%;
+}
