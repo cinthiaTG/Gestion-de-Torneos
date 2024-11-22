@@ -77,17 +77,14 @@
         });
 
         $('#searchButton').click(function () {
-            const selectedOption = $('#addOption').val(); // Obtener opción seleccionada
-            const searchValue = $('#searchInput').val();  // Obtener valor del buscador
+            const searchValue = $('#searchInput').val();
 
             if (!searchValue.trim()) {
                 alert('Por favor, ingrese un nombre para buscar.');
                 return;
             }
 
-            alert(`Buscar "${searchValue}" en ${selectedOption}`);
-
-            // Realizar la petición AJAX
+            // Realizar la petición AJAX para buscar jugadores
             $.ajax({
                 url: '/entrenador/jugadores/buscar',
                 type: 'GET',
@@ -95,31 +92,116 @@
                     nombre: searchValue
                 },
                 success: function (jugadores) {
-                    console.log(jugadores);
-
                     const jugadoresContainer = $('#playersTable tbody');
                     jugadoresContainer.empty();
 
                     if (Array.isArray(jugadores) && jugadores.length > 0) {
-                        jugadores.forEach(function(jugador) {
-                            jugadoresContainer.append(`
-                            <tr>
-                                <td>${jugador.id}</td>
-                                <td>${jugador.nombre}</td>
-                                <td>${jugador.apellido_paterno}</td>
-                                <td>${jugador.apellido_materno}</td>
-                                <td>${jugador.edad}</td>
-                                <td>${jugador.posicion}</td>
-                                <td>${jugador.equipo ? jugador.equipo.nombre : 'No asignado'}</td>
-                            </tr>
-                        `);
-                        });
+                        jugadores.forEach(function (jugador) {
+                            const idEquipo = jugador.id_equipo;
 
+                            // Crear fila con datos básicos
+                            const row = $(`
+                        <tr>
+                            <td>${jugador.id}</td>
+                            <td>${jugador.nombre}</td>
+                            <td>${jugador.apellido_paterno}</td>
+                            <td>${jugador.apellido_materno}</td>
+                            <td>${jugador.edad}</td>
+                            <td>${jugador.posicion}</td>
+                            <td id="equipo-${jugador.id}">${idEquipo}</td>
+                        </tr>
+                    `);
+
+                            jugadoresContainer.append(row);
+
+                            // Realizar otra consulta para obtener el nombre del equipo
+                            $.ajax({
+                                url: '/entrenador/equipos/buscar', // Nueva ruta para buscar equipos
+                                type: 'GET',
+                                data: {
+                                    id: idEquipo
+                                },
+                                success: function (equipo) {
+                                    if (equipo && equipo.nombre) {
+                                        $(`#equipo-${jugador.id}`).text(equipo.nombre);
+                                    }
+                                },
+                                error: function () {
+                                    $(`#equipo-${jugador.id}`).text('No asignado');
+                                }
+                            });
+                        });
                     } else {
                         alert('No se encontraron jugadores.');
                     }
                 },
+                error: function () {
+                    alert('Ocurrió un error al buscar los jugadores.');
+                }
+            });
+        });
+        $('#searchButton').click(function () {
+            const searchValue = $('#searchInput').val();
 
+            if (!searchValue.trim()) {
+                alert('Por favor, ingrese un nombre para buscar.');
+                return;
+            }
+
+            // Realizar la petición AJAX para buscar jugadores
+            $.ajax({
+                url: '/entrenador/jugadores/buscar',
+                type: 'GET',
+                data: {
+                    nombre: searchValue
+                },
+                success: function (jugadores) {
+                    const jugadoresContainer = $('#playersTable tbody');
+                    jugadoresContainer.empty();
+
+                    if (Array.isArray(jugadores) && jugadores.length > 0) {
+                        jugadores.forEach(function (jugador) {
+                            const idEquipo = jugador.id_equipo;
+
+                            // Crear fila con datos básicos
+                            const row = $(`
+                                <tr>
+                                    <td>${jugador.id}</td>
+                                    <td>${jugador.nombre}</td>
+                                    <td>${jugador.apellido_paterno}</td>
+                                    <td>${jugador.apellido_materno}</td>
+                                    <td>${jugador.edad}</td>
+                                    <td>${jugador.posicion}</td>
+                                    <td id="equipo-${jugador.id}">${idEquipo}</td>
+                                </tr>
+                            `);
+
+                            jugadoresContainer.append(row);
+
+                            // Realizar otra consulta para obtener el nombre del equipo
+                            $.ajax({
+                                url: '/entrenador/equipos/buscar', // Nueva ruta para buscar equipos
+                                type: 'GET',
+                                data: {
+                                    id: id_equipo
+                                },
+                                success: function (equipo) {
+                                    if (equipo && equipo.nombre) {
+                                        $(`#equipo-${jugador.id}`).text(equipo.nombre);
+                                    }
+                                },
+                                error: function () {
+                                    $(`#equipo-${jugador.id}`).text('No asignado');
+                                }
+                            });
+                        });
+                    } else {
+                        alert('No se encontraron jugadores.');
+                    }
+                },
+                error: function () {
+                    alert('Ocurrió un error al buscar los jugadores.');
+                }
             });
         });
     </script>

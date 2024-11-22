@@ -31,6 +31,7 @@ class Jugador extends Model
         return $this->belongsTo(Equipo::class, 'id_equipo');
     }
 
+
     public function deporte()
     {
         return $this->belongsTo(Deporte::class);

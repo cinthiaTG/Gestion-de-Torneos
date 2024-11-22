@@ -120,9 +120,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::get('/entrenador/jugadores/exportar-pdf', [JugadorController::class, 'generarPDF'])->name('jugadores.pdf');
     Route::get('/entrenador/jugadores/buscar', [JugadorController::class, 'buscar'])->name('jugadores.buscar');
-    Route::get('/entrenador/jugadores/pdf', [JugadorController::class, 'exportarPDF'])->name('jugadores.pdf');
-
+    Route::get('/entrenador/equipos/buscar', [EquiposController::class, 'buscar']);
 // Rutas de autenticación generadas automáticamente
 require __DIR__ . '/auth.php';

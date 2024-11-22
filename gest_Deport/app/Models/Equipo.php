@@ -11,10 +11,8 @@ class Equipo extends Model
     protected $table = 'equipos';
     protected $fillable = ['nombre_equipo', 'escudo', 'id_deporte'];
 
-    public function jugadores()
+    public function jugadores(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Jugador::class, 'id_equipo');
     }
-
-
 }

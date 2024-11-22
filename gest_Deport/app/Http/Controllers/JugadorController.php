@@ -110,7 +110,6 @@ class JugadorController extends Controller{
     {
         $nombre = $request->input('nombre');
         $jugadores = Jugador::where('nombre', 'LIKE', "%$nombre%")
-            ->with('equipo')
             ->get();
 
         return response()->json($jugadores);
