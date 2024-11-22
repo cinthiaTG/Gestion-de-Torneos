@@ -82,7 +82,6 @@
                     return;
                 }
 
-                // Realizar la petición AJAX para buscar jugadores
                 $.ajax({
                     url: '/entrenador/jugadores/buscar',
                     type: 'GET',

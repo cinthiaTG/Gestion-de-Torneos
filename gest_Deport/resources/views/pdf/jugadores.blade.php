@@ -35,6 +35,7 @@
         <th>Apellido Paterno</th>
         <th>Apellido Materno</th>
         <th>Edad</th>
+        <th>ID de Equipo</th>
         <th>Posición</th>
     </tr>
     </thead>
@@ -46,6 +47,7 @@
             <td>{{ $jugador->apellido_paterno }}</td>
             <td>{{ $jugador->apellido_materno }}</td>
             <td>{{ $jugador->edad }}</td>
+            <td>{{ $jugador->id_equipo }}</td>
             <td>{{ $jugador->posicion }}</td>
         </tr>
     @empty
