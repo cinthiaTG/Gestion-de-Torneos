@@ -16,10 +16,6 @@
         <input type="text" name="tipo_torneo" required>
 
         <label>Numero de Equipos</label><!---->
-        <!--
-        jotillo
-        
-        -->
         <input type="int" name="numero_equipos" required>
 
         <label for="deporte_id">Deporte</label>
