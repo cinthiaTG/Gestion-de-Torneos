@@ -23,6 +23,10 @@
         <label for="escudo" class="img-label">Seleccionar imagen</label>
         <br>
 
+        <label for="patrocinador_equipo">Patrocinador del Equipo</label>
+        <input type="text" id="patrocinador_equipo" name="patrocinador_equipo" required>
+        <br class="jump">
+
         <label for="deporte_id">Deporte</label>
         <select class="input-label" id="deporte_id" name="deporte_id" required>
             <option value="1">Futbol Americano</option>

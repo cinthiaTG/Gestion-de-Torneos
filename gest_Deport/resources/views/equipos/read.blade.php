@@ -11,6 +11,7 @@
                 <tr>
                     <th>Nombre del Equipo</th>
                     <th>Logo</th>
+                    <th>Patrocinador</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -21,6 +22,7 @@
                     <td>
                         <img src="{{ asset('storage/logos/' . $equipo->logo) }}" alt="Logo del equipo" class="team-logo">
                     </td>
+                    <td>{{$equipo->patrocinador_equipo}}</td>
                     <td>
                         <a href="{{ route('equipos.edit', $equipo->id) }}" class="btn btn-warning">Editar</a>
                         <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST" style="display:inline;">

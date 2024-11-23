@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_equipo');
             $table->string('escudo');
+            $table->string('patrocinador_equipo')->default('Sin patrocinador');
             $table->integer('partidos_jugados')->default(0);
             $table->integer('victorias')->default(0);
             $table->integer('empates')->default(0);
