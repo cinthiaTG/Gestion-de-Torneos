@@ -16,10 +16,12 @@ class EquiposController extends Controller{
     {
         $validatedData = $request->validate([
             'nombre_equipo' => 'required|string|max:255',
-            'patrocinador_equipo' => 'required|string|max:255',
+            'patrocinador_equipo' => 'nullable|string|max:255',
+            'monto_patrocinador' => 'nullable|integer',
             'escudo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'deporte_id' => 'required|exists:deportes,id'
         ]);
+
 
         // Almacenar el archivo de imagen
         $path = $request->file('escudo')->store('public/escudos');
@@ -27,10 +29,12 @@ class EquiposController extends Controller{
 
         Equipo::create([
             'nombre_equipo' => $request->nombre_equipo,
-            'patrocinador_equipo'=>$request->patrocinador_equipo,
+            'patrocinador_equipo' => $request->patrocinador_equipo ?? 'Sin patrocinador',
+            'monto_patrocinador' => $request->monto_patrocinador ?? 0,
             'escudo' => $filename,
             'id_deporte' => $request->deporte_id,
         ]);
+
 
         return redirect()->route('equipos.create')->with('success', 'Equipo registrado exitosamente');
     }
@@ -46,7 +50,8 @@ class EquiposController extends Controller{
 {
     $request->validate([
         'nombre_equipo' => 'required|string|max:255',
-        'patrocinador_equipo' => 'required|string|max:255',
+        'patrocinador_equipo' => 'nullable|string|max:255',
+            'monto_patrocinador' => 'nullable|integer',
         'escudo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
@@ -66,6 +71,8 @@ class EquiposController extends Controller{
 
     // Actualizar los datos del equipo
     $equipo->nombre_equipo = $request->nombre_equipo;
+    $equipo->patrocinador_equipo = $request->patrocinador_equipo ?? 'Sin patrocinador';
+    $equipo->monto_patrocinador = $request->monto_patrocinador ?? 0;
     $equipo->save();
 
     return redirect()->route('equipos.read')->with('success', 'Equipo actualizado correctamente.');
