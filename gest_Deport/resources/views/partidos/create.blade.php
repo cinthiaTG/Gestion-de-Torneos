@@ -50,10 +50,14 @@
         </div>
 
         <div class="mb-3">
-            <label for="lugar" class="form-label">Lugar</label>
-            <input type="text" name="lugar" id="lugar" class="form-control" required>
+            <label for="id_instalacion" class="form-label">id_instalacion</label>
+            <select name="id_instalacion" id="id_instalacion" class="form-select" required>
+                <option value="">Selecciona una instlacion</option>
+                @foreach ($instalaciones as $instalacion)
+                    <option value="{{ $instalacion->id }}">{{ $instalacion->nombre_instalacion }}</option>
+                @endforeach
+            </select>
         </div>
-
         <button type="submit" class="btn btn-primary">Registrar</button>
     </form>
 </div>

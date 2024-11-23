@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +9,12 @@ class Partido extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_torneo', 'id_equipo_local', 'id_equipo_visitante', 'fecha', 'hora', 'lugar',
+        'id_torneo',
+        'id_equipo_local',
+        'id_equipo_visitante',
+        'fecha',
+        'hora',
+        'id_instalacion', // Campo añadido
     ];
 
     // Relación con Torneo
@@ -30,5 +34,10 @@ class Partido extends Model
     {
         return $this->belongsTo(Equipo::class, 'id_equipo_visitante');
     }
-}
 
+    // Relación con Instalacion
+    public function instalacion()
+    {
+        return $this->belongsTo(Instalacion::class, 'id_instalacion');
+    }
+}

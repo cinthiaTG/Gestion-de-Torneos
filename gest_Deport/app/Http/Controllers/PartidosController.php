@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Partido;
 use App\Models\Torneo;
 use App\Models\Equipo;
+use App\Models\Instalacion;
+
 
 class PartidosController extends Controller
 {
@@ -14,7 +16,8 @@ class PartidosController extends Controller
         // Obtener datos necesarios para los select de torneos y equipos
         $torneo = Torneo::all();
         $equipos = Equipo::all();
-        return view('partidos.create', compact('torneo', 'equipos'));
+        $instalaciones = Instalacion::all();
+        return view('partidos.create', compact('torneo', 'equipos','instalaciones'));
     }
 
     public function store(Request $request)
@@ -25,16 +28,16 @@ class PartidosController extends Controller
             'id_equipo_visitante' => 'required|exists:equipos,id|different:id_equipo_local',
             'fecha' => 'required|date',
             'hora' => 'required|date_format:H:i',
-            'lugar' => 'required|string|max:255',
+            'id_instalacion' => 'required|integer',
         ]);
 
         Partido::create([
             'id_torneo' => $request->id_torneo,
             'id_equipo_local' => $request->id_equipo_local,
+            'id_instalacion' => $request->id_instalacion,
             'id_equipo_visitante' => $request->id_equipo_visitante,
             'fecha' => $request->fecha,
             'hora' => $request->hora,
-            'lugar' => $request->lugar,
         ]);
 
         return redirect()->route('partidos.create')->with('success', 'Partido registrado exitosamente.');
@@ -61,10 +64,10 @@ class PartidosController extends Controller
         $validatedData = $request->validate([
             'id_torneo' => 'required|exists:torneo,id',
             'id_equipo_local' => 'required|exists:equipos,id',
+            'id_instalacion' => 'required|integer',
             'id_equipo_visitante' => 'required|exists:equipos,id|different:id_equipo_local',
             'fecha' => 'required|date',
             'hora' => 'required|date_format:H:i',
-            'lugar' => 'required|string|max:255',
         ]);
 
         $partido = Partido::findOrFail($id);
@@ -72,9 +75,9 @@ class PartidosController extends Controller
             'id_torneo' => $request->id_torneo,
             'id_equipo_local' => $request->id_equipo_local,
             'id_equipo_visitante' => $request->id_equipo_visitante,
+            'id_instalacion' => $request->id_instalacion,
             'fecha' => $request->fecha,
             'hora' => $request->hora,
-            'lugar' => $request->lugar,
         ]);
 
         return redirect()->route('partidos.read')->with('success', 'Partido actualizado exitosamente.');
