@@ -182,7 +182,7 @@
                             return;
                         }
 
-                        window.location.href = '/generar-pdf?nombre=' + searchValuePlayers;
+                        window.location.href = '/generar-pdf-jugador?nombre=' + searchValuePlayers;
                     });
 
                 } else if (selectedOption === "instalacion") {
@@ -261,7 +261,7 @@
                             return;
                         }
 
-                        window.location.href = '/generar-pdf?nombre=' + searchValueFacilities;
+                        window.location.href = '/generar-pdf-instalacion?nombre=' + searchValueFacilities;
                     });
 
                 } else {
@@ -275,3 +275,4 @@
 </body>
 </html>
 @endsection
+

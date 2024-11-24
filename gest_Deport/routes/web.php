@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeporteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AficionadoController;
 use App\Http\Controllers\EntrenadorController;
@@ -129,14 +130,20 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
+
+    //Rutas danilingling para PDF REPORTES
+        // JUGADORES
     Route::get('/entrenador/jugadores/buscar', [JugadorController::class, 'buscar'])->name('jugadores.buscar');
     Route::get('/entrenador/equipos/buscar', [EquiposController::class, 'buscar']);
-    Route::get('/generar-pdf', [App\Http\Controllers\JugadorController::class, 'generarPDF'])->name('generar.pdf');
-    // Rutas de autenticación generadas automáticamente
+    Route::get('/generar-pdf-jugador', [App\Http\Controllers\JugadorController::class, 'generarPDF'])->name('generar.pdf');
 
-    // Rutas para buscar instalaciones y deportes
-    Route::get('/entrenador/instalacion/buscar', [InstalacionController::class, 'buscar'])->name('instalacion.buscar');
-    Route::get('/entrenador/deportes/buscar', [DeporteController::class, 'buscar'])->name('deporte.buscar');
+        // INSTALACIONES
+    Route::get('/entrenador/instalaciones/buscar', [InstalacionController::class, 'buscar'])->name('instalaciones.buscar');
+    Route::get('/entrenador/deportes/buscar', [DeporteController::class, 'buscar']);
+    Route::get('/generar-pdf-instalador', [App\Http\Controllers\InstalacionController::class, 'generarPDF'])->name('generar.pdf');
+
+
+
 
 
     require __DIR__ . '/auth.php';

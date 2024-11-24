@@ -73,11 +73,11 @@ class InstalacionController extends Controller
         return view('instalacion.read', compact('instalaciones'));
     }
 
+
     public function buscar(Request $request)
     {
         $nombre = $request->input('nombre');
-        $instalaciones = Instalacion::where('nombre_instalacion', 'LIKE', '%' . $nombre . '%')
-            ->with('deporte')
+        $instalaciones = Instalacion::where('nombre_instalacion', 'LIKE', "%$nombre%")
             ->get();
 
         return response()->json($instalaciones);
@@ -86,7 +86,7 @@ class InstalacionController extends Controller
 
     public function generarPDF(Request $request): \Illuminate\Http\Response
     {
-        $instalaciones = Instalacion::all();
+        $instalaciones = Instalacion::where('nombre_instalacion', 'like', '%' . $request->nombre . '%')->get();
 
         $pdf = PDF::loadView('pdf.instalaciones', compact('instalaciones'));
 
