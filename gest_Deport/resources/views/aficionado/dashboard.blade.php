@@ -31,19 +31,15 @@
         </select>
     </div>
 
-    <div id="searchSection" class="mb-3" style="display: none;">
-        <label for="searchInput" class="form-label">Buscar por nombre</label>
+    <div id="searchSectionPlayers" class="mb-3" style="display: none;">
+        <label for="searchInputPlayers" class="form-label">Buscar por nombre</label>
         <div class="input-group">
-            <input type="text" id="searchInput" class="form-control" placeholder="Ingrese el nombre">
-            <button id="searchButton" class="btn btn-primary">Buscar</button>
+            <input type="text" id="searchInputPlayers" class="form-control" placeholder="Ingrese el nombre">
+            <button id="searchButtonPlayers" class="btn btn-primary">Buscar</button>
         </div>
     </div>
 
-    <br>
-    <br>
-
-    <h2>Resultados de la Búsqueda</h2>
-    <table class="table table-striped" id="playersTable">
+    <table class="table table-striped" id="playersTable" style="display: none;">
         <thead>
         <tr>
             <th>ID</th>
@@ -60,44 +56,80 @@
         </tbody>
     </table>
 
-    <button id="downloadPdfButton" class="btn btn-success" style="display:none;">Generar PDF</button>
 
+    <div id="searchSectionFacilities" class="mb-3" style="display: none;">
+        <label for="searchInputFacilities" class="form-label">Buscar por nombre</label>
+        <div class="input-group">
+            <input type="text" id="searchInputFacilities" class="form-control" placeholder="Ingrese el nombre">
+            <button id="searchButtonFacilities" class="btn btn-primary">Buscar</button>
+        </div>
+    </div>
+
+    <table class="table table-striped" id="FacilitiesTable" style="display: none;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ubicacion</th>
+            <th>Deporte</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Para mostrar los resultados -->
+        </tbody>
+    </table>
+
+    <button id="downloadPdfButtonPlayers" class="btn btn-success" style="display:none;">Generar PDF</button>
+    <button id="downloadPdfButtonFacilities" class="btn btn-success" style="display:none;">Generar PDF</button>
+
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
+    <!-- SCRIPT -->
     <script>
         $(document).ready(function () {
             $('#addOption').change(function () {
                 const selectedOption = $(this).val();
 
+                // Ocultar todas las secciones y botones antes de mostrar las relevantes
+                $('#searchSectionPlayers, #playersTable, #searchSectionFacilities, #FacilitiesTable, #downloadPdfButtonPlayers, #downloadPdfButtonFacilities').hide();
+
                 if (selectedOption === "jugador") {
-                    $('#searchSection').show();
-                } else {
-                    $('#searchSection').hide();
-                }
-            });
+                    $('#searchSectionPlayers').show();
 
-            $('#searchButton').click(function () {
-                const searchValue = $('#searchInput').val();
+                    // Asociar evento de clic al botón de búsqueda de jugadores
+                    $('#searchButtonPlayers').off('click').on('click', function () {
+                        const searchValuePlayers = $('#searchInputPlayers').val();
 
-                if (!searchValue.trim()) {
-                    alert('Por favor, ingrese un nombre para buscar.');
-                    return;
-                }
+                        if (!searchValuePlayers.trim()) {
+                            alert('Por favor, ingrese un nombre para buscar.');
+                            return;
+                        }
 
-                $.ajax({
-                    url: '/entrenador/jugadores/buscar',
-                    type: 'GET',
-                    data: {
-                        nombre: searchValue
-                    },
-                    success: function (jugadores) {
-                        const jugadoresContainer = $('#playersTable tbody');
-                        jugadoresContainer.empty();
+                        $.ajax({
+                            url: '/entrenador/jugadores/buscar',
+                            type: 'GET',
+                            data: {
+                                nombre: searchValuePlayers
+                            },
+                            success: function (jugadores) {
+                                const jugadoresContainer = $('#playersTable tbody');
+                                jugadoresContainer.empty();
 
-                        if (Array.isArray(jugadores) && jugadores.length > 0) {
-                            jugadores.forEach(function (jugador) {
-                                const idEquipo = jugador.id_equipo;
+                                if (Array.isArray(jugadores) && jugadores.length > 0) {
+                                    jugadores.forEach(function (jugador) {
+                                        const idEquipo = jugador.id_equipo;
 
-                                // Crear fila con datos básicos
-                                const row = $(`
+                                        const row = $(`
                                     <tr>
                                         <td>${jugador.id}</td>
                                         <td>${jugador.nombre}</td>
@@ -109,49 +141,133 @@
                                     </tr>
                                 `);
 
-                                jugadoresContainer.append(row);
+                                        jugadoresContainer.append(row);
 
-                                // Realizar otra consulta para obtener el nombre del equipo
-                                $.ajax({
-                                    url: '/entrenador/equipos/buscar', // Nueva ruta para buscar equipos
-                                    type: 'GET',
-                                    data: {
-                                        id: idEquipo // Usa idEquipo en lugar de id_equipo
-                                    },
-                                    success: function (equipo) {
-                                        if (equipo && equipo.nombre) {
-                                            $(`#equipo-${jugador.id}`).text(equipo.nombre);
-                                        }
-                                    },
-                                    error: function () {
-                                        $(`#equipo-${jugador.id}`).text('No asignado');
-                                    }
-                                });
-                            });
+                                        // Obtener nombre del equipo
+                                        $.ajax({
+                                            url: '/entrenador/equipos/buscar',
+                                            type: 'GET',
+                                            data: {
+                                                id: idEquipo
+                                            },
+                                            success: function (equipo) {
+                                                if (equipo && equipo.nombre) {
+                                                    $(`#equipo-${jugador.id}`).text(equipo.nombre);
+                                                }
+                                            },
+                                            error: function () {
+                                                $(`#equipo-${jugador.id}`).text('No asignado');
+                                            }
+                                        });
+                                    });
 
-                            // Mostrar el botón de descarga de PDF
-                            $('#downloadPdfButton').show();
-                        } else {
-                            alert('No se encontraron jugadores.');
+                                    $('#playersTable').show(); // Mostrar tabla de jugadores
+                                    $('#downloadPdfButtonPlayers').show(); // Mostrar botón de PDF
+                                } else {
+                                    alert('No se encontraron jugadores.');
+                                }
+                            },
+                            error: function () {
+                                alert('Ocurrió un error al buscar los jugadores.');
+                            }
+                        });
+                    });
+
+                    // Evento para descargar PDF de jugadores
+                    $('#downloadPdfButtonPlayers').off('click').on('click', function () {
+                        const searchValuePlayers = $('#searchInputPlayers').val();
+
+                        if (!searchValuePlayers.trim()) {
+                            alert('Por favor, ingrese un nombre para generar el PDF.');
+                            return;
                         }
-                    },
-                    error: function () {
-                        alert('Ocurrió un error al buscar los jugadores.');
-                    }
-                });
-            });
 
-            // Evento para descargar el PDF
-            $('#downloadPdfButton').click(function () {
-                const searchValue = $('#searchInput').val();
+                        window.location.href = '/generar-pdf?nombre=' + searchValuePlayers;
+                    });
 
-                if (!searchValue.trim()) {
-                    alert('Por favor, ingrese un nombre para generar el PDF.');
-                    return;
+                } else if (selectedOption === "instalacion") {
+                    $('#searchSectionFacilities').show();
+
+                    // Asociar evento de clic al botón de búsqueda de instalaciones
+                    $('#searchButtonFacilities').off('click').on('click', function () {
+                        const searchValueFacilities = $('#searchInputFacilities').val();
+
+                        if (!searchValueFacilities.trim()) {
+                            alert('Por favor, ingrese un nombre para buscar.');
+                            return;
+                        }
+
+                        $.ajax({
+                            url: '/entrenador/instalaciones/buscar',
+                            type: 'GET',
+                            data: {
+                                nombre: searchValueFacilities
+                            },
+                            success: function (instalaciones) {
+                                const instalacionesContainer = $('#FacilitiesTable tbody');
+                                instalacionesContainer.empty();
+
+                                if (Array.isArray(instalaciones) && instalaciones.length > 0) {
+                                    instalaciones.forEach(function (instalacion) {
+                                        const idDeporte = instalacion.id_deporte;
+
+                                        const row = $(`
+                                    <tr>
+                                        <td>${instalacion.id}</td>
+                                        <td>${instalacion.nombre_instalacion}</td>
+                                        <td>${instalacion.ubicacion}</td>
+                                        <td id="deporte-${instalacion.id}">${idDeporte}</td>
+                                    </tr>
+                                `);
+
+                                        instalacionesContainer.append(row);
+
+                                        // Obtener nombre del deporte
+                                        $.ajax({
+                                            url: '/entrenador/deporte/buscar',
+                                            type: 'GET',
+                                            data: {
+                                                id: idDeporte
+                                            },
+                                            success: function (deporte) {
+                                                if (deporte && deporte.nombre) {
+                                                    $(`#deporte-${instalacion.id}`).text(deporte.nombre);
+                                                }
+                                            },
+                                            error: function () {
+                                                $(`#deporte-${instalacion.id}`).text('No asignado');
+                                            }
+                                        });
+                                    });
+
+                                    $('#FacilitiesTable').show(); // Mostrar tabla de instalaciones
+                                    $('#downloadPdfButtonFacilities').show(); // Mostrar botón de PDF
+                                } else {
+                                    alert('No se encontraron instalaciones.');
+                                }
+                            },
+                            error: function () {
+                                alert('Ocurrió un error al buscar las instalaciones.');
+                            }
+                        });
+                    });
+
+                    // Evento para descargar PDF de instalaciones
+                    $('#downloadPdfButtonFacilities').off('click').on('click', function () {
+                        const searchValueFacilities = $('#searchInputFacilities').val();
+
+                        if (!searchValueFacilities.trim()) {
+                            alert('Por favor, ingrese un nombre para generar el PDF.');
+                            return;
+                        }
+
+                        window.location.href = '/generar-pdf?nombre=' + searchValueFacilities;
+                    });
+
+                } else {
+                    // Ocultar todas las secciones si no se selecciona nada o "Seleccione una opción"
+                    $('#searchSectionPlayers, #playersTable, #searchSectionFacilities, #FacilitiesTable').hide();
                 }
-
-                // Redirigir al controlador para generar el PDF
-                window.location.href = '/generar-pdf?nombre=' + searchValue;
             });
         });
     </script>

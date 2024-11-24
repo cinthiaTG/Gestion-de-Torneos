@@ -103,7 +103,14 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         Route::get('/edit/{id}', [InstalacionController::class, 'edit'])->name('instalacion.edit');
         Route::put('/update/{id}', [InstalacionController::class, 'update'])->name('instalacion.update');
         Route::delete('/destroy/{id}', [InstalacionController::class, 'destroy'])->name('instalacion.destroy');
+
+        // Ruta para buscar instalaciones
+        Route::get('/buscar', [InstalacionController::class, 'buscar'])->name('instalacion.buscar');
+
+        // Ruta para exportar instalaciones a PDF
+        Route::get('/exportar-pdf', [InstalacionController::class, 'generarPDF'])->name('instalacion.exportar_pdf');
     });
+
 });
 
 
@@ -126,5 +133,10 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/entrenador/equipos/buscar', [EquiposController::class, 'buscar']);
     Route::get('/generar-pdf', [App\Http\Controllers\JugadorController::class, 'generarPDF'])->name('generar.pdf');
     // Rutas de autenticación generadas automáticamente
+
+    // Rutas para buscar instalaciones y deportes
+    Route::get('/entrenador/instalacion/buscar', [InstalacionController::class, 'buscar'])->name('instalacion.buscar');
+    Route::get('/entrenador/deportes/buscar', [DeporteController::class, 'buscar'])->name('deporte.buscar');
+
 
     require __DIR__ . '/auth.php';
