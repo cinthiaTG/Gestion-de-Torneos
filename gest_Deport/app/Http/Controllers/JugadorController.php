@@ -115,10 +115,9 @@ class JugadorController extends Controller{
         return response()->json($jugadores);
     }
 
-    public function generarPDF(Request $request): \Illuminate\Http\Response
+    public function generarPDFJugadores(Request $request): \Illuminate\Http\Response
     {
         $jugadores = Jugador::where('nombre', 'like', '%' . $request->nombre . '%')->get();
-
 
         $pdf = PDF::loadView('pdf.jugadores', compact('jugadores'));
 

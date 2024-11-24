@@ -135,12 +135,12 @@ Route::middleware(['auth', 'role:2'])->group(function () {
         // JUGADORES
     Route::get('/entrenador/jugadores/buscar', [JugadorController::class, 'buscar'])->name('jugadores.buscar');
     Route::get('/entrenador/equipos/buscar', [EquiposController::class, 'buscar']);
-    Route::get('/generar-pdf-jugador', [App\Http\Controllers\JugadorController::class, 'generarPDF'])->name('generar.pdf');
+    Route::get('/generar-pdf-jugador', [App\Http\Controllers\JugadorController::class, 'generarPDFJugadores'])->name('generar.pdf.jugadores');
 
         // INSTALACIONES
     Route::get('/entrenador/instalaciones/buscar', [InstalacionController::class, 'buscar'])->name('instalaciones.buscar');
     Route::get('/entrenador/deportes/buscar', [DeporteController::class, 'buscar']);
-    Route::get('/generar-pdf-instalador', [App\Http\Controllers\InstalacionController::class, 'generarPDF'])->name('generar.pdf');
+    Route::get('/generar-pdf-instalacion', [App\Http\Controllers\InstalacionController::class, 'generarPDFInstalaciones'])->name('generar.pdf.instalaciones');
 
 
 

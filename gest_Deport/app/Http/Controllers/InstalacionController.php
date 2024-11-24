@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Instalacion;
 use App\Models\Deporte;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class InstalacionController extends Controller
         $validatedData = $request->validate([
             'nombre_instalacion' => 'required|string|max:255',
             'ubicacion' => 'required|string|max:255',
-            'id_deporte' => 'required|exists:deportes,id', // Asegúrate de que exista la relación
+            'id_deporte' => 'required|exists:deportes,id',
         ]);
 
         Instalacion::create([
@@ -84,13 +85,23 @@ class InstalacionController extends Controller
     }
 
 
-    public function generarPDF(Request $request): \Illuminate\Http\Response
+
+    public function generarPDFInstalaciones(Request $request): \Illuminate\Http\Response
     {
         $instalaciones = Instalacion::where('nombre_instalacion', 'like', '%' . $request->nombre . '%')->get();
 
         $pdf = PDF::loadView('pdf.instalaciones', compact('instalaciones'));
 
         return $pdf->download('instalaciones.pdf');
+    }
+
+    public function generarPDFJugadores(Request $request): \Illuminate\Http\Response
+    {
+        $jugadores = Jugador::where('nombre', 'like', '%' . $request->nombre . '%')->get();
+
+        $pdf = PDF::loadView('pdf.jugadores', compact('jugadores'));
+
+        return $pdf->download('jugadores.pdf');
     }
 
 }
