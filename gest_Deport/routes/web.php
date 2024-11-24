@@ -139,7 +139,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
         // INSTALACIONES
     Route::get('/entrenador/instalaciones/buscar', [InstalacionController::class, 'buscar'])->name('instalaciones.buscar');
-    Route::get('/entrenador/deportes/buscar', [DeporteController::class, 'buscar']);
+    Route::get('/entrenador/deporte/buscar', [DeporteController::class, 'buscar']);
     Route::get('/generar-pdf-instalacion', [App\Http\Controllers\InstalacionController::class, 'generarPDFInstalaciones'])->name('generar.pdf.instalaciones');
 
 

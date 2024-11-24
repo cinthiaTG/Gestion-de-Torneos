@@ -84,8 +84,6 @@ class InstalacionController extends Controller
         return response()->json($instalaciones);
     }
 
-
-
     public function generarPDFInstalaciones(Request $request): \Illuminate\Http\Response
     {
         $instalaciones = Instalacion::where('nombre_instalacion', 'like', '%' . $request->nombre . '%')->get();
@@ -93,15 +91,6 @@ class InstalacionController extends Controller
         $pdf = PDF::loadView('pdf.instalaciones', compact('instalaciones'));
 
         return $pdf->download('instalaciones.pdf');
-    }
-
-    public function generarPDFJugadores(Request $request): \Illuminate\Http\Response
-    {
-        $jugadores = Jugador::where('nombre', 'like', '%' . $request->nombre . '%')->get();
-
-        $pdf = PDF::loadView('pdf.jugadores', compact('jugadores'));
-
-        return $pdf->download('jugadores.pdf');
     }
 
 }
