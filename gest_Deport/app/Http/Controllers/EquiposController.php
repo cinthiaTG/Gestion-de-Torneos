@@ -99,4 +99,17 @@ class EquiposController extends Controller{
         return view('equipos.read', compact('equipos'));
     }
 
+    public function buscar(Request $request)
+    {
+        $id = $request->input('id');
+        $equipo = Equipo::find($id);
+
+        if ($equipo) {
+            return response()->json($equipo);
+        } else {
+            return response()->json(['mensaje' => 'Equipo no encontrado'], 404);
+        }
+    }
+
+
 }

@@ -9,10 +9,10 @@ class Equipo extends Model
 {
     use HasFactory;
     protected $table = 'equipos';
-    protected $fillable = ['nombre_equipo','monto_patrocinador', 'escudo','patrocinador_equipo', 'id_deporte'];
-    public function jugadores()
-    {
-        return $this->hasMany(Jugador::class);
-    }
+    protected $fillable = ['nombre_equipo', 'escudo', 'id_deporte'];
 
+    public function jugadores(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Jugador::class, 'id_equipo');
+    }
 }
