@@ -71,7 +71,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Ubicacion</th>
-            <th>Deporte</th>
+            <th>ID_Deporte</th>
         </tr>
         </thead>
         <tbody>
@@ -221,7 +221,6 @@
                                 `);
 
                                         instalacionesContainer.append(row);
-
                                         // Obtener nombre del deporte
                                         $.ajax({
                                             url: '/entrenador/deporte/buscar',
@@ -252,7 +251,6 @@
                         });
                     });
 
-                    // Evento para descargar PDF de instalaciones
                     $('#downloadPdfButtonFacilities').off('click').on('click', function () {
                         const searchValueFacilities = $('#searchInputFacilities').val();
 
@@ -265,7 +263,6 @@
                     });
 
                 } else {
-                    // Ocultar todas las secciones si no se selecciona nada o "Seleccione una opción"
                     $('#searchSectionPlayers, #playersTable, #searchSectionFacilities, #FacilitiesTable').hide();
                 }
             });

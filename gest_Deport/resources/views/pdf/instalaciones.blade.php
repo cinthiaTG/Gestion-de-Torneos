@@ -42,7 +42,19 @@
             <td>{{ $instalacion->id }}</td>
             <td>{{ $instalacion->nombre_instalacion }}</td>
             <td>{{ $instalacion->ubicacion }}</td>
-            <td>{{ $instalacion->id_deporte }}</td>
+            <td>
+                @if ($instalacion->id_deporte == 1)
+                    Futbol Americano
+                @elseif ($instalacion->id_deporte == 2)
+                    Futbol Soccer
+                @elseif ($instalacion->id_deporte == 3)
+                    Volleyball
+                @elseif ($instalacion->id_deporte == 4)
+                    Basketball
+                @else
+                    Error
+                @endif
+            </td>
         </tr>
     @empty
         <tr>
