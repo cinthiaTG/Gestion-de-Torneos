@@ -11,10 +11,10 @@
     @endif
 
     <!-- Formulario para editar el equipo -->
-    <form 
-    class="player-form" 
-    action="{{ route('equipos.update', $equipo->id) }}" 
-    method="POST" 
+    <form
+    class="player-form"
+    action="{{ route('equipos.update', $equipo->id) }}"
+    method="POST"
     enctype="multipart/form-data">
     @csrf
     @method('PUT') <!-- Asegúrate de tener esto -->
@@ -24,6 +24,14 @@
         <label for="nombre">Nombre del Equipo</label>
         <input type="text" name="nombre_equipo" class="form-control" value="{{ $equipo->nombre_equipo }}" required>
     </div>
+
+    <label for="patrocinador_equipo">Patrocinador del Equipo</label>
+    <input type="text" id="patrocinador_equipo" name="patrocinador_equipo" >
+    <br class="jump">
+
+    <label for="monto_patrocinador">Monto patrocinador</label>
+        <input type="number" id="monto_patrocinador" name="monto_patrocinador" >
+    <br class="jump">
 
     <!-- Campo para subir el escudo -->
     <label for="escudo">Escudo del Equipo</label>

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreign('partido_id')->references('id')->on('partidos')->onDelete('cascade');
             $table->integer('goles_locales');
             $table->integer('goles_visitantes');
+            $table->unsignedBigInteger('id_torneo');
+            $table->foreign('id_torneo')->references('id')->on('torneos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

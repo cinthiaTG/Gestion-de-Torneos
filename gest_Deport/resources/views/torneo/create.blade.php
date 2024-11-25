@@ -11,11 +11,19 @@
         @csrf
         <label>Nombre Torneo</label>
         <input type="text" name="nombre_torneo" required>
+        <label for="patrocinador_torneo">Patrocinador del Torneo</label>
+        <input type="text" id="patrocinador_torneo" name="patrocinador_torneo" >
+        <br class="jump">
+
+        <label for="monto_patrocinador">Monto patrocinador</label>
+            <input type="number" id="monto_patrocinador" name="monto_patrocinador" >
+        <br class="jump">
+
 
         <label>Tipo de Torneo</label>
         <input type="text" name="tipo_torneo" required>
 
-        <label>Numero de Equipos</label><!---->
+        <label>Numero de Equipos</label>
         <input type="int" name="numero_equipos" required>
 
         <label for="deporte_id">Deporte</label>

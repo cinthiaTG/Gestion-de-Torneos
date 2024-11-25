@@ -15,12 +15,16 @@ class TorneoController extends Controller{
         $validatedData = $request->validate([
             'nombre_torneo' => 'required|string|max:255',
             'tipo_torneo' => 'required|string|max:255',
+            'patrocinador_torneo' => 'nullable|string|max:255',
+            'monto_patrocinador' => 'nullable|integer',
             'numero_equipos' => 'required|integer',
             'deporte_id' => 'required|integer',
         ]);
 
         Torneo::create([
             'nombre_torneo'  => $request->nombre_torneo,
+            'patrocinador_torneo' => $request->patrocinador_torneo ?? 'Sin patrocinador',
+            'monto_patrocinador' => $request->monto_patrocinador ?? 0,
             'tipo_torneo'  => $request->tipo_torneo,
             'numero_equipos'  => $request->numero_equipos,
             'deporte_id'  => $request->deporte_id,
@@ -42,6 +46,8 @@ class TorneoController extends Controller{
         $request->validate([
             'nombre_torneo' => 'required',
             'tipo_torneo' => 'required',
+            'patrocinador_torneo' => 'nullable|string|max:255',
+            'monto_patrocinador' => 'nullable|integer',
             'numero_equipos' => 'required|integer',
             'deporte_id' => 'required|integer',
 
@@ -51,11 +57,13 @@ class TorneoController extends Controller{
         $torneo->update([
             'nombre_torneo' => $request->nombre_torneo,
             'tipo_torneo' => $request->tipo_torneo,
+            'patrocinador_torneo'=>$request->patrocinador_torneo ?? 'Sin patrocinador',
+            'monto_patrocinador' => $request->monto_patrocinador ?? 0,
             'numero_equipos' => $request->numero_equipos,
+
             'deporte_id'  => $request->deporte_id,
 
         ]);
-
         return redirect()->route('torneo.read')->with('success', 'Torneo actualizado con éxito');
     }
 

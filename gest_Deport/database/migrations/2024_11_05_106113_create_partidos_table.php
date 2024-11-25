@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('partidos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_torneo');
-            $table->foreign('id_torneo')->references('id')->on('torneos')->onDelete('cascade');        
+            $table->foreign('id_torneo')->references('id')->on('torneos')->onDelete('cascade');
             $table->unsignedBigInteger('id_equipo_local');
-            $table->foreign('id_equipo_local')->references('id')->on('equipos')->onDelete('cascade');  
+            $table->foreign('id_equipo_local')->references('id')->on('equipos')->onDelete('cascade');
             $table->unsignedBigInteger('id_equipo_visitante');
-            $table->foreign('id_equipo_visitante')->references('id')->on('equipos')->onDelete('cascade');   
+            $table->foreign('id_equipo_visitante')->references('id')->on('equipos')->onDelete('cascade');
+            $table->unsignedBigInteger('id_instalacion');
+            $table->foreign('id_instalacion')->references('id')->on('instalaciones')->onDelete('cascade');
             $table->date('fecha');
             $table->time('hora');
-            $table->string('lugar');    
+
             $table->timestamps();
         });
     }

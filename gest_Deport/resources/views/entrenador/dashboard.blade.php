@@ -19,10 +19,10 @@ Route::group(['prefix' => 'entrenador/partidos'], function () {
     <!-- Tarjetas principales -->
     <a href="{{route('torneo.create')}}" class="card">
         <div class="card-label">Crear Torneo</div>
-    </a>
-    <a href="{{route('torneo.read')}}" class="card">
+    {{-- </a>
+    <a href="#" class="card">
         <div class="card-label">Editar Torneo</div>
-    </a>
+    </a> --}}
     <a href="#" class="card">
         <div class="card-label">Consultar Historial de Torneos</div>
     </a>
