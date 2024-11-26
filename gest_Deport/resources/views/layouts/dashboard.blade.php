@@ -1,4 +1,5 @@
 <x-app-layout>
+    <script src="https://cdn.tailwindcss.com"></script>
     <x-slot name="header">
         <h1 class="font-semibold text-xl leading-tight" style="font-size: 25px">
             {{ __('Bienvenido') }}
