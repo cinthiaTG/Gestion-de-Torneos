@@ -1,7 +1,7 @@
 <x-app-layout>
     <script src="https://cdn.tailwindcss.com"></script>
     <x-slot name="header">
-        <h1 class="font-semibold text-xl leading-tight" style="font-size: 25px">
+        <h1 class="font-semibold text-green-800 leading-tight" style="font-size: 25px">
             {{ __('Bienvenido') }}
         </h1>
         <p class="font-semibold text-xl text-gray-800 leading-tight" style="font-size: 17px">
