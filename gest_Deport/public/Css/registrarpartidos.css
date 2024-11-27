@@ -18,8 +18,9 @@
     color: #333;
 }
 
-.player-form input[type="text"],
-.player-form input[type="number"] {
+.player-form select,
+.player-form input[type="date"],
+.player-form input[type="time"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -28,15 +29,7 @@
     font-size: 14px;
 }
 
-.section-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #444;
-}
-
-.btn-primary{
+.save-button {
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -50,43 +43,6 @@
     text-transform: uppercase;
 }
 
-.btn-primary:hover {
+.save-button:hover {
     background-color: #555;
-}
-
-.input-label, select {
-    margin-bottom: 15px;
-    display: inline-block;
-    padding: 10px 20px;
-    width: 210px;
-    background-color: gray;
-    cursor: pointer;
-    color: white;
-    border-radius: 5px;
-}   
-
-.form-control{
-    margin-left: 7.8%;
-    
-}
-
-.form-control2{
-    margin-left: 8.5%;
-}
-
-.form-control3{
-    margin-left: 8%;
-}
-
-.form-select{
-    margin-left: 7%
-    
-}
-
-.form-select2{
-    margin-left: 3.5%;
-}
-
-.form-select3{
-    margin-left: 1.4%;
 }

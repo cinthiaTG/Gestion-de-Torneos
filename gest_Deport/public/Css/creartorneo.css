@@ -54,16 +54,14 @@
     background-color: #555;
 }
 
-.input-label, select {
-    margin-bottom: 15px;
+.input-label{
     display: inline-block;
     padding: 10px 20px;
-    width: 180px;
-    background-color: gray;
+    width: 213px;
     cursor: pointer;
-    color: white;
+    color: black;
     border-radius: 5px;
-}   
+}
 
 .content-section{
     margin-top: 50%;

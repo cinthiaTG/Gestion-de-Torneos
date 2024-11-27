@@ -5,11 +5,12 @@
 @endsection
 
 @section('content')
+    <div>
+        <div>
+            <div class="p-8 bg-gradient-to-r from-blue-200 to-blue-100 rounded-xl shadow-md border border-blue-300">
+                <div class="form-title text-2xl font-bold text-gray-800 mb-4">Registrar Equipo  </div>
 
-<div class="container">
-    <div class="form-title">Registrar Equipo</div>
-
-    @if(session('success'))
+                @if(session('success'))
         <p>{{ session('success') }}</p>
     @endif
 
@@ -44,6 +45,8 @@
         </select>
 
         <button type="submit" class="save-button">Guardar</button>
-    </form>
-</div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

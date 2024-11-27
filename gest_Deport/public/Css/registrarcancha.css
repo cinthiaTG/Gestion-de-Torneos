@@ -55,13 +55,11 @@
 }
 
 .input-label, select {
-    margin-bottom: 15px;
     display: inline-block;
     padding: 10px 20px;
-    width: 215px;
-    background-color: gray;
+    width: 210px;
     cursor: pointer;
-    color: white;
+    color: black;
     border-radius: 5px;
 }
 
