@@ -32,7 +32,8 @@ class PartidosController extends Controller
             'id_instalacion' => 'required|integer|exists:instalaciones,id',
         ]);
 
-        // Obtener el torneo y el número de equipos
+        try{
+            // Obtener el torneo y el número de equipos
         $torneo = Torneo::findOrFail($request->id_torneo);
         $numeroEquipos = $torneo->numero_equipos;
 
@@ -79,6 +80,11 @@ class PartidosController extends Controller
         ]);
 
         return redirect()->route('partidos.create')->with('success', 'Partido registrado exitosamente.');
+        } catch (\Exception $e){
+            dd($e->getMessage());
+        }
+
+        
     }
 
 
