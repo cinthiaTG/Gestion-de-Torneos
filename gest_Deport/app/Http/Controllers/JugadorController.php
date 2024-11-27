@@ -106,6 +106,12 @@ class JugadorController extends Controller{
         return view('jugador.read', compact('jugadores'));
     }
 
+    public function desempeño()
+    {
+        $jugadores = Jugador::all();
+
+        return view('jugador.desempeño', compact('jugadores'));
+    }
     public function buscar(Request $request)
     {
         $nombre = $request->input('nombre');

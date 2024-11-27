@@ -116,8 +116,12 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
 
     Route::middleware(['auth', 'role:3'])->group(function () {
-        Route::get('/jugador/dashboard', [JugadorController::class, 'dashboard'])->name('jugador.dashboard');
+        Route::group(['prefix' => 'jugador'], function() {
+
+        Route::get('/dashboard', [JugadorController::class, 'dashboard'])->name('jugador.dashboard');
+        Route::get('/desempeño', [JugadorController::class, 'desempeño'])->name('jugador.desempeño');
     });
+});
 
     Route::middleware(['auth', 'role:4'])->group(function () {
         Route::get('/arbitro/dashboard', [ArbitroController::class, 'dashboard'])->name('arbitro.dashboard');
