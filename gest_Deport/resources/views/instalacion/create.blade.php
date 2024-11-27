@@ -18,8 +18,8 @@
                     <label>Ubicacion</label>
                     <input type="text" name="ubicacion" required>
 
-                    <label for="deporte_id">Deportes</label>
-                    <select class="input-label" id="deporte_id" name="deporte_id" required>
+                    <label for="id_deporte">Deportes</label>
+                    <select class="input-label" id="id_deporte" name="id_deporte" required>
                         <option value="" selected>Selecciona un deporte</option>
                         <option value="1">Futbol Americano</option>
                         <option value="2">Futbol Soccer</option>
