@@ -16,46 +16,23 @@ Route::group(['prefix' => 'entrenador/partidos'], function () {
     });
 -->
 <div class="card-container">
-    <!-- Tarjetas principales -->
-    <a href="{{route('torneo.create')}}" class="card">
-        <div class="card-label">Crear Torneo</div>
-    {{-- </a>
-    <a href="#" class="card">
-        <div class="card-label">Editar Torneo</div>
-    </a> --}}
-    <a href="#" class="card">
-        <div class="card-label">Consultar Historial de Torneos</div>
-    </a>
 
-    <a href="{{route('partidos.create')}}" class="card">
-        <div class="card-label">Crear Partido</div>
+    <a href="{{route('torneo.read')}}" class="card">
+        <div class="card-label">Torneos</div>
+    </a>
         
     <a href="{{route('partidos.read')}}" class="card">
-        <div class="card-label">Editar Partido</div>
+        <div class="card-label">Partidos</div>
     </a>
 
-    <a href="{{route('equipos.create')}}" class="card">
-        <div class="card-label">Registrar Equipo</div>
-    </a>
     <a href="{{route('equipos.read')}}" class="card">
-        <div class="card-label">Editar Equipo</div>
-    </a>
-
-    <a href="{{route('jugadores.create')}}" class="card">
-        <div class="card-label">Registrar Jugador</div>
+        <div class="card-label">Equipos</div>
     </a>
     <a href="{{route('jugador.read')}}" class="card">
-        <div class="card-label">Editar Jugador</div>
-    </a>
-
-    <a href="#" class="card">
-        <div class="card-label">Registrar Resultado</div>
-    </a>
-    <a href="{{route('instalacion.create')}}" class="card">
-        <div class="card-label">Registrar Instalacion</div>
+        <div class="card-label">Jugadores</div>
     </a>
     <a href="{{route('instalacion.read')}}" class="card">
-        <div class="card-label">Editar Instalacion</div>
+        <div class="card-label">Instalaciones</div>
     </a>
 
 </div>

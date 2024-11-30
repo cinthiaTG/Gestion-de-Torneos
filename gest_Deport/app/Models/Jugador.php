@@ -24,6 +24,9 @@ class Jugador extends Model
         'tarjetas_amarillas',
         'tarjetas_rojas',
         'faltas',
+        'minutos_jugados',
+        'partidos_jugados',
+        'goles_contra',
     ];
 
     public function equipo()

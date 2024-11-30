@@ -22,7 +22,7 @@ class EquiposController extends Controller{
             'deporte_id' => 'required|exists:deportes,id'
         ]);
 
-
+        try{
         // Almacenar el archivo de imagen
         $path = $request->file('escudo')->store('public/escudos');
         $filename = basename($path);
@@ -36,7 +36,10 @@ class EquiposController extends Controller{
         ]);
 
 
-        return redirect()->route('equipos.create')->with('success', 'Equipo registrado exitosamente');
+        return redirect()->route('equipos.read')->with('success', 'Equipo registrado exitosamente');
+    } catch (\Exception $e){
+        dd($e->getMessage());
+    }
     }
 
 
@@ -48,6 +51,8 @@ class EquiposController extends Controller{
 
     public function update(Request $request, $id)
 {
+    $equipos = Equipo::all();
+
     $request->validate([
         'nombre_equipo' => 'required|string|max:255',
         'patrocinador_equipo' => 'nullable|string|max:255',

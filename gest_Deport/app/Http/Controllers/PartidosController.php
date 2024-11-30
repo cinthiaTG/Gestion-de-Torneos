@@ -79,7 +79,7 @@ class PartidosController extends Controller
             'hora' => $request->hora,
         ]);
 
-        return redirect()->route('partidos.create')->with('success', 'Partido registrado exitosamente.');
+        return redirect()->route('partidos.read')->with('success', 'Partido registrado exitosamente.');
         } catch (\Exception $e){
             dd($e->getMessage());
         }

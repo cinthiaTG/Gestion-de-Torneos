@@ -9,9 +9,12 @@ use App\Models\Equipo;
 
 
 class JugadorController extends Controller{
-    public function dashboard(){ // este va a ser el nuevo index
-        return view("jugador.dashboard");
-    }
+    public function dashboard()
+{
+    $jugadores = Jugador::all(); // Obtener todos los jugadores
+    return view("jugador.dashboard", compact('jugadores')); // Pasar los datos a la vista
+}
+
 
     public function store(Request $request)
     {
@@ -28,7 +31,7 @@ class JugadorController extends Controller{
             // 'tarjetas_amarillas' => 'required|integer',
             // 'faltas' => 'required|integer',
         ]);
-
+        try{
         Jugador::create([
             'nombre' => $request->nombre,
             'apellido_paterno' => $request->apellido_paterno,
@@ -44,7 +47,10 @@ class JugadorController extends Controller{
             // 'id_deporte' => $request->id_deporte,
         ]);
 
-        return redirect()->route('jugadores.create')->with('success', 'Jugador registrado exitosamente');
+        return redirect()->route('jugadores.read')->with('success', 'Jugador registrado exitosamente');
+    } catch (\Exception $e){
+        dd($e->getMessage());
+    }
     }
 
 
@@ -105,6 +111,19 @@ class JugadorController extends Controller{
 
         return view('jugador.read', compact('jugadores'));
     }
+    public function estadisticas_team($id)
+    {
+        // Obtener el equipo según su ID
+        $equipo = Equipo::findOrFail($id);
+    
+        // Obtener los jugadores asociados al equipo
+        $jugadores = Jugador::where('id_equipo', $id)->get();
+    
+        // Retornar la vista con los datos del equipo y sus jugadores
+        return view('jugador.estadisticas_equipo', compact('equipo', 'jugadores'));
+    }
+    
+
 
     public function desempeño()
     {

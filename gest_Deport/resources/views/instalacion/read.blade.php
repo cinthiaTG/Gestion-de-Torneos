@@ -8,6 +8,8 @@
 <div class="container">
     <!-- Título de la sección -->
     <h1 class="form-title">Editar Instalación</h1>
+    <a href="{{ route('instalacion.create') }}" class="btn btn-warning">Nuevo</a>
+
     
     <!-- Sección de resultados -->
     <div class="results-section">

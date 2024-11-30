@@ -5,6 +5,8 @@
 @section('content')
 <div class="container">
     <div class="form-title">Jugadores Registrados</div>
+    <a href="{{ route('torneo.create') }}" class="btn btn-warning">Nuevo</a>
+
     <div class="results-section">
         <table class="table">
             <thead>
@@ -31,6 +33,9 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+                        <a href="#" class="btn btn-warning">Registrar Resultado</a>
+
+                        
                     </td>
                 </tr>
                 @endforeach

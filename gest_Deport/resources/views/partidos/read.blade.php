@@ -6,6 +6,9 @@
 
 @section('content')
 <div class="form-title">Lista de Partidos</div>
+
+<a href="{{ route('partidos.create') }}" class="btn btn-warning btn-sm">Nuevo</a>
+
     <div class="results-section">
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

@@ -20,6 +20,7 @@ class TorneoController extends Controller{
             'numero_equipos' => 'required|integer',
             'deporte_id' => 'required|integer',
         ]);
+        try{
 
         Torneo::create([
             'nombre_torneo'  => $request->nombre_torneo,
@@ -31,7 +32,10 @@ class TorneoController extends Controller{
 
         ]);
 
-        return redirect()->route('torneo.create')->with('success', 'Torneo registrado exitosamente');
+        return redirect()->route('torneo.read')->with('success', 'Torneo registrado exitosamente');
+    } catch (\Exception $e){
+        dd($e->getMessage());
+    }
     }
 
 

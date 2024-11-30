@@ -26,12 +26,14 @@
     </div>
 
     <label for="patrocinador_equipo">Patrocinador del Equipo</label>
-    <input type="text" id="patrocinador_equipo" name="patrocinador_equipo" >
+    <input type="text" name="patrocinador_equipo" class="form-control" value="{{ $equipo->patrocinador_equipo }}" required>
+
     <br class="jump">
 
     <label for="monto_patrocinador">Monto patrocinador</label>
-        <input type="number" id="monto_patrocinador" name="monto_patrocinador" >
-    <br class="jump">
+        <input type="number" name="monto_patrocinador" class="form-control" value="{{ $equipo->monto_patrocinador }}" required>
+        
+        <br class="jump">
 
     <!-- Campo para subir el escudo -->
     <label for="escudo">Escudo del Equipo</label>

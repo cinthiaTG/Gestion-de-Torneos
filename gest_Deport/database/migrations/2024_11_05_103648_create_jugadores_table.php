@@ -26,6 +26,11 @@ return new class extends Migration
             $table->integer('tarjetas_amarillas')->default(0);
             $table->integer('tarjetas_rojas')->default(0);
             $table->integer('faltas')->default(0);
+            $table->integer('minutos_jugados')->default(0);
+            $table->integer('partidos_jugados')->default(0);
+            $table->integer('goles_contra')->default(0);
+            
+
 
 
             $table->timestamps();

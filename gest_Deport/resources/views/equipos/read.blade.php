@@ -5,6 +5,8 @@
 @section('content')
 <div class="container">
     <div class="form-title">Equipos Registrados</div>
+    <a href="{{ route('equipos.create')}}" class="btn btn-warning">Nuevo</a>
+
     <div class="results-section">
         <table class="table">
             <thead>
