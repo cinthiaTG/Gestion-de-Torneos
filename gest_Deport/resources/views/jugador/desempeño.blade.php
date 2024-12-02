@@ -27,6 +27,7 @@
                     <td>{{ $jugador->edad }}</td>
                     <td>{{ $jugador->posicion }}</td>
                     <td>{{ $jugador->id_equipo }}</td>
+                    <td>{{ $jugador->puntos }}</td>
                     <td>{{ $jugador->asistencias }}</td>
                     <td>{{ $jugador->tarjetas_amarillas }}</td>
                     <td>{{ $jugador->tarjetas_rojas }}</td>

@@ -42,8 +42,11 @@
                 <select id="rol" name="rol_id" class="block mt-1 w-full rounded border-gray-300 focus:ring-blue-500 focus:border-blue-500">
                     <option value="" disabled selected>{{ __('Selecciona un rol') }}</option>
                     @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->nombre_rol }}</option>
+                        @if (in_array($role->id, [1, 2, 4]))
+                            <option value="{{ $role->id }}">{{ $role->nombre_rol }}</option>
+                        @endif
                     @endforeach
+
                 </select>
                 <x-input-error :messages="$errors->get('rol_id')" class="mt-2" />
             </div>

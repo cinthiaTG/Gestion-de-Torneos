@@ -27,6 +27,7 @@ return new class extends Migration
             ['id' => 2, 'nombre_rol' => 'Entrenador'],
             ['id' => 3, 'nombre_rol' => 'Jugador'],
             ['id' => 4, 'nombre_rol' => 'Árbitro'],
+            ['id' => 5, 'nombre_rol' => 'Admin'],
         ]);
     }
 

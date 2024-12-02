@@ -12,6 +12,8 @@
 
     <!--
         solo aparecera un equipo ya que esta relacionada con el id_equipo y id de jugador
+
+        tengo que modificar de que solo se vea el del id relacionado
     -->
     @if(isset($jugadores) && $jugadores->isNotEmpty())
         @foreach($jugadores as $jugador)

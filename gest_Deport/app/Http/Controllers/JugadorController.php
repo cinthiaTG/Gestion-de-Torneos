@@ -16,42 +16,35 @@ class JugadorController extends Controller{
 }
 
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:255',
-            'apellido_materno' => 'required|string|max:255',
-            'edad' => 'required|integer',
-            'equipo_id' => 'required|exists:equipos,id',
-            'posicion' => 'required|string|max:255',
-            // 'puntos' => 'required|integer',
-            // 'asistencias' => 'required|integer',
-            // 'tarjetas_rojas' => 'required|integer',
-            // 'tarjetas_amarillas' => 'required|integer',
-            // 'faltas' => 'required|integer',
-        ]);
-        try{
-        Jugador::create([
-            'nombre' => $request->nombre,
-            'apellido_paterno' => $request->apellido_paterno,
-            'apellido_materno' => $request->apellido_materno,
-            'edad' => $request->edad,
-            'id_equipo' => $request->equipo_id,
-            'posicion' => $request->posicion,
-            // 'puntos' => $request->puntos,
-            // 'asistencias' => $request->asistencias,
-            // 'tarjetas_rojas' => $request->tarjetas_rojas,
-            // 'tarjetas_amarillas' => $request->tarjetas_amarillas,
-            // 'faltas' => $request->faltas,
-            // 'id_deporte' => $request->id_deporte,
-        ]);
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'edad' => 'required|integer',
+        'equipo_id' => 'required|exists:equipos,id',
+        'posicion' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email', // Asegúrate de capturar el email
+    ]);
 
-        return redirect()->route('jugadores.read')->with('success', 'Jugador registrado exitosamente');
-    } catch (\Exception $e){
-        dd($e->getMessage());
-    }
-    }
+    // Crear el jugador
+    $jugador = Jugador::create([
+        'nombre' => $request->nombre,
+        'edad' => $request->edad,
+        'id_equipo' => $request->equipo_id,
+        'posicion' => $request->posicion,
+    ]);
+
+    // Crear el usuario asociado al jugador
+    $user = User::create([
+        'name' => $request->nombre,
+        'email' => $request->email,
+        'password' => bcrypt('jugador123'), // Contraseña temporal
+        'rol_id' => 3, // Rol de jugador
+    ]);
+
+    return redirect()->route('jugador.read')->with('success', 'Jugador y usuario creados exitosamente');
+}
+
 
 
     public function edit($id)
@@ -64,8 +57,6 @@ class JugadorController extends Controller{
     {
         $request->validate([
             'nombre' => 'required',
-            'apellido_paterno' => 'required',
-            'apellido_materno' => 'required',
             'edad' => 'required|integer',
             'posicion' => 'required',
             'puntos' => 'required|integer',
@@ -78,8 +69,6 @@ class JugadorController extends Controller{
         $jugador = Jugador::findOrFail($id);
         $jugador->update([
             'nombre' => $request->nombre,
-            'apellido_paterno' => $request->apellido_paterno,
-            'apellido_materno' => $request->apellido_materno,
             'edad' => $request->edad,
             'posicion' => $request->posicion,
             'puntos' => $request->puntos,

@@ -17,18 +17,8 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="nombre">Nombre</label>
+            <label for="nombre">Nombre Completo</label>
             <input type="text" name="nombre" class="form-control" value="{{ $jugador->nombre }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="apellido_paterno">Apellido Paterno</label>
-            <input type="text" name="apellido_paterno" class="form-control" value="{{ $jugador->apellido_paterno }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="apellido_materno">Apellido Materno</label>
-            <input type="text" name="apellido_materno" class="form-control" value="{{ $jugador->apellido_materno }}" required>
         </div>
 
         <div class="form-group">
