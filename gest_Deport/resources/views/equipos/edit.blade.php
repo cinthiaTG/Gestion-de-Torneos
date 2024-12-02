@@ -32,10 +32,10 @@
 
     <label for="monto_patrocinador">Monto patrocinador</label>
         <input type="number" name="monto_patrocinador" class="form-control" value="{{ $equipo->monto_patrocinador }}" required>
-        
+
         <br class="jump">
 
-    <!-- Campo para subir el escudo -->
+    <!-- Campo para subir el escudos -->
     <label for="escudo">Escudo del Equipo</label>
     <input type="file" id="escudo" name="escudo" accept="image/*" style="display: none;">
     <label for="escudo" class="img-label">Seleccionar imagen</label>

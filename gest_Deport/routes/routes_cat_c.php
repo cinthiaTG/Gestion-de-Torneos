@@ -6,8 +6,8 @@
      App\Http\Controllers.
      */
       /*
-        "prefijo" para todas las rutas definidas dentro de ese grupo. 
-        Esto significa que todas las rutas que se encuentren dentro de esta función 
+        "prefijo" para todas las rutas definidas dentro de ese grupo.
+        Esto significa que todas las rutas que se encuentren dentro de esta función
         tendrán como parte inicial de su URL el prefijo modulos/perfil.
         */
 
@@ -16,7 +16,7 @@
         use App\Http\Controllers\VistasController;
         use App\Http\Controllers\EntrenadorController;
 
-        
+
 
         Route::group(['namespace' => 'App\Http\Controllers'], function() {
 
@@ -35,14 +35,13 @@
                 /* - **
                 **dashboard
                 **crear torneo//Torneo
-                **Listado de Equipos**: Lista de equipos registrados con nombre, escudo y detalles básicos.
+                **Listado de Equipos**: Lista de equipos registrados con nombre, escudos y detalles básicos.
 - **Detalles de Equipo**: Información ampliada sobre un equipo específico, como plantilla de jugadores, estadísticas, y entrenadores.
 - **Agregar/Modificar Equipo**: Formularios para registrar un nuevo equipo o actualizar información existente.
 - **Asignación de Jugadores**: Sección para vincular jugadores al equipo, cambiar posiciones o actualizar la plantilla.*/
                 Route::get('/', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
-                
+
                 //Route::get('/', [EntrenadorController, 'dashboard'])->name('entrenador.dashboard');
             });
 
         });
-        

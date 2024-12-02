@@ -1,44 +1,54 @@
 @extends('layouts.dashboard')
 @section('styles')
-<link rel="stylesheet" href="{{ asset('Css/read.css') }}">
+    <link rel="stylesheet" href="{{ asset('Css/read.css') }}">
 @endsection
 @section('content')
-<div class="container">
-    <div class="form-title">Equipos Registrados</div>
-    <a href="{{ route('equipos.create')}}" class="btn btn-warning">Nuevo</a>
+    <div class="container">
+        <div class="form-title">Equipos Registrados</div>
+        <a href="{{ route('equipos.create')}}" class="btn btn-warning">Nuevo</a>
+        <style>
+            .team-logo {
+                max-width: 100px;
+                max-height: 100px;
+                width: auto;
+                height: auto;
+            }
+        </style>
 
-    <div class="results-section">
-        <table class="table">
-            <thead>
+        <div class="results-section">
+            <table class="table">
+                <thead>
                 <tr>
                     <th>Nombre del Equipo</th>
-                    <th>Logo</th>
                     <th>Patrocinador</th>
                     <th>Monto patrocinador</th>
+                    <th>Escudo</th>
                     <th>Acciones</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach ($equipos as $equipo)
-                <tr>
-                    <td>{{ $equipo->nombre_equipo }}</td>
-                    <td>
-                        <img src="{{ asset('storage/logos/' . $equipo->logo) }}" alt="Logo del equipo" class="team-logo">
-                    </td>
-                    <td>{{$equipo->patrocinador_equipo}}</td>
-                    <td>{{$equipo->monto_patrocinador}}</td>
-                    <td>
-                        <a href="{{ route('equipos.edit', $equipo->id) }}" class="btn btn-warning">Editar</a>
-                        <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $equipo->nombre_equipo }}</td>
+                        <td>{{$equipo->patrocinador_equipo}}</td>
+                        <td>{{$equipo->monto_patrocinador}}</td>
+                        <td>
+                            <!-- Abrir la imagen en una nueva ventana -->
+                            <img src="{{ asset('storage/escudos/' . $equipo->escudo) }}" alt="Escudo del equipo" class="team-logo">
+                        </td>
+
+                        <td>
+                            <a href="{{ route('equipos.edit', $equipo->id) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 @endsection

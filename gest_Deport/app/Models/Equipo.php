@@ -11,7 +11,7 @@ class Equipo extends Model
     protected $table = 'equipos';
     protected $fillable = [
         'nombre_equipo',
-        'escudo',
+        'escudos',
         'patrocinador_equipo',
         'monto_patrocinador',
         'partidos_jugados',

@@ -12,26 +12,51 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                //Admin
                 'id' => 1,
                 'name' => 'Cinthia Vanessa Torres Grimmaldo',
                 'email' => 'cintorrgril67@gmail.com',
                 'password' => Hash::make('cinthia123'),
-                'rol' => 5,
+                'rol_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                //Entrenador
                 'id' => 2,
                 'name' => 'Elias Hernandez Rodriguez',
                 'email' => 'elias123@gmail.com',
                 'password' => Hash::make('elias123'),
-                'rol' => 2,
+                'rol_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            
+            [
+                'id' => 3,
+                'name' => 'Dani_Entrenadora',
+                'email' => 'zamudio@gmail.com',
+                'password' => Hash::make('dani123'),
+                'rol_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 4,
+                'name' => 'Dani_Aficionada',
+                'email' => 'zamudio1@gmail.com',
+                'password' => Hash::make('dani123'),
+                'rol_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 5,
+                'name' => 'Dani_Administradora',
+                'email' => 'zamudio2@gmail.com',
+                'password' => Hash::make('dani123'),
+                'rol_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
+
     }
 }
