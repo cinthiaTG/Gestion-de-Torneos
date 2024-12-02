@@ -61,11 +61,7 @@ public function store(Request $request)
             'nombre' => 'required',
             'edad' => 'required|integer',
             'posicion' => 'required',
-            'puntos' => 'required|integer',
-            'asistencias' => 'required|integer',
-            'tarjetas_amarillas' => 'required|integer',
-            'tarjetas_rojas' => 'required|integer',
-            'faltas' => 'required|integer',
+
         ]);
 
         $jugador = Jugador::findOrFail($id);
@@ -73,11 +69,7 @@ public function store(Request $request)
             'nombre' => $request->nombre,
             'edad' => $request->edad,
             'posicion' => $request->posicion,
-            'puntos' => $request->puntos,
-            'asistencias' => $request->asistencias,
-            'tarjetas_amarillas' => $request->tarjetas_amarillas,
-            'tarjetas_rojas' => $request->tarjetas_rojas,
-            'faltas' => $request->faltas,
+
         ]);
 
         return redirect()->route('jugador.read')->with('success', 'Jugador actualizado con éxito');

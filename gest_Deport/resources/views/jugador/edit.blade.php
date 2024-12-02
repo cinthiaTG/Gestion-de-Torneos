@@ -31,31 +31,6 @@
             <input type="text" name="posicion" class="form-control" value="{{ $jugador->posicion }}" required>
         </div>
 
-        <div class="form-group">
-            <label for="puntos">Puntos</label>
-            <input type="number" name="puntos" class="form-control" value="{{ $jugador->puntos }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="asistencias">Asistencias</label>
-            <input type="number" name="asistencias" class="form-control" value="{{ $jugador->asistencias }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="tarjetas_amarillas">Tarjetas Amarillas</label>
-            <input type="number" name="tarjetas_amarillas" class="form-control" value="{{ $jugador->tarjetas_amarillas }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="tarjetas_rojas">Tarjetas Rojas</label>
-            <input type="number" name="tarjetas_rojas" class="form-control" value="{{ $jugador->tarjetas_rojas }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="faltas">Faltas</label>
-            <input type="number" name="faltas" class="form-control" value="{{ $jugador->faltas }}" required>
-        </div>
-
         <button type="submit" class="actualizar">Actualizar</button>
         <a href="{{route('jugador.read')}}" class="btn btn-secondary">Cancelar</a>
         
