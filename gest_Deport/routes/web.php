@@ -160,7 +160,4 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/generar-pdf-instalacion', [App\Http\Controllers\InstalacionController::class, 'generarPDFInstalaciones'])->name('generar.pdf.instalaciones');
 
 
-
-
-
     require __DIR__ . '/auth.php';
