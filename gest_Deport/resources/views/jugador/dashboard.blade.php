@@ -9,22 +9,22 @@
     <a href="{{ route('jugador.desempeño') }}" class="card">
         <div class="card-label">Consultar Desempeño</div>
     </a>
-    
-    @if(isset($jugadores) && $jugadores->isNotEmpty())
-    @foreach($jugadores as $jugador)
-        @if($jugador->equipo) 
-        <a href="{{ route('arbitro.jugadores', ['id' => $jugador->equipo->id]) }}" class="card">
-            <div class="card-label">
-                {{ $jugador->equipo->nombre_equipo }} - Estadísticas
-            </div>
-        </a>
-        @endif
-    @endforeach
-@else
-    <div class="card">
-        <div class="card-label">No hay jugadores disponibles</div>
-    </div>
-@endif
 
+    <!--
+        solo aparecera un equipo ya que esta relacionada con el id_equipo y id de jugador
+
+        tengo que modificar de que solo se vea el del id relacionado
+    -->
+    @if(isset($jugadores) && $jugadores->isNotEmpty())
+        @foreach($jugadores as $jugador)
+            <a href="{{ route('jugador.estadisticas_equipo', ['id' => $jugador->id_equipo]) }}" class="card">
+                <div class="card-label">Estadísticas de equipos</div>
+            </a>
+        @endforeach
+    @else
+        <div class="card">
+            <div class="card-label">No hay jugadores disponibles</div>
+        </div>
+    @endif
 </div>
 @endsection
