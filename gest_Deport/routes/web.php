@@ -128,6 +128,10 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
     Route::middleware(['auth', 'role:4'])->group(function () {
         Route::get('/arbitro/dashboard', [ArbitroController::class, 'dashboard'])->name('arbitro.dashboard');
+        Route::get('arbitro/equipos/{id}/jugadores', [ArbitroController::class, 'jugadores'])->name('arbitro.jugadores');
+        Route::put('arbitro/jugadores/{id}', [ArbitroController::class, 'update'])->name('arbitro.update');
+        Route::get('/arbitro/{id}/edit', [ArbitroController::class, 'edit'])->name('arbitro.edit');
+
     });
 
     Route::middleware(['auth', 'role:5'])->group(function () {
