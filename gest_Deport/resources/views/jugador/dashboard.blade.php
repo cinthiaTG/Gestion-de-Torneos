@@ -10,11 +10,6 @@
         <div class="card-label">Consultar Desempeño</div>
     </a>
 
-    <!--
-        solo aparecera un equipo ya que esta relacionada con el id_equipo y id de jugador
-
-        tengo que modificar de que solo se vea el del id relacionado
-    -->
     @if(isset($jugadores) && $jugadores->isNotEmpty())
         @foreach($jugadores as $jugador)
             <a href="{{ route('jugador.estadisticas_equipo', ['id' => $jugador->id_equipo]) }}" class="card">

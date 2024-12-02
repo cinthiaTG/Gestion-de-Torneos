@@ -10,10 +10,12 @@ use App\Models\Equipo;
 
 class JugadorController extends Controller{
     public function dashboard()
-{
-    $jugadores = Jugador::all(); // Obtener todos los jugadores
-    return view("jugador.dashboard", compact('jugadores')); // Pasar los datos a la vista
-}
+    {
+        $usuario = auth()->user();
+        $jugadores = Jugador::where('nombre', $usuario->name)->get(); 
+        return view("jugador.dashboard", compact('jugadores'));
+    }
+    
 
 
 public function store(Request $request)
