@@ -5,7 +5,7 @@
             {{ __('Bienvenido') }}
         </h1>
         <p class="font-semibold text-xl text-gray-800 leading-tight" style="font-size: 17px">
-            {{ __('Que deseas hacer hoy?') }}
+            {{ __('¿Que deseas hacer hoy?') }}
         </p>
     </x-slot>
     <head>

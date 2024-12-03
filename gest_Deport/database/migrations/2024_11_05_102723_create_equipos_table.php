@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_equipo');
-            $table->string('escudo');
+            $table->string('escudos');
             $table->string('patrocinador_equipo')->default('Sin patrocinador');
             $table->integer('monto_patrocinador')->default(0);
 
