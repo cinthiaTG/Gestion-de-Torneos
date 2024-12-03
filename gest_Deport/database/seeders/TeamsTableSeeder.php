@@ -14,7 +14,7 @@ class TeamsTableSeeder extends Seeder
             [
                 'id' => 1,
                 'nombre_equipo' => 'Judias iconiks',
-                'escudos' => 'judios.jpg',
+                'escudos' => 'judios.png',
                 'patrocinador_equipo' => 'Eve Judia',
                 'monto_patrocinador' => 10000,
                 'created_at' => now(),

@@ -34,7 +34,7 @@
                         <td>{{$equipo->monto_patrocinador}}</td>
                         <td>
                             <!-- Abrir la imagen en una nueva ventana -->
-                            <img src="{{ asset('storage/escudos/' . $equipo->escudo) }}" alt="Escudo del equipo" class="team-logo">
+                            <img src="{{ asset('storage/app/public/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo" class="team-logo">
                         </td>
 
                         <td>

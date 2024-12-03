@@ -19,7 +19,6 @@ class EquiposController extends Controller{
             'patrocinador_equipo' => 'nullable|string|max:255',
             'monto_patrocinador' => 'nullable|integer',
             'escudos' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'deporte_id' => 'required|exists:deportes,id'
         ]);
 
         try{
@@ -32,7 +31,6 @@ class EquiposController extends Controller{
             'patrocinador_equipo' => $request->patrocinador_equipo ?? 'Sin patrocinador',
             'monto_patrocinador' => $request->monto_patrocinador ?? 0,
             'escudos' => $filename,
-            'id_deporte' => $request->deporte_id,
         ]);
 
 
