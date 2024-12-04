@@ -17,7 +17,8 @@ return new class extends Migration
             $table->integer('numero_equipos');
             $table->string('patrocinador_torneo')->default('Sin patrocinador');
             $table->integer('monto_patrocinador')->default(0);
-
+            $table->boolean('finalizado')->default(false); // Nuevo
+            $table->unsignedBigInteger('id_ganador')->nullable(); // Nuevo
             $table->timestamps();
         });
     }

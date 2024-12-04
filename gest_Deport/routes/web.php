@@ -94,6 +94,10 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::group(['prefix' => 'entrenador/partidos'], function () {
         Route::get('/create', [PartidosController::class, 'create'])->name('partidos.create');
         Route::post('/store', [PartidosController::class, 'store'])->name('partidos.store');
+        Route::get('/mandarresultado/{id}', [PartidosController::class, 'mandarresultado'])->name('partidos.mandarresultado');
+        Route::post('/registrarresultado/{id}', [PartidosController::class, 'registrarresultado'])->name('partidos.registrarresultado');
+
+
         Route::get('/read', [PartidosController::class, 'read'])->name('partidos.read');
         Route::get('/edit/{id}', [PartidosController::class, 'edit'])->name('partidos.edit');
         Route::post('/update/{id}', [PartidosController::class, 'update'])->name('partidos.update');

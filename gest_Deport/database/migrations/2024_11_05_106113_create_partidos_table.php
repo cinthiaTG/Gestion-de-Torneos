@@ -24,6 +24,10 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora');
 
+            $table->boolean('finalizado')->default(false); // Nuevo
+            $table->unsignedBigInteger('id_ganador')->nullable(); // Nuevo
+            $table->foreign('id_ganador')->references('id')->on('equipos')->nullOnDelete(); // Nuevo
+            $table->integer('ronda')->default(0); // Nuevo
             $table->timestamps();
         });
     }

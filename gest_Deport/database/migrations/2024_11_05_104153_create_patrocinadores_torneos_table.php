@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('patrocinadores_torneos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_patrocinador');
+
             $table->foreign('id_patrocinador')->references('id')->on('patrocinadores')->onDelete('cascade');
             $table->unsignedBigInteger('id_torneo');
-            $table->foreign('id_torneo')->references('id')->on('torneos')->onDelete('cascade');        
+            $table->foreign('id_torneo')->references('id')->on('torneos')->onDelete('cascade');
             $table->timestamps();
         });
     }

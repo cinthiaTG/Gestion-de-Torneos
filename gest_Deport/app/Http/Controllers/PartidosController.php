@@ -20,7 +20,6 @@ class PartidosController extends Controller
         return view('partidos.create', compact('torneo', 'equipos', 'instalaciones'));
     }
 
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -32,61 +31,86 @@ class PartidosController extends Controller
             'id_instalacion' => 'required|integer|exists:instalaciones,id',
         ]);
 
-        try{
+        try {
             // Obtener el torneo y el número de equipos
-        $torneo = Torneo::findOrFail($request->id_torneo);
-        $numeroEquipos = $torneo->numero_equipos;
+            $torneo = Torneo::findOrFail($request->id_torneo);
+            $numeroEquipos = $torneo->numero_equipos;
 
-        // Calcular el número máximo de partidos iniciales
-        $maxPartidos = $numeroEquipos / 2;
+            // Calcular el número máximo de partidos iniciales
+            $maxPartidos = $numeroEquipos / 2;
 
-        // Contar los partidos ya registrados para este torneo
-        $partidosRegistrados = Partido::where('id_torneo', $request->id_torneo)->count();
+            // Contar los partidos ya registrados para este torneo
+            $partidosRegistrados = Partido::where('id_torneo', $request->id_torneo)->count();
 
-        if ($partidosRegistrados >= $maxPartidos) {
-            return back()
-                ->withErrors([
-                    'id_torneo' => 'Ya se han registrado todos los partidos iniciales necesarios para este torneo.',
-                ])
-                ->withInput();
-        }
+            if ($partidosRegistrados >= $maxPartidos) {
+                return back()
+                    ->withErrors([
+                        'id_torneo' => 'Ya se han registrado todos los partidos iniciales necesarios para este torneo.',
+                    ])
+                    ->withInput();
+            }
 
-        // Validar conflictos de horario en la instalación
-        $fechaHora = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->fecha . ' ' . $request->hora);
-        $horaInicio = $fechaHora->copy()->subMinutes(90);
-        $horaFin = $fechaHora->copy()->addMinutes(90);
+            // Validar conflictos de horario en la instalación
+            $fechaHora = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->fecha . ' ' . $request->hora);
+            $horaInicio = $fechaHora->copy()->subMinutes(90);
+            $horaFin = $fechaHora->copy()->addMinutes(90);
 
-        $conflicto = Partido::where('id_instalacion', $request->id_instalacion)
-            ->where('fecha', $request->fecha)
-            ->whereBetween('hora', [$horaInicio->format('H:i'), $horaFin->format('H:i')])
-            ->exists();
+            $conflicto = Partido::where('id_instalacion', $request->id_instalacion)
+                ->where('fecha', $request->fecha)
+                ->whereBetween('hora', [$horaInicio->format('H:i'), $horaFin->format('H:i')])
+                ->exists();
 
-        if ($conflicto) {
-            return back()
-                ->withErrors([
-                    'hora' => 'Ya existe un partido registrado en esta instalación en un rango de 90 minutos.',
-                ])
-                ->withInput();
-        }
+            if ($conflicto) {
+                return back()
+                    ->withErrors([
+                        'hora' => 'Ya existe un partido registrado en esta instalación en un rango de 90 minutos.',
+                    ])
+                    ->withInput();
+            }
 
-        // Crear el partido
-        Partido::create([
-            'id_torneo' => $request->id_torneo,
-            'id_equipo_local' => $request->id_equipo_local,
-            'id_equipo_visitante' => $request->id_equipo_visitante,
-            'id_instalacion' => $request->id_instalacion,
-            'fecha' => $request->fecha,
-            'hora' => $request->hora,
-        ]);
+            // Crear el partido
+            Partido::create([
+                'id_torneo' => $request->id_torneo,
+                'id_equipo_local' => $request->id_equipo_local,
+                'id_equipo_visitante' => $request->id_equipo_visitante,
+                'id_instalacion' => $request->id_instalacion,
+                'fecha' => $request->fecha,
+                'hora' => $request->hora,
+            ]);
 
-        return redirect()->route('partidos.read')->with('success', 'Partido registrado exitosamente.');
-        } catch (\Exception $e){
+            return redirect()->route('partidos.read')->with('success', 'Partido registrado exitosamente.');
+        } catch (\Exception $e) {
             dd($e->getMessage());
         }
-
-        
     }
 
+    public function registrarresultado(Request $request, $id)
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'marcador_local' => 'required|integer|min:0',
+            'marcador_visitante' => 'required|integer|min:0',
+        ]);
+
+        // Actualizar el partido con los resultados
+        $partido = Partido::findOrFail($id);
+        $partido->update([
+            'marcador_local' => $request->marcador_local,
+            'marcador_visitante' => $request->marcador_visitante,
+            'finalizado' => true,
+            'id_ganador' => $request->marcador_local > $request->marcador_visitante ? $partido->id_equipo_local : $partido->id_equipo_visitante,
+        ]);
+
+        return redirect()->route('partidos.read')->with('success', 'Resultado registrado exitosamente.');
+    }
+
+    public function mandarresultado($id)
+    {
+        // Obtener el partido por su ID
+        $partido = Partido::with(['torneo', 'equipoLocal', 'equipoVisitante'])->findOrFail($id);
+
+        return view('partidos.mandarresultado', compact('partido'));
+    }
 
     public function read()
     {

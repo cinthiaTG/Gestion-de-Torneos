@@ -12,15 +12,23 @@ class Partido extends Model
         'id_torneo',
         'id_equipo_local',
         'id_equipo_visitante',
+        'id_instalacion',
         'fecha',
         'hora',
-        'id_instalacion', // Campo añadido
+        'finalizado',
+        'id_ganador',
+        'ronda',
     ];
 
-    // Relación con Torneo
+
     public function torneo()
     {
         return $this->belongsTo(Torneo::class, 'id_torneo');
+    }
+
+    public function ganador()
+    {
+        return $this->belongsTo(Equipo::class, 'id_ganador');
     }
 
     // Relación con Equipo Local
