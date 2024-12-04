@@ -13,31 +13,24 @@
                 <form class="player-form" action="{{ route('torneo.store') }}" method="POST">
                     @csrf
                     <label>Nombre Torneo</label>
-                    <input type="text" name="nombre_torneo" required>
+                    <input type="text" maxlength="20" name="nombre_torneo" required>
+
                     <label for="patrocinador_torneo">Patrocinador del Torneo</label>
-                    <input type="text" id="patrocinador_torneo" name="patrocinador_torneo">
+                    <input type="text" maxlength="20" id="patrocinador_torneo" name="patrocinador_torneo">
                     <br class="jump">
 
                     <label for="monto_patrocinador">Monto patrocinador</label>
-                    <input type="number" id="monto_patrocinador" name="monto_patrocinador">
+                    <input type="number" max="1000000" id="monto_patrocinador" name="monto_patrocinador">
                     <br class="jump">
 
-
-                    <label>Tipo de Torneo</label>
-                    <input type="text" name="tipo_torneo" required>
-
-                    <label class="font-semibold text-gray-700">Numero de Equipos</label>
-                    <input type="number" name="numero_equipos"
-                        class="w-full p-3 mt-2 mb-4 border border-gray-300 rounded-lg" required>
-
-                    <label for="deporte_id">Deporte</label>
-                    <select class="input-label" id="deporte_id" name="deporte_id" required>
-                        <option value="" selected>Selecciona un deporte</option>
-                        <option value="1">Futbol Americano</option>
-                        <option value="2">Futbol Soccer</option>
-                        <option value="3">Volleyball</option>
-                        <option value="4">Basketball</option>
-                    </select>
+                    <div class="mb-3">
+                        <label for="numero_equipos" class="form-label">Número de Equipos</label>
+                        <select name="numero_equipos" id="numero_equipos" class="form-control" required>
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="16">16</option>
+                        </select>
+                    </div>
 
 
                     <button type="submit"

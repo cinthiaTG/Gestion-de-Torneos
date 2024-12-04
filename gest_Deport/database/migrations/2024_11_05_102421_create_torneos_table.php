@@ -14,13 +14,9 @@ return new class extends Migration
         Schema::create('torneos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_torneo');
-            $table->string('tipo_torneo');
             $table->integer('numero_equipos');
             $table->string('patrocinador_torneo')->default('Sin patrocinador');
             $table->integer('monto_patrocinador')->default(0);
-
-            $table->unsignedBigInteger('deporte_id');
-            $table->foreign('deporte_id')->references('id')->on('deportes')->onDelete('cascade');
 
             $table->timestamps();
         });

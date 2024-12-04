@@ -13,22 +13,23 @@ class TorneoController extends Controller{
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nombre_torneo' => 'required|string|max:255',
-            'tipo_torneo' => 'required|string|max:255',
-            'patrocinador_torneo' => 'nullable|string|max:255',
-            'monto_patrocinador' => 'nullable|integer',
-            'numero_equipos' => 'required|integer',
-            'deporte_id' => 'required|integer',
+            'nombre_torneo' => 'required|string|max:20',
+            'patrocinador_torneo' => 'nullable|string|max:20',
+            'monto_patrocinador' => 'nullable|integer|min:0|max:1000000',
+            'numero_equipos' => 'required|integer|in:4,8,16',
+        ], [
+            'nombre_torneo.required' => 'El nombre del torneo es obligatorio.',
+            'nombre_torneo.max' => 'El nombre del torneo no puede exceder los 20 caracteres.',
+            'numero_equipos.in' => 'El número de equipos debe ser 4, 8 o 16.',
         ]);
+
         try{
 
         Torneo::create([
             'nombre_torneo'  => $request->nombre_torneo,
             'patrocinador_torneo' => $request->patrocinador_torneo ?? 'Sin patrocinador',
             'monto_patrocinador' => $request->monto_patrocinador ?? 0,
-            'tipo_torneo'  => $request->tipo_torneo,
             'numero_equipos'  => $request->numero_equipos,
-            'deporte_id'  => $request->deporte_id,
 
         ]);
 
@@ -47,25 +48,22 @@ class TorneoController extends Controller{
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nombre_torneo' => 'required',
-            'tipo_torneo' => 'required',
-            'patrocinador_torneo' => 'nullable|string|max:255',
-            'monto_patrocinador' => 'nullable|integer',
-            'numero_equipos' => 'required|integer',
-            'deporte_id' => 'required|integer',
-
+        $validatedData = $request->validate([
+            'nombre_torneo' => 'required|string|max:20',
+            'patrocinador_torneo' => 'nullable|string|max:20',
+            'monto_patrocinador' => 'nullable|integer|min:0|max:1000000',
+        ], [
+            'nombre_torneo.required' => 'El nombre del torneo es obligatorio.',
+            'nombre_torneo.max' => 'El nombre del torneo no puede exceder los 20 caracteres.',
         ]);
+
 
         $torneo = Torneo::findOrFail($id);
         $torneo->update([
             'nombre_torneo' => $request->nombre_torneo,
-            'tipo_torneo' => $request->tipo_torneo,
             'patrocinador_torneo'=>$request->patrocinador_torneo ?? 'Sin patrocinador',
             'monto_patrocinador' => $request->monto_patrocinador ?? 0,
-            'numero_equipos' => $request->numero_equipos,
 
-            'deporte_id'  => $request->deporte_id,
 
         ]);
         return redirect()->route('torneo.read')->with('success', 'Torneo actualizado con éxito');

@@ -9,7 +9,7 @@ class Torneo extends Model
 {
     use HasFactory;
     protected $table = 'torneos';
-protected $fillable = ['nombre_torneo','monto_patrocinador','patrocinador_torneo','tipo_torneo','numero_equipos', 'deporte_id'];
+    protected $fillable = ['nombre_torneo', 'monto_patrocinador', 'patrocinador_torneo', 'numero_equipos'];
     public function deporte()
     {
         return $this->belongsTo(Deporte::class);
