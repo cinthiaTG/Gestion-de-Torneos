@@ -4,8 +4,14 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="form-title">Jugadores Registrados</div>
-    <a href="{{ route('torneo.create') }}" class="btn btn-warning">Nuevo</a>
+    <div class="form-title">Registro de Torneos</div>
+    <br>
+
+    <a href="{{ route('torneo.create') }}">
+        <button class="torneo-register">
+            Crear un Torneo
+        </button>
+    </a>
 
     <div class="results-section">
         <table class="table">
@@ -22,20 +28,17 @@
             <tbody>
                 @foreach ($torneo as $torneo)
                 <tr>
-                    <td>{{ $torneo->nombre_torneo }}</td>
-                    <td>{{ $torneo->numero_equipos }}</td>
-                    <td>{{$torneo->patrocinador_torneo}}</td>
-                    <td>{{$torneo->monto_patrocinador}}</td>
+                    <td class="date"><b>{{ $torneo->nombre_torneo }}</b></td>
+                    <td class="date"><b>{{ $torneo->numero_equipos }}</b></td>
+                    <td class="date"><b>{{$torneo->patrocinador_torneo}}</b></td>
+                    <td class="date"><b>{{$torneo->monto_patrocinador}}</b></td>
                     <td>
-                        <a href="{{ route('torneo.edit', ['id' => $torneo->id]) }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ route('torneo.edit', ['id' => $torneo->id]) }}" class="btn btn-warning" style="font-weight: bold">Editar</a>
                         <form action="{{ route('torneo.destroy', ['id' => $torneo->id]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-danger" style="font-weight: bold">Eliminar</button>
                         </form>
-                        <a href="#" class="btn btn-warning">Registrar Resultado</a>
-
-
                     </td>
                 </tr>
                 @endforeach

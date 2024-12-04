@@ -7,7 +7,11 @@
 @section('content')
 <div class="form-title">Lista de Partidos</div>
 
-<a href="{{ route('partidos.create') }}" class="btn btn-warning btn-sm">Nuevo</a>
+    <a href="{{ route('partidos.create') }}">
+        <button class="torneo-register">
+            Registrar un partido
+        </button>
+    </a>
 
     <div class="results-section">
     @if(session('success'))

@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
+    font-family: "Parkinsans", sans-serif;
 }
 
 .form-title {
@@ -65,4 +68,10 @@
 
 .content-section{
     margin-top: 50%;
+}
+
+.form-control{
+    width: 60px;
+    border: 1px solid black;
+    border-radius: 5px;
 }

@@ -1,23 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
 
-
-.sidebar {
-    width: 60px;
-    height: 100%;
-    background-color: #000;
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
+* {
+    box-sizing: border-box;
+    font-family: "Parkinsans", sans-serif;
 }
 
-
-
-
 .form-title {
-    font-size: 24px;
+    font-size: 25px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #333;
@@ -154,19 +143,29 @@
 .table .btn-warning {
     background-color: #f0ad4e;
     color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .table .btn-warning:hover {
     background-color: #ec971f;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
 }
 
 .table .btn-danger {
     background-color: #d9534f;
     color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .table .btn-danger:hover {
     background-color: #c9302c;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
 }
 
 .alert-success {
@@ -176,4 +175,26 @@
     color: #3c763d;
     border: 1px solid #d6e9c6;
     border-radius: 5px;
+}
+
+.torneo-register{
+    background-color: red;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.torneo-register:hover{
+    background-color: rgb(182, 8, 8);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
+}
+
+.date :hover{
+    color: purple;
 }

@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+*{
+    font-family: 'Parkinsans', sans-serif;
+}
+
 /* Contenedor principal de las tarjetas */
 .card-container {
-  display: flex;
-  flex-wrap: wrap; /* Permite que las tarjetas ocupen múltiples líneas si es necesario */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px; /* Espaciado entre las tarjetas */
   justify-content: center; /* Centra las tarjetas horizontalmente */
   margin: 20px auto;
@@ -16,26 +22,29 @@
   align-items: center;
   width: 250px; /* Ancho fijo de la tarjeta */
   height: 150px; /* Altura fija de la tarjeta */
-  background-color: #f4f4f4; /* Color de fondo */
+  background-color:white; /* Color de fondo */
   border: 2px solid #ddd; /* Borde claro */
   border-radius: 10px; /* Bordes redondeados */
   text-decoration: none; /* Elimina el subrayado de los enlaces */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras sutiles */
-  transition: transform 0.3s, box-shadow 0.3s; /* Transición suave en hover */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  transition: 0.3s;
   cursor: pointer;
+  border: 3px solid black;
 }
 
 /* Efecto hover para las tarjetas */
 .card:hover {
-  transform: translateY(-5px); /* Eleva la tarjeta al pasar el cursor */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Incrementa la sombra */
-  background-color: #04a3ec; /* Cambia el color de fondo */
-  color: #fff; /* Cambia el color del texto */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+  transform: translateY(-5px);
+  background-color: red;
+  border: #04a3ec;
+  
 }
 
 /* Etiqueta de texto dentro de las tarjetas */
 .card-label {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
   color: #333; /* Color inicial del texto */
   text-align: center;
@@ -46,6 +55,11 @@
 /* Cambia el color del texto en hover */
 .card:hover .card-label {
   color: #fff;
+}
+
+.sup{
+  text-align: center;
+  border-radius: 8px;
 }
 
 /* Responsividad */

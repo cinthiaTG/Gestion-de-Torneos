@@ -5,7 +5,14 @@
 @section('content')
     <div class="container">
         <div class="form-title">Equipos Registrados</div>
-        <a href="{{ route('equipos.create')}}" class="btn btn-warning">Nuevo</a>
+        <br>
+        
+        <a href="{{ route('equipos.create') }}">
+            <button class="torneo-register">
+                Registrar un Equipo
+            </button>
+        </a>
+        
         <style>
             .team-logo {
                 max-width: 100px;
