@@ -36,9 +36,9 @@
                 <tbody>
                 @foreach ($equipos as $equipo)
                     <tr>
-                        <td>{{ $equipo->nombre_equipo }}</td>
-                        <td>{{$equipo->patrocinador_equipo}}</td>
-                        <td>{{$equipo->monto_patrocinador}}</td>
+                        <td class="date"><b>{{ $equipo->nombre_equipo }}</b></td>
+                        <td class="date"><b>{{$equipo->patrocinador_equipo}}</b></td>
+                        <td class="date"><b>{{$equipo->monto_patrocinador}}</b></td>
                         <td>
                             <!-- Abrir la imagen en una nueva ventana -->
                             <img src="{{ asset('storage/app/public/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo" class="team-logo">

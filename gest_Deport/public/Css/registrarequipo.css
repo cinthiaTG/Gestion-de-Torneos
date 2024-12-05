@@ -16,7 +16,16 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: black;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.form-title:hover{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: purple;
+    transform: scale(1.05);
 }
 
 .player-form label {
@@ -51,12 +60,21 @@
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background-color: #333;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
     text-transform: uppercase;
+    background-color: purple;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.save-button:hover {
+    background-color: #555;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
 }
 
 .img-label{
@@ -80,10 +98,6 @@
     cursor: pointer;
     color: black;
     border-radius: 5px;
-}
-
-.save-button:hover {
-    background-color: #555;
 }
 
 .table {

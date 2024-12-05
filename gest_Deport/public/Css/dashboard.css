@@ -37,7 +37,7 @@
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
   transform: translateY(-5px);
-  background-color: red;
+  background-color: rgb(60, 201, 60);
   border: #04a3ec;
   
 }
