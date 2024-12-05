@@ -7,11 +7,18 @@
 @section('content')
     <div>
         <div>
-            <div class="p-8 bg-gradient-to-r from-red-200 to-purple-100 rounded-xl shadow-md border">
-                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">Registrar Torneo</div>
 
+            
+            <div class="p-8 bg-gradient-to-r from-red-200 to-purple-100 rounded-xl shadow-md border">
+                
+
+                <a href="{{ route('torneo.read') }}">
+                    <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">Crear Torneo</div>
+                </a>   
+                            
                 <form class="player-form" action="{{ route('torneo.store') }}" method="POST">
                     @csrf
+
                     <label style="font-size: 16px">Nombre Torneo</label>
                     <input type="text" maxlength="20" name="nombre_torneo" required>
 

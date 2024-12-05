@@ -8,10 +8,13 @@
 
 <div>
     <div>
-        <div class="p-8 bg-gradient-to-r from-red-200 to-purple-100 rounded-xl shadow-md border">
-            <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">
-                Registrar Partido
-            </div>
+        <div class="p-8 bg-gradient-to-r from-green-200 to-gray-100 rounded-xl shadow-md border">
+
+            <a href="{{ route('partidos.read') }}">
+                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">
+                    Registrar Partido
+                </div>
+            </a> 
 
             <div class="results-table">
                 <form class="player-form" action="{{ route('partidos.store') }}" method="POST">
@@ -55,7 +58,8 @@
                         @endforeach
                     </select>
 
-                    <button type="submit" class="save-button">Registrar</button>
+                    <button type="submit"
+                    class="w-full bg-green-600 text-white p-3 mt-4 rounded-lg hover:bg-green-700 transition duration-300">Registrar</button>
                 </form>
             </div> <!-- Cierre del div.results-table -->
         </div> <!-- Cierre del div de p-8 -->
