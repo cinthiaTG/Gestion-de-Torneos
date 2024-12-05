@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\Torneo;
 use App\Models\Jugador;
@@ -88,4 +89,20 @@ class TorneoController extends Controller{
         return view('torneo.read', compact('torneo'));
     }
 
+    public function buscar(Request $request)
+    {
+        $nombre = $request->input('nombre');
+        $torneos = Torneo::where('nombre_torneo', 'LIKE', "%$nombre%")
+            ->get();
+        return response()->json($torneos);
+    }
+
+    public function generarPDFTorneos(Request $request): \Illuminate\Http\Response
+    {
+        $torneos = Torneo::where('nombre_torneo', 'like', '%' . $request->nombre . '%')->get();
+
+        $pdf = PDF::loadView('pdf.torneos', compact('torneos'));
+
+        return $pdf->download('torneos.pdf');
+    }
 }

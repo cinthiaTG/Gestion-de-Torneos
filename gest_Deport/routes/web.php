@@ -157,15 +157,20 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     });
 
     //Rutas danilingling para PDF REPORTES
-        // JUGADORES
+    // JUGADORES
     Route::get('/entrenador/jugadores/buscar', [JugadorController::class, 'buscar'])->name('jugadores.buscar');
     Route::get('/entrenador/equipos/buscar', [EquiposController::class, 'buscar']);
     Route::get('/generar-pdf-jugador', [App\Http\Controllers\JugadorController::class, 'generarPDFJugadores'])->name('generar.pdf.jugadores');
 
-        // INSTALACIONES
+    // INSTALACIONES
     Route::get('/entrenador/instalaciones/buscar', [InstalacionController::class, 'buscar'])->name('instalaciones.buscar');
-    Route::get('/entrenador/deporte/buscar', [DeporteController::class, 'buscar']);
     Route::get('/generar-pdf-instalacion', [App\Http\Controllers\InstalacionController::class, 'generarPDFInstalaciones'])->name('generar.pdf.instalaciones');
+
+    Route::get('/entrenador/equipo/buscar', [EquiposController::class, 'buscar'])->name('equipos.buscar');
+    Route::get('/generar-pdf-equipo', [App\Http\Controllers\EquiposController::class, 'generarPDFEquipos'])->name('generar.pdf.equipos');
+
+    Route::get('/entrenador/torneo/buscar', [TorneoController::class, 'buscar'])->name('torneos.buscar');
+    Route::get('/generar-pdf-torneo', [App\Http\Controllers\TorneoController::class, 'generarPDFTorneos'])->name('generar.pdf.torneos');
 
 
     require __DIR__ . '/auth.php';

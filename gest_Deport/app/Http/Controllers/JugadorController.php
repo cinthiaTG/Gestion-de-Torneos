@@ -12,10 +12,10 @@ class JugadorController extends Controller{
     public function dashboard()
     {
         $usuario = auth()->user();
-        $jugadores = Jugador::where('nombre', $usuario->name)->get(); 
+        $jugadores = Jugador::where('nombre', $usuario->name)->get();
         return view("jugador.dashboard", compact('jugadores'));
     }
-    
+
 
 
 public function store(Request $request)
@@ -98,16 +98,13 @@ public function store(Request $request)
     {
         // Obtener el equipo según su ID
         $equipo = Equipo::findOrFail($id);
-    
+
         // Obtener los jugadores asociados al equipo
         $jugadores = Jugador::where('id_equipo', $id)->get();
-    
+
         // Retornar la vista con los datos del equipo y sus jugadores
         return view('jugador.estadisticas_equipo', compact('equipo', 'jugadores'));
     }
-    
-
-
     public function desempeño()
     {
         $jugadores = Jugador::all();
@@ -131,7 +128,5 @@ public function store(Request $request)
 
         return $pdf->download('jugadores.pdf');
     }
-
-
 }
 
