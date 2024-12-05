@@ -29,14 +29,14 @@
                 <tbody>
                 @foreach ($equipos as $equipo)
                     <tr>
-                        <td>{{ $equipo->nombre_equipo }}</td>
+                        <td>{{$equipo->nombre_equipo }}</td>
                         <td>{{$equipo->patrocinador_equipo}}</td>
                         <td>{{$equipo->monto_patrocinador}}</td>
                         <td>
-                            <!-- Abrir la imagen en una nueva ventana -->
-                            <img src="{{ asset('storage/app/public/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo" class="team-logo">
+                            <a href="{{ asset('storage/escudos/' . $equipo->escudos) }}" target="_blank">
+                            <img src="{{ asset('storage/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo" class="team-logo">
+                            </a>
                         </td>
-
                         <td>
                             <a href="{{ route('equipos.edit', $equipo->id) }}" class="btn btn-warning">Editar</a>
                             <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST" style="display:inline;">
