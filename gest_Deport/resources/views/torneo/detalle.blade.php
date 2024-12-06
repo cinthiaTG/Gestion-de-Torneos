@@ -7,8 +7,8 @@
         <p>Número de equipos: {{ $torneo->numero_equipos }}</p>
         <p>Estado: {{ $torneo->finalizado ? 'Finalizado' : 'En curso' }}</p>
 
-        <!-- Mostrar ganador si existe -->
-        @if($ganador)
+        <!-- Mostrar ganador solo si el torneo está finalizado -->
+        @if($torneo->finalizado && $ganador)
             <div class="alert alert-success">
                 <h3>¡Ganador del Torneo!</h3>
                 <p>Equipo: <strong>{{ $ganador->nombre_equipo }}</strong></p>
@@ -28,7 +28,8 @@
                         <th>Fecha</th>
                         <th>Hora</th>
                         <th>Instalación</th>
-                        <th>Resultado</th>
+                        <th>Ganador</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,13 @@
                                     En progreso
                                 @endif
                             </td>
+                            <td>
+                                @if(!$partido->finalizado)
+                                    <a href="{{ route('partidos.mandarresultado', $partido->id) }}" class="btn btn-warning btn-sm">Concluir</a>
+                                @else
+                                    <p>Resultado Finalizado</p>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -54,11 +62,26 @@
         @else
             <p>No hay partidos programados para este torneo.</p>
         @endif
+
+        <!-- Mostrar el botón para avanzar a la siguiente ronda solo si el torneo no está finalizado -->
+        @if(!$torneo->finalizado)
+            <form action="{{ route('torneos.avanzarRonda', $torneo->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="button">Avanzar a la siguiente ronda</button>
+            </form>
+
+            <form action="{{ route('torneo.finalizar', $torneo->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="button">Finalizar Torneo</button>
+            </form>
+
+
+        @endif
+
+
     </div>
 
     <style>
-
-
         /* General styles */
         .container {
             margin: 20px;
@@ -134,6 +157,10 @@
 
         .button:hover {
             background-color: #218838;
+        }
+
+        .button[style="background-color: #dc3545;"]:hover {
+            background-color: #c82333;
         }
     </style>
 @endsection

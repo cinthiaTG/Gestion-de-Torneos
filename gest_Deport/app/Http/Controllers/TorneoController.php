@@ -10,7 +10,8 @@ use App\Models\Jugador;
 use App\Models\Equipo;
 
 
-class TorneoController extends Controller{
+class TorneoController extends Controller
+{
 
     public function store(Request $request)
     {
@@ -25,19 +26,19 @@ class TorneoController extends Controller{
             'numero_equipos.in' => 'El número de equipos debe ser 4, 8 o 16.',
         ]);
 
-        try{
+        try {
 
-        Torneo::create([
-            'nombre_torneo'  => $request->nombre_torneo,
-            'patrocinador_torneo' => $request->patrocinador_torneo ?? 'Sin patrocinador',
-            'monto_patrocinador' => $request->monto_patrocinador ?? 0,
-            'numero_equipos'  => $request->numero_equipos,
-        ]);
+            Torneo::create([
+                'nombre_torneo' => $request->nombre_torneo,
+                'patrocinador_torneo' => $request->patrocinador_torneo ?? 'Sin patrocinador',
+                'monto_patrocinador' => $request->monto_patrocinador ?? 0,
+                'numero_equipos' => $request->numero_equipos,
+            ]);
 
-        return redirect()->route('torneo.read')->with('success', 'Torneo registrado exitosamente');
-    } catch (\Exception $e){
-        dd($e->getMessage());
-    }
+            return redirect()->route('torneo.read')->with('success', 'Torneo registrado exitosamente');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
 
@@ -62,7 +63,7 @@ class TorneoController extends Controller{
         $torneo = Torneo::findOrFail($id);
         $torneo->update([
             'nombre_torneo' => $request->nombre_torneo,
-            'patrocinador_torneo'=>$request->patrocinador_torneo ?? 'Sin patrocinador',
+            'patrocinador_torneo' => $request->patrocinador_torneo ?? 'Sin patrocinador',
             'monto_patrocinador' => $request->monto_patrocinador ?? 0,
 
 
@@ -157,5 +158,27 @@ class TorneoController extends Controller{
         return $ultimoPartido ? $ultimoPartido->ganador : null;
     }
 
+    public function finalizar($id)
+    {
+        $torneo = Torneo::findOrFail($id);
 
+        // Cambiar el estado a finalizado
+        $torneo->finalizado = true;
+
+        // Obtener el último partido del torneo
+        $ultimoPartido = Partido::where('id_torneo', $id)->orderBy('fecha', 'desc')->first();
+
+        // Obtener el id del ganador del último partido
+        $id_ganador = $ultimoPartido ? $ultimoPartido->id_ganador : null;
+
+        // Actualizar el id_ganador en la tabla torneos
+        $torneo->id_ganador = $id_ganador;
+        $torneo->save();
+
+        // Redirigir a la ruta arbitro.dashboard con el mensaje de éxito
+        return redirect()->route('arbitro.dashboard')
+            ->with('success', 'Torneo finalizado correctamente. El ID del ganador del último partido es: ' . ($id_ganador ? $id_ganador : 'No disponible'));
+    }
 }
+
+

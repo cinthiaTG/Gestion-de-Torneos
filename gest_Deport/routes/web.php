@@ -178,7 +178,8 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::post('/torneos/{id}/determinar-campeon', [PartidosController::class, 'determinarCampeon'])->name('torneos.determinarCampeon');
     Route::get('/torneo/{id}', [TorneoController::class, 'mostrarTorneo'])->name('torneo.detalle');
     Route::put('/partidos/{partido}/actualizar-resultado', [PartidosController::class, 'actualizarResultado'])->name('partidos.actualizarResultado');
-Route::get('/torneo/{id}', [TorneoController::class, 'detalleTorneo'])->name('torneo.detalle');
+    Route::get('/torneo/{id}', [TorneoController::class, 'detalleTorneo'])->name('torneo.detalle');
+Route::post('/torneo/{id}/finalizar', [TorneoController::class, 'finalizar'])->name('torneo.finalizar');
 
 
 
