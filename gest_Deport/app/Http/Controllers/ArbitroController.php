@@ -9,17 +9,22 @@ use App\Models\Equipo;
 use App\Models\Jugador;
 
 class ArbitroController extends Controller{
+
     public function dashboard()
     {
         // Obtener los torneos activos
         $torneos = Torneo::where('finalizado', false)->get();
 
+        // Obtener los torneos finalizados
+        $torneosInactivos = Torneo::where('finalizado', true)->get();
+
         // Obtener todos los equipos
         $equipos = Equipo::all();
 
-        // Pasar tanto los torneos como los equipos a la vista
-        return view("arbitro.dashboard", compact('equipos', 'torneos'));
+        // Pasar los torneos activos, los inactivos y los equipos a la vista
+        return view("arbitro.dashboard", compact('equipos', 'torneos', 'torneosInactivos'));
     }
+
 
     public function jugadores($id)
     {

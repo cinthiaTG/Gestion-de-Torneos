@@ -6,15 +6,6 @@
         <p>Patrocinador: {{ $torneo->patrocinador_torneo }}</p>
         <p>Número de equipos: {{ $torneo->numero_equipos }}</p>
         <p>Estado: {{ $torneo->finalizado ? 'Finalizado' : 'En curso' }}</p>
-
-        <!-- Mostrar ganador solo si el torneo está finalizado -->
-        @if($torneo->finalizado && $ganador)
-            <div class="alert alert-success">
-                <h3>¡Ganador del Torneo!</h3>
-                <p>Equipo: <strong>{{ $ganador->nombre_equipo }}</strong></p>
-            </div>
-        @endif
-
         <hr>
 
         @if($partidosPorRonda->isNotEmpty())
@@ -80,7 +71,6 @@
 
 
     </div>
-
     <style>
         /* General styles */
         .container {
@@ -162,5 +152,58 @@
         .button[style="background-color: #dc3545;"]:hover {
             background-color: #c82333;
         }
+
+        /* Ganador Message Styles */
+        .alert-success {
+            text-align: center;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 20px;
+        }
+
+        .alert-success h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .alert-success p {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .alert-success p strong {
+            font-size: 20px;
+            color: #155724;
+        }
+
+        .alert-success img {
+            width: 150px;  /* Ajusta el tamaño de la imagen */
+            height: 150px;
+            margin-top: 10px; /* Añade un margen para separar la imagen del texto */
+            display: block;  /* Hace que la imagen sea un bloque y permita el centrado */
+            margin-left: auto; /* Centra la imagen horizontalmente */
+            margin-right: auto; /* Centra la imagen horizontalmente */
+        }
     </style>
+
+    <!-- Mostrar ganador solo si el torneo está finalizado -->
+    @if($torneo->finalizado && $ganador)
+        @php
+            // Obtener el equipo completo usando el ID del ganador
+            $equipoGanador = \App\Models\Equipo::find($ganador);
+        @endphp
+
+        <div class="alert alert-success">
+            <h3>¡Equipo Ganador del Torneo!</h3>
+            <p>★★  <strong>{{ $equipoGanador->nombre_equipo }}</strong>  ★★</p>
+            <!-- Mostrar la imagen del equipo -->
+            <img src="{{ asset('storage/escudos/' . $equipoGanador->escudos) }}" alt="Escudo del equipo ganador">
+        </div>
+    @endif
+
+
 @endsection

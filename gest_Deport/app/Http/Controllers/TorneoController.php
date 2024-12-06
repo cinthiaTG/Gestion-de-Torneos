@@ -145,8 +145,7 @@ class TorneoController extends Controller
         return $partidos->groupBy('ronda');
     }
 
-// Función para obtener el ganador
-    private function calcularGanador($torneo)
+    public function calcularGanador($torneo)
     {
         // Obtener el último partido finalizado
         $ultimoPartido = Partido::where('id_torneo', $torneo->id)
@@ -155,7 +154,16 @@ class TorneoController extends Controller
             ->first();
 
         // Si existe un ganador, lo retornamos, de lo contrario, null
-        return $ultimoPartido ? $ultimoPartido->ganador : null;
+        if ($ultimoPartido) {
+            $ganador = $ultimoPartido->ganador;
+
+            // Asegúrate de obtener solo el ID del ganador
+            $torneo->update(['id_ganador' => $ganador->id]);
+
+            return $ganador->id;
+        }
+
+        return null;
     }
 
     public function finalizar($id)

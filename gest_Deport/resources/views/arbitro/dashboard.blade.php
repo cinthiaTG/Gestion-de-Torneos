@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+
 @section('styles')
     <link rel="stylesheet" href="{{ asset('Css/dashboard.css') }}">
 @endsection
@@ -15,7 +16,6 @@
                 <div class="card-list">
                     @foreach($torneos as $torneo)
                         <a href="{{ route('torneo.detalle', ['id' => $torneo->id]) }}" class="card">
-
                             <div class="card-content">
                                 <h3>{{ $torneo->nombre_torneo }}</h3>
                             </div>
@@ -27,6 +27,30 @@
             <div class="section-card">
                 <div class="section-header">
                     <h2>No hay torneos activos</h2>
+                </div>
+            </div>
+        @endif
+
+        <!-- Torneos Inactivos -->
+        @if(isset($torneosInactivos) && $torneosInactivos->isNotEmpty())
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Torneos Inactivos</h2>
+                </div>
+                <div class="card-list">
+                    @foreach($torneosInactivos as $torneo)
+                        <a href="{{ route('torneo.detalle', ['id' => $torneo->id]) }}" class="card">
+                            <div class="card-content">
+                                <h3>{{ $torneo->nombre_torneo }}</h3>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        @else
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>No hay torneos inactivos</h2>
                 </div>
             </div>
         @endif
