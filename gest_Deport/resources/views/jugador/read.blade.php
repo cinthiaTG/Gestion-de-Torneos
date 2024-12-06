@@ -5,8 +5,12 @@
 @section('content')
 <div class="container">
     <div class="form-title">Jugadores Registrados</div>
-    <a href="{{ route('jugadores.create') }}" class="btn btn-warning">Nuevo</a>
-    <!--Quiero que aqui a la par de crear jugador se cree un usuario con el rol de jugador-->
+    <a href="{{ route('jugadores.create') }}">
+        <button class="torneo-register">
+            Registrar Jugador
+        </button>
+    </a>
+    
     <div class="results-section">
         <table class="table">
             <thead>
