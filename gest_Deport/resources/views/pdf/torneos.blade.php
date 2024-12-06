@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado de Instalaciones</title>
+    <title>Resultado de Torneos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,21 +26,25 @@
     </style>
 </head>
 <body>
-<h1>Resultado de Instalaciones</h1>
+<h1>Resultado de Torneos</h1>
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nombre de Instalacion</th>
-        <th>Ubicacion</th>
+        <th>Nombre de Torneo</th>
+        <th>Numero de Equipos</th>
+        <th>Patrocinador</th>
+        <th>Monto del Patrocinador</th>
     </tr>
     </thead>
     <tbody>
-    @forelse ($instalaciones as $instalacion)
+    @forelse ($torneos as $torneo)
         <tr>
-            <td>{{ $instalacion->id }}</td>
-            <td>{{ $instalacion->nombre_instalacion }}</td>
-            <td>{{ $instalacion->ubicacion }}</td>
+            <td>{{ $torneo->id }}</td>
+            <td>{{ $torneo->nombre_torneo }}</td>
+            <td>{{ $torneo->numero_equipos }}</td>
+            <td>{{ $torneo->patrocinador_torneo }}</td>
+            <td>{{ $torneo->monto_patrocinador}}</td>
         </tr>
     @empty
         <tr>

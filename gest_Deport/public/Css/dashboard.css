@@ -54,7 +54,7 @@
 
 /* Cambia el color del texto en hover */
 .card:hover .card-label {
-  color: #fff;
+    color: #fff;
 }
 
 .sup{
@@ -64,7 +64,7 @@
 
 /* Responsividad */
 @media (max-width: 768px) {
-  .card {
-      width: 100%; /* Las tarjetas ocupan todo el ancho disponible */
-  }
+    .card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho disponible */
+    }
 }

@@ -21,7 +21,7 @@
     @endif
 
     <div class="mb-3">
-        <label for="addOption" class="form-label">¿Que desea agregar?</label>
+        <label for="addOption" class="form-label">¿Que desea buscar?</label>
         <select id="addOption" class="form-select">
             <option value="" selected>Seleccione una opción</option>
             <option value="torneo">Torneo</option>
@@ -71,7 +71,6 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Ubicacion</th>
-            <th>Deporte</th>
         </tr>
         </thead>
         <tbody>
@@ -79,8 +78,57 @@
         </tbody>
     </table>
 
+    <div id="searchSectionTeams" class="mb-3" style="display: none;">
+        <label for="searchInputTeams" class="form-label">Buscar por nombre</label>
+        <div class="input-group">
+            <input type="text" id="searchInputTeams" class="form-control" placeholder="Ingrese el nombre">
+            <button id="searchButtonTeams" class="btn btn-primary">Buscar</button>
+        </div>
+    </div>
+
+    <table class="table table-striped" id="teamsTable" style="display: none;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Escudo</th>
+            <th>Patrocinador</th>
+            <th>Monto del Patrocinador</th>
+            <th>Partidos Jugados</th>
+            <th>Victorias</th>
+            <th>Empates</th>
+            <th>Derrotas</th>
+        <tbody>
+        <!-- Para mostrar los resultados -->
+        </tbody>
+    </table>
+
+
+    <div id="searchSectionTournament" class="mb-3" style="display: none;">
+        <label for="searchInputTournament" class="form-label">Buscar por nombre</label>
+        <div class="input-group">
+            <input type="text" id="searchInputTournament" class="form-control" placeholder="Ingrese el nombre">
+            <button id="searchButtonTournament" class="btn btn-primary">Buscar</button>
+        </div>
+    </div>
+
+    <table class="table table-striped" id="tournamentTable" style="display: none;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cantidad de Equipos</th>
+            <th>Patrocinador</th>
+            <th>Monto de Patrocinador</th>
+        <tbody>
+        <!-- Para mostrar los resultados -->
+        </tbody>
+    </table>
+
     <button id="downloadPdfButtonPlayers" class="btn btn-success" style="display:none;">Generar PDF</button>
     <button id="downloadPdfButtonFacilities" class="btn btn-success" style="display:none;">Generar PDF</button>
+    <button id="downloadPdfButtonTeams" class="btn btn-success" style="display:none;">Generar PDF</button>
+    <button id="downloadPdfButtonTournament" class="btn btn-success" style="display:none;">Generar PDF</button>
 
     <!-- SCRIPT -->
     <!-- SCRIPT -->
@@ -101,7 +149,11 @@
                 const selectedOption = $(this).val();
 
                 // Ocultar todas las secciones y botones antes de mostrar las relevantes
-                $('#searchSectionPlayers, #playersTable, #searchSectionFacilities, #FacilitiesTable, #downloadPdfButtonPlayers, #downloadPdfButtonFacilities').hide();
+                $('#searchSectionPlayers, #playersTable, #downloadPdfButtonPlayers').hide();
+                $('#searchSectionFacilities, #FacilitiesTable, #downloadPdfButtonFacilities').hide();
+                $('#searchSectionTeams, #teamsTable, #searchSectionTeams,#downloadPdfButtonTeams').hide();
+                $('#searchSectionTournament, #tournamentTable, #searchSectionTournament,#downloadPdfButtonTournament').hide();
+
 
                 if (selectedOption === "jugador") {
                     $('#searchSectionPlayers').show();
@@ -209,35 +261,15 @@
 
                                 if (Array.isArray(instalaciones) && instalaciones.length > 0) {
                                     instalaciones.forEach(function (instalacion) {
-                                        const idDeporte = instalacion.id_deporte;
-
                                         const row = $(`
                                     <tr>
                                         <td>${instalacion.id}</td>
                                         <td>${instalacion.nombre_instalacion}</td>
                                         <td>${instalacion.ubicacion}</td>
-                                        <td id="deporte-${instalacion.id}">${idDeporte}</td>
                                     </tr>
                                 `);
 
                                         instalacionesContainer.append(row);
-
-                                        // Obtener nombre del deporte
-                                        $.ajax({
-                                            url: '/entrenador/deporte/buscar',
-                                            type: 'GET',
-                                            data: {
-                                                id: idDeporte
-                                            },
-                                            success: function (deporte) {
-                                                if (deporte && deporte.nombre) {
-                                                    $(`#deporte-${instalacion.id}`).text(deporte.nombre);
-                                                }
-                                            },
-                                            error: function () {
-                                                $(`#deporte-${instalacion.id}`).text('No asignado');
-                                            }
-                                        });
                                     });
 
                                     $('#FacilitiesTable').show(); // Mostrar tabla de instalaciones
@@ -264,9 +296,135 @@
                         window.location.href = '/generar-pdf-instalacion?nombre=' + searchValueFacilities;
                     });
 
-                } else {
+                } else if (selectedOption === "equipo") {
+                    $('#searchSectionTeams').show();
+
+                    $('#searchButtonTeams').off('click').on('click', function () {
+                        const searchValueTeams = $('#searchInputTeams').val();
+
+                        if (!searchValueTeams.trim()) {
+                            alert('Por favor, ingrese un nombre para buscar.');
+                            return;
+                        }
+
+                        const BASE_IMAGE_URL = '/storage/escudos/';
+
+                        $.ajax({
+                            url: '/entrenador/equipos/buscar',
+                            type: 'GET',
+                            data: {
+                                nombre: searchValueTeams
+                            },
+                            success: function (equipos) {
+                                const equiposContainer = $('#teamsTable tbody');
+                                equiposContainer.empty();
+
+                                if (Array.isArray(equipos) && equipos.length > 0) {
+                                    equipos.forEach(function (equipo) {
+                                        const row = $(`
+                                        <tr>
+                                            <td>${equipo.id}</td>
+                                            <td>${equipo.nombre_equipo}</td>
+                                            <td><img src="${equipo.escudo_url}" alt="Escudo de ${equipo.nombre_equipo}" style="width: 50px; height: auto;"></td>                                            <td>${equipo.patrocinador_equipo}</td>
+                                            <td>${equipo.monto_patrocinador}</td>
+                                            <td>${equipo.partidos_jugados}</td>
+                                            <td>${equipo.victorias}</td>
+                                            <td>${equipo.empates}</td>
+                                            <td>${equipo.derrotas}</td>
+                                        </tr>
+                                    `);
+                                        equiposContainer.append(row);
+                                    });
+
+                                    $('#teamsTable').show(); // Mostrar tabla de equipos
+                                    $('#downloadPdfButtonTeams').show(); // Mostrar botón de PDF
+                                } else {
+                                    alert('No se encontraron equipos.');
+                                }
+                            },
+                            error: function () {
+                                alert('Ocurrió un error al buscar los equipos.');
+                            }
+                        });
+                    });
+
+                    // Evento para descargar PDF de equipos
+                    $('#downloadPdfButtonTeams').off('click').on('click', function () {
+                        const searchValueTeams = $('#searchInputTeams').val();
+
+                        if (!searchValueTeams.trim()) {
+                            alert('Por favor, ingrese un nombre para generar el PDF.');
+                            return;
+                        }
+
+                        window.location.href = '/generar-pdf-equipo?nombre=' + searchValueTeams;
+                    });
+                } // TORNEOS
+                else if (selectedOption === "torneo") {
+                    $('#searchSectionTournament').show();
+                    $('#searchButtonTournament').off('click').on('click', function () {
+                        const searchValueTournament = $('#searchInputTournament').val();
+
+                        if (!searchValueTournament.trim()) {
+                            alert('Por favor, ingrese un nombre para buscar.');
+                            return;
+                        }
+
+                        $.ajax({
+                            url: '/entrenador/torneo/buscar',
+                            type: 'GET',
+                            data: {
+                                nombre: searchValueTournament
+                            },
+                            success: function (torneos) {
+                                const torneosContainer = $('#tournamentTable tbody');
+                                torneosContainer.empty();
+
+                                if (Array.isArray(torneos) && torneos.length > 0) {
+                                    torneos.forEach(function (torneo) {
+                                        const row = $(`
+                                        <tr>
+                                            <td>${torneo.id}</td>
+                                            <td>${torneo.nombre_torneo}</td>
+                                            <td>${torneo.numero_equipos}</td>
+                                            <td>${torneo.patrocinador_torneo}</td>
+                                            <td>${torneo.monto_patrocinador}</td>
+                                        </tr>
+                                    `);
+                                        torneosContainer.append(row);
+                                    });
+
+                                    $('#tournamentTable').show(); // Mostrar tabla de torneo
+                                    $('#downloadPdfButtonTournament').show(); // Mostrar botón de PDF
+                                } else {
+                                    alert('No se encontraron torneos.');
+                                }
+                            },
+                            error: function () {
+                                alert('Ocurrió un error al buscar los torneos.');
+                            }
+                        });
+                    });
+
+                    // Evento para descargar PDF de torneos
+                    $('#downloadPdfButtonTournament').off('click').on('click', function () {
+                        const searchValueTournament = $('#searchInputTournament').val();
+
+                        if (!searchValueTournament.trim()) {
+                            alert('Por favor, ingrese un nombre para generar el PDF.');
+                            return;
+                        }
+
+                        window.location.href = '/generar-pdf-torneo?nombre=' + searchValueTournament;
+                    });
+                }
+                else {
                     // Ocultar todas las secciones si no se selecciona nada o "Seleccione una opción"
-                    $('#searchSectionPlayers, #playersTable, #searchSectionFacilities, #FacilitiesTable').hide();
+                    $('#searchSectionPlayers, #playersTable').hide();
+                    $(' #searchSectionFacilities, #FacilitiesTable').hide();
+                    $(' #searchSectionTeams, #teamsTable').hide();
+                    $(' #searchSectionTournament, #tournamentTable').hide();
+
                 }
             });
         });
@@ -275,4 +433,3 @@
 </body>
 </html>
 @endsection
-

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Jugador;
@@ -104,15 +105,22 @@ class EquiposController extends Controller{
 
     public function buscar(Request $request)
     {
-        $id = $request->input('id');
-        $equipo = Equipo::find($id);
-
-        if ($equipo) {
-            return response()->json($equipo);
-        } else {
-            return response()->json(['mensaje' => 'Equipo no encontrado'], 404);
+        $nombre = $request->input('nombre');
+        $equipos = Equipo::where('nombre_equipo', 'LIKE', "%$nombre%")
+            ->get();
+        foreach ($equipos as $equipo) {
+            $equipo->escudo_url = asset('storage/escudos/' . $equipo->escudos);
         }
+
+        return response()->json($equipos);
     }
 
+    public function generarPDFEquipos(Request $request): \Illuminate\Http\Response
+    {
+        $equipos = Equipo::where('nombre_equipo', 'like', '%' . $request->nombre . '%')->get();
 
+        $pdf = PDF::loadView('pdf.equipos', compact('equipos'));
+
+        return $pdf->download('equipos.pdf');
+    }
 }
