@@ -1,41 +1,45 @@
 @extends('layouts.dashboard')
+
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('Css/registrarequipo.css') }}">
+    <link rel="stylesheet" href="{{ asset('Css/registrarjugadores.css') }}">
 @endsection
 
 @section('content')
+    <div>
+        <div>
+            <div class="p-8 bg-gradient-to-r from-orange-400 to-orange-200 rounded-xl shadow-md border border-orange-300">
 
-<div class="container">
-    <h1>Editar Jugador</h1>
-    <br>
-    @if(session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">Actualizar Jugador</div>
 
-    <form class="player-form" action="{{ route('jugadores.update', $jugador->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+                <form class="player-form" action="{{ route('jugadores.update', $jugador->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-        <div class="form-group">
-            <label for="nombre">Nombre Completo</label>
-            <input type="text" name="nombre" class="form-control" value="{{ $jugador->nombre }}" required>
+                    <!-- Nombre Completo -->
+                    <label style="font-size: 16px">Nombre Completo</label>
+                    <input type="text" name="nombre" maxlength="50" value="{{ $jugador->nombre }}" required>
+
+                    <!-- Edad -->
+                    <label style="font-size: 16px">Edad</label>
+                    <input type="number" name="edad" value="{{ $jugador->edad }}" min="0" max="100" required>
+
+                    <!-- Posición -->
+                    <label style="font-size: 16px">Posición</label>
+                    <input type="text" name="posicion" maxlength="20" value="{{ $jugador->posicion }}" required>
+
+                    <br class="jump">
+
+                    <button type="submit" class="save-button">
+                        Actualizar
+                    </button>
+
+                    <a href="{{ route('jugador.read') }}">
+                        <button type="submit" class="cancel-button">
+                        Cancelar
+                    </button>
+                    </a>
+                </form>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="edad">Edad</label>
-            <input type="number" name="edad" class="form-control" value="{{ $jugador->edad }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="posicion">Posición</label>
-            <input type="text" name="posicion" class="form-control" value="{{ $jugador->posicion }}" required>
-        </div>
-
-        <button type="submit" class="actualizar">Actualizar</button>
-        <a href="{{route('jugador.read')}}" class="btn btn-secondary">Cancelar</a>
-        
-    </form>
-</div>
-
-
+    </div>
 @endsection
