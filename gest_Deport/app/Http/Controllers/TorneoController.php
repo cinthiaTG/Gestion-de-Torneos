@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partido;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\Torneo;
@@ -31,7 +32,6 @@ class TorneoController extends Controller{
             'patrocinador_torneo' => $request->patrocinador_torneo ?? 'Sin patrocinador',
             'monto_patrocinador' => $request->monto_patrocinador ?? 0,
             'numero_equipos'  => $request->numero_equipos,
-
         ]);
 
         return redirect()->route('torneo.read')->with('success', 'Torneo registrado exitosamente');
@@ -105,4 +105,57 @@ class TorneoController extends Controller{
 
         return $pdf->download('torneos.pdf');
     }
+
+    public function mostrarTorneo($torneoId)
+    {
+        // Obtiene el torneo con sus partidos, equipos relacionados y los agrupa por ronda
+        $torneo = Torneo::with(['partidos.equipoLocal', 'partidos.equipoVisitante', 'partidos.instalacion'])
+            ->findOrFail($torneoId);
+
+        // Agrupa los partidos por ronda
+        $partidosPorRonda = $torneo->partidos->groupBy('ronda');
+
+        return view('torneo.detalle', compact('torneo', 'partidosPorRonda'));
+    }
+
+    public function detalleTorneo($id)
+    {
+        // Obtener el torneo por su ID
+        $torneo = Torneo::findOrFail($id);
+
+        // Obtener los partidos por ronda
+        $partidosPorRonda = $this->getPartidosPorRonda($torneo);
+
+        // Obtener el ganador si existe
+        $ganador = $this->calcularGanador($torneo);
+
+        // Pasar los datos a la vista
+        return view('torneo.detalle', compact('torneo', 'partidosPorRonda', 'ganador'));
+    }
+
+
+    // Función para obtener partidos por ronda
+    private function getPartidosPorRonda($torneo)
+    {
+        // Lógica para obtener los partidos por ronda
+        $partidos = Partido::where('id_torneo', $torneo->id)->get();
+
+        // Agrupar por ronda (este es un ejemplo, asegúrate de que se agrupe correctamente)
+        return $partidos->groupBy('ronda');
+    }
+
+// Función para obtener el ganador
+    private function calcularGanador($torneo)
+    {
+        // Obtener el último partido finalizado
+        $ultimoPartido = Partido::where('id_torneo', $torneo->id)
+            ->where('finalizado', true)
+            ->latest()
+            ->first();
+
+        // Si existe un ganador, lo retornamos, de lo contrario, null
+        return $ultimoPartido ? $ultimoPartido->ganador : null;
+    }
+
+
 }

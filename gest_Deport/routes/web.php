@@ -58,6 +58,11 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/aficionado/dashboard', [AficionadoController::class, 'dashboard'])->name('aficionado.dashboard');
 });
 
+Route::middleware(['auth', 'role:4'])->group(function () {
+    Route::get('/mandarresultado/{id}', [PartidosController::class, 'mandarresultado'])->name('partidos.mandarresultado');
+    Route::post('/registrarresultado/{id}', [PartidosController::class, 'registrarresultado'])->name('partidos.registrarresultado');
+});
+
 Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/entrenador/dashboard', [EntrenadorController::class, 'dashboard'])->name('entrenador.dashboard');
 
@@ -94,10 +99,6 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::group(['prefix' => 'entrenador/partidos'], function () {
         Route::get('/create', [PartidosController::class, 'create'])->name('partidos.create');
         Route::post('/store', [PartidosController::class, 'store'])->name('partidos.store');
-        Route::get('/mandarresultado/{id}', [PartidosController::class, 'mandarresultado'])->name('partidos.mandarresultado');
-        Route::post('/registrarresultado/{id}', [PartidosController::class, 'registrarresultado'])->name('partidos.registrarresultado');
-
-
         Route::get('/read', [PartidosController::class, 'read'])->name('partidos.read');
         Route::get('/edit/{id}', [PartidosController::class, 'edit'])->name('partidos.edit');
         Route::post('/update/{id}', [PartidosController::class, 'update'])->name('partidos.update');
@@ -172,5 +173,14 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/entrenador/torneo/buscar', [TorneoController::class, 'buscar'])->name('torneos.buscar');
     Route::get('/generar-pdf-torneo', [App\Http\Controllers\TorneoController::class, 'generarPDFTorneos'])->name('generar.pdf.torneos');
 
+    Route::post('/torneos/{id}/generar-primera-ronda', [PartidosController::class, 'generarPrimeraRonda'])->name('torneos.generarPrimeraRonda');
+    Route::post('/torneos/{id}/avanzar-ronda', [PartidosController::class, 'avanzarRonda'])->name('torneos.avanzarRonda');
+    Route::post('/torneos/{id}/determinar-campeon', [PartidosController::class, 'determinarCampeon'])->name('torneos.determinarCampeon');
+    Route::get('/torneo/{id}', [TorneoController::class, 'mostrarTorneo'])->name('torneo.detalle');
+    Route::put('/partidos/{partido}/actualizar-resultado', [PartidosController::class, 'actualizarResultado'])->name('partidos.actualizarResultado');
+Route::get('/torneo/{id}', [TorneoController::class, 'detalleTorneo'])->name('torneo.detalle');
 
-    require __DIR__ . '/auth.php';
+
+
+
+require __DIR__ . '/auth.php';

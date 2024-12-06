@@ -25,8 +25,7 @@
 
         <label for="marcador_visitante">Marcador Equipo Visitante</label>
         <input type="number" id="marcador_visitante" name="marcador_visitante" class="input-label" min="0" required>
-
-        <button type="submit" class="save-button">Registrar Resultado</button>
+        <button type="submit" class="btn btn-primary">Registrar Resultado</button>
     </form>
 </div>
 

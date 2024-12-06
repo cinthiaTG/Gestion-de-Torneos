@@ -178,4 +178,122 @@ class PartidosController extends Controller
         $partido->delete();
         return redirect()->route('partidos.read')->with('success', 'Partido eliminado exitosamente.');
     }
+
+    public function generarPrimeraRonda($idTorneo)
+    {
+        $torneo = Torneo::with('equipos')->findOrFail($idTorneo);
+        $equipos = $torneo->equipos;
+
+        if ($equipos->count() != 4 && $equipos->count() != 8 && $equipos->count() != 16) {
+            return redirect()->back()->withErrors(['error' => 'El torneo debe tener 4, 8 o 16 equipos.']);
+        }
+
+        $equipos = $equipos->shuffle(); // Mezclar equipos aleatoriamente.
+        $instalaciones = Instalacion::all(); // Usar instalaciones disponibles.
+
+        $ronda = 1;
+        for ($i = 0; $i < $equipos->count(); $i += 2) {
+            Partido::create([
+                'id_torneo' => $idTorneo,
+                'id_equipo_local' => $equipos[$i]->id,
+                'id_equipo_visitante' => $equipos[$i + 1]->id,
+                'id_instalacion' => $instalaciones->random()->id,
+                'fecha' => now()->addDays($ronda),
+                'hora' => now()->addHours($ronda * 2)->format('H:i'),
+                'ronda' => $ronda,
+            ]);
+        }
+
+        return redirect()->route('partidos.read')->with('success', 'Primera ronda generada exitosamente.');
+    }
+
+    public function avanzarRonda($idTorneo)
+    {
+        $torneo = Torneo::findOrFail($idTorneo);
+
+        // Obtener la última ronda registrada para este torneo
+        $ultimaRonda = Partido::where('id_torneo', $idTorneo)->max('ronda');
+
+        // Verificar si todos los partidos de la última ronda están finalizados
+        $partidosUltimaRonda = Partido::where('id_torneo', $idTorneo)
+            ->where('ronda', $ultimaRonda)
+            ->get();
+
+        if ($partidosUltimaRonda->isEmpty()) {
+            return redirect()->back()->withErrors('No hay partidos en la ronda actual.');
+        }
+
+        if ($partidosUltimaRonda->where('finalizado', false)->isNotEmpty()) {
+            return redirect()->back()->withErrors('No todos los partidos de la ronda actual han concluido.');
+        }
+
+        // Obtener los ganadores de la última ronda
+        $ganadores = $partidosUltimaRonda->pluck('id_ganador')->filter();
+
+        if ($ganadores->count() < 2) {
+            return redirect()->back()->with('success', 'El torneo ha finalizado. No hay suficientes equipos para continuar.');
+        }
+
+        // Crear los nuevos partidos para la siguiente ronda
+        $nuevaRonda = $ultimaRonda + 1;
+        for ($i = 0; $i < $ganadores->count(); $i += 2) {
+            if (isset($ganadores[$i + 1])) {
+                Partido::create([
+                    'id_torneo' => $idTorneo,
+                    'id_equipo_local' => $ganadores[$i],
+                    'id_equipo_visitante' => $ganadores[$i + 1],
+                    'ronda' => $nuevaRonda,
+                    'fecha' => now()->addDays(1)->toDateString(), // Puedes ajustar la fecha y hora
+                    'hora' => now()->addHours(1)->toTimeString(),
+                    'id_instalacion' => 1, // Ajusta esto según tus datos
+                ]);
+            }
+        }
+
+        return redirect()->route('torneo.detalle', $idTorneo)
+            ->with('success', 'Se ha avanzado a la siguiente ronda.');
+    }
+
+    public function determinarCampeon($idTorneo)
+    {
+        $partidoFinal = Partido::where('id_torneo', $idTorneo)
+            ->where('ronda', Partido::max('ronda'))
+            ->where('finalizado', true)
+            ->first();
+
+        if (!$partidoFinal) {
+            return redirect()->back()->withErrors(['error' => 'El partido final no se ha jugado aún.']);
+        }
+
+        $campeon = Equipo::find($partidoFinal->id_ganador);
+
+        return redirect()->route('torneos.show', $idTorneo)
+            ->with('success', "El campeón del torneo es: {$campeon->nombre}");
+    }
+
+    public function actualizarResultado(Request $request, $id)
+    {
+        $partido = Partido::findOrFail($id);
+
+        // Aquí recibimos los resultados del formulario
+        $resultado = $request->input('resultado'); // 'ganador', 'empate', 'perdedor'
+        $id_ganador = null;
+
+        // Asignamos el ganador o si es empate
+        if ($resultado === 'ganador_local') {
+            $id_ganador = $partido->id_equipo_local;
+        } elseif ($resultado === 'ganador_visitante') {
+            $id_ganador = $partido->id_equipo_visitante;
+        }
+
+        // Actualizamos el campo ganador
+        $partido->id_ganador = $id_ganador;
+        $partido->finalizado = true; // Marcamos el partido como finalizado
+
+        // Guardamos los cambios
+        $partido->save();
+
+        return redirect()->route('partidos.show', $partido->id)
+            ->with('success', 'Resultado actualizado correctamente');
+    }
 }
