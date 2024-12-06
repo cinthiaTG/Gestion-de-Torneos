@@ -14,14 +14,6 @@
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.form-title:hover{
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: rgb(243, 109, 131);
-    transform: scale(1.05);
-}
-
 .player-form label {
     font-weight: bold;
     font-size: 14px;
@@ -85,18 +77,50 @@
     border-radius: 5px;
 }
 
-
-.w-full {
-    font-size: 20px;
+.save-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
     font-weight: bold;
-    background-color: rgb(243, 9, 99);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    background-color: white;
+    color: black;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: all 0.3s ease;
     transition: 0.3s;
 }
 
-.w-full:hover {
-    background-color: rgb(97, 97, 97);
+.save-button:hover {
+    background-color: #555;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
+}
+
+.cancel-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    background-color: red;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.cancel-button:hover{
+    background-color: #555;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
     transform: translateY(-5px);
 }

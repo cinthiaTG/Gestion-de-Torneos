@@ -20,14 +20,6 @@
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.form-title:hover{
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: purple;
-    transform: scale(1.05);
-}
-
 .player-form label {
     font-weight: bold;
     font-size: 14px;
@@ -54,28 +46,6 @@
     color: #444;
 }
 
-.save-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    text-transform: uppercase;
-    background-color: purple;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    transition: 0.3s;
-}
-
-.save-button:hover {
-    background-color: #555;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
-    transform: translateY(-5px);
-}
 
 .img-label{
     display: inline-block;
@@ -173,4 +143,50 @@
     color: #3c763d;
     border: 1px solid #d6e9c6;
     border-radius: 5px;
+}
+
+.save-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    background-color: purple;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.save-button:hover {
+    background-color: #555;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
+}
+
+.cancel-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    background-color: red;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.cancel-button:hover{
+    background-color: #555;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
 }

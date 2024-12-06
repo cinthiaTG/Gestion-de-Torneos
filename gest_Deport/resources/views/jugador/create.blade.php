@@ -9,9 +9,7 @@
         <div>
             <div class="p-8 bg-gradient-to-r from-orange-400 to-orange-200 rounded-xl shadow-md border border-orange-300">
                
-                <a href="{{ route('jugador.read') }}">
-                    <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">Crear Torneo</div>
-                </a>
+                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">Crear Torneo</div>
 
                 <form class="player-form" action="{{ route('jugadores.store') }}" method="POST">
                     @csrf

@@ -8,19 +8,17 @@
 
 <div>
     <div>
-        <div class="p-8 bg-gradient-to-r from-green-200 to-gray-100 rounded-xl shadow-md border">
+        <div class="p-8 bg-gradient-to-r from-green-300 to-green-100 rounded-xl shadow-md border">
 
-            <a href="{{ route('partidos.read') }}">
-                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">
-                    Registrar Partido
-                </div>
-            </a> 
+            <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">
+                Registrar Partido
+            </div>
 
             <div class="results-table">
                 <form class="player-form" action="{{ route('partidos.store') }}" method="POST">
                     @csrf
 
-                    <label for="id_torneo" style="font-size: 16px">Torneo</label>
+                    <label for="id_torneo" style="font-size: 16px; color: black">Torneo</label>
                     <select id="id_torneo" name="id_torneo" class="input-label" required>
                         <option value="" selected>Selecciona un torneo</option>
                         @foreach ($torneo as $torneo)
@@ -28,7 +26,7 @@
                         @endforeach
                     </select>
 
-                    <label for="id_equipo_local" style="font-size: 16px">Equipo Local</label>
+                    <label for="id_equipo_local" style="font-size: 16px; color: black">Equipo Local</label>
                     <select id="id_equipo_local" name="id_equipo_local" class="input-label" required>
                         <option value="" selected>Selecciona un equipo</option>
                         @foreach ($equipos as $equipo)
@@ -36,7 +34,7 @@
                         @endforeach
                     </select>
 
-                    <label for="id_equipo_visitante" style="font-size: 16px">Equipo Visitante</label>
+                    <label for="id_equipo_visitante" style="font-size: 16px; color: black">Equipo Visitante</label>
                     <select id="id_equipo_visitante" name="id_equipo_visitante" class="input-label" required>
                         <option value="" selected>Selecciona un equipo</option>
                         @foreach ($equipos as $equipo)
@@ -44,13 +42,13 @@
                         @endforeach
                     </select>
 
-                    <label for="fecha" style="font-size: 16px">Fecha</label>
+                    <label for="fecha" style="font-size: 16px; color: black">Fecha</label>
                     <input type="date" id="fecha" name="fecha" class="input-date" required>
 
-                    <label for="hora" style="font-size: 16px">Hora</label>
+                    <label for="hora" style="font-size: 16px; color: black">Hora</label>
                     <input type="time" id="hora" name="hora" class="input-time" required>
 
-                    <label for="id_instalacion" style="font-size: 16px">Instalación</label>
+                    <label for="id_instalacion" style="font-size: 16px; color: black">Instalación</label>
                     <select id="id_instalacion" name="id_instalacion" class="input-label" required>
                         <option value="" selected>Selecciona una instalación</option>
                         @foreach ($instalaciones as $instalacion)
@@ -58,12 +56,20 @@
                         @endforeach
                     </select>
 
-                    <button type="submit"
-                    class="w-full bg-green-600 text-white p-3 mt-4 rounded-lg hover:bg-green-700 transition duration-300">Registrar</button>
+                    
+                    <button type="submit" class="save-button">
+                        Guardar
+                    </button>
+
+                    <button type="button" class="cancel-button" onclick="window.location.href='{{ route('partidos.read') }}'">
+                        Cancelar
+                    </button>   
+                    
+
                 </form>
-            </div> <!-- Cierre del div.results-table -->
-        </div> <!-- Cierre del div de p-8 -->
-    </div> <!-- Cierre del segundo div -->
-</div> <!-- Cierre del primer div -->
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

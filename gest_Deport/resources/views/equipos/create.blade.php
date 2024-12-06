@@ -9,11 +9,9 @@
         <div>
             <div class="p-8 bg-gradient-to-r from-purple-400 to-gray-100 rounded-xl shadow-md border">
 
-            <a href="{{ route('equipos.read') }}">
-                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">
-                    Registrar Equipo
-                </div>
-            </a> 
+            <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">
+                Registrar Equipo
+            </div>
 
                 @if(session('success'))
         <p>{{ session('success') }}</p>
@@ -40,6 +38,10 @@
         <br class="jump">
 
         <button type="submit" class="save-button">Guardar</button>
+
+        <button type="button" class="cancel-button" onclick="window.location.href='{{ route('equipos.read') }}'">
+            Cancelar
+        </button> 
                 </form>
             </div>
         </div>

@@ -7,18 +7,18 @@
 @section('content')
     <div>
         <div>
-            <div class="p-8 bg-gradient-to-r from-blue-200 to-blue-100 rounded-xl shadow-md border border-blue-300">
+            <div class="p-8 bg-gradient-to-r from-gray-400 to-gray-500 rounded-xl shadow-md border border-blue-300">
                 <div class="form-title text-2xl font-bold text-gray-800 mb-4">Registrar Instalación</div>
 
                 <form class="player-form" action="{{ route('instalacion.store') }}" method="POST">
                     @csrf
-                    <label>Nombre Instalacion</label>
+                    <label style="font-size: 16px; color: black">Nombre Instalacion</label>
                     <input type="text" name="nombre_instalacion" required>
 
-                    <label>Ubicacion</label>
+                    <label style="font-size: 16px; color: black">Ubicacion</label>
                     <input type="text" name="ubicacion" required>
 
-                    <label for="id_deporte">Deportes</label>
+                    <label for="id_deporte" style="font-size: 16px; color: black">Deportes</label>
                     <select class="input-label" id="id_deporte" name="id_deporte" required>
                         <option value="" selected>Selecciona un deporte</option>
                         <option value="1">Futbol Americano</option>
@@ -60,6 +60,10 @@
                     <input type="number" name="faltas" required> --}}
 
                     <button type="submit" class="save-button">Guardar</button>
+
+                    <button type="button" class="cancel-button" onclick="window.location.href='{{ route('instalacion.read') }}'">
+                        Cancelar
+                    </button> 
                 </form>
             </div>
         </div>
