@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+*{
+    font-family: 'Parkinsans', sans-serif;
+    
+}
+
+/* Contenedor principal de las tarjetas */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px; /* Espaciado entre las tarjetas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px; /* Limita el ancho del contenedor */
+}
+
+/* Estilo general de las tarjetas */
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px; /* Ancho fijo de la tarjeta */
+  height: 150px; /* Altura fija de la tarjeta */
+  background-color:white; /* Color de fondo */
+  border: 2px solid #ddd; /* Borde claro */
+  border-radius: 10px; /* Bordes redondeados */
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  transition: 0.3s;
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+/* Efecto hover para las tarjetas */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+  transform: translateY(-5px);
+  background-color: red;
+  border: #04a3ec;
+  
+}
+
+/* Etiqueta de texto dentro de las tarjetas */
+.card-label {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Color inicial del texto */
+  text-align: center;
+  padding: 10px;
+  transition: color 0.3s; /* Transición para el cambio de color */
+}
+
+/* Cambia el color del texto en hover */
+.card:hover .card-label {
+    color: #fff;
+}
+
+.sup{
+  text-align: center;
+  border-radius: 8px;
+}
+
+.title{
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho disponible */
+    }
+}
