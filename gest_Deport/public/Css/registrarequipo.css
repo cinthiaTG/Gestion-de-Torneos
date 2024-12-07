@@ -190,3 +190,56 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
     transform: translateY(-5px);
 }
+
+.actualizar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.actualizar:hover {
+    background-color: rgb(2, 77, 2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
+}
+
+/* Botón de cancelar */
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: rgb(139, 0, 0);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+    transform: translateY(-5px);
+}
+
+/* Contenedor de acciones */
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}

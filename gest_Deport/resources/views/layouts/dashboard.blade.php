@@ -2,63 +2,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     @php
+        // Rutas principales del dashboard
         $dashboardRoutes = [
             'aficionado.dashboard',
             'entrenador.dashboard',
             'jugador.dashboard',
             'arbitro.dashboard',
-            'admin.dashboard'
+            'admin.dashboard',
         ];
 
-        // Rutas donde el carrusel no debería mostrarse
-        $excludedRoutes = [
-            'arbitro.dashboard',
-            'arbitro.jugadores',
-            'arbitro.edit',
-        ];
-
-        $dashboard2Routes = [
-            'arbitro.dashboard',
-            'arbitro.jugadores',
-            'arbitro.edit',
-        ];
+        // Carrusel exclusivo para arbitro.dashboard
+        $arbitroDashboardOnly = 'arbitro.dashboard';
     @endphp
 
     <div class="flex flex-col min-h-screen">
-        @if(in_array(Route::currentRouteName(), $dashboardRoutes) && !in_array(Route::currentRouteName(), $excludedRoutes))
+        <!-- Carrusel solo para arbitro.dashboard -->
+        @if(Route::currentRouteName() === $arbitroDashboardOnly)
         <div class="relative mx-auto mt-8 w-3/4 overflow-hidden rounded-xl shadow-lg">
             <div id="text-carousel" class="flex transition-transform duration-700 ease-in-out">
                 <div class="w-full flex-shrink-0 text-center p-8 bg-purple-500">
-                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 30px">{{ __("Bienvenido a SPORTIVO!") }}</h3>
-                </div>
-                <div class="w-full flex-shrink-0 text-center p-8 bg-red-500">
-                    <h3 class="text-4xl font-bold text-white" style="margin-top: 10px">{{ __("Organiza y administra equipos, torneos y estadísticas deportivas desde un único lugar centralizado.") }}</h3>
-                </div>
-                <div class="w-full flex-shrink-0 text-center p-8 bg-yellow-500">
-                    <h3 class="text-4xl font-bold text-white" style="margin-top: 20px">{{ __("Un sistema pensado para deportistas y aficionados.") }}</h3>
+                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("Bienvenido usuario Arbitro!") }}</h3>
+                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("Que deseas hacer el dia de hoy?") }}</h3>
                 </div>
             </div>
         </div>
         @endif
-
-        <!-- Carrusel 2 -->
-        
-        <div class="flex flex-col min-h-screen">
-            @if(in_array(Route::currentRouteName(), $dashboard2Routes))
-            <div class="relative mx-auto mt-8 w-3/4 overflow-hidden rounded-xl shadow-lg">
-                <div id="text-carousel" class="flex transition-transform duration-700 ease-in-out">
-                    <div class="w-full flex-shrink-0 text-center p-8 bg-purple-500">
-                        <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 30px">{{ __("Bienvenido a SPORTIVO!") }}</h3>
-                    </div>
-                    <div class="w-full flex-shrink-0 text-center p-8 bg-red-500">
-                        <h3 class="text-4xl font-bold text-white" style="margin-top: 10px">{{ __("Organiza y administra equipos, torneos y estadísticas deportivas desde un único lugar centralizado.") }}</h3>
-                    </div>
-                    <div class="w-full flex-shrink-0 text-center p-8 bg-yellow-500">
-                        <h3 class="text-4xl font-bold text-white" style="margin-top: 20px">{{ __("Un sistema pensado para deportistas y aficionados.") }}</h3>
-                    </div>
-                </div>
-            </div>
-            @endif  
 
         <head>
             @yield('styles')
