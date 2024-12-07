@@ -18,23 +18,23 @@
                     <label style="font-size: 16px; color: black">Ubicacion</label>
                     <input type="text" name="ubicacion" required>
 
-                    <label for="id_deporte" style="font-size: 16px; color: black">Deportes</label>
+                    {{-- <label for="id_deporte" style="font-size: 16px; color: black">Deportes</label>
                     <select class="input-label" id="id_deporte" name="id_deporte" required>
                         <option value="" selected>Selecciona un deporte</option>
                         <option value="1">Futbol Americano</option>
                         <option value="2">Futbol Soccer</option>
                         <option value="3">Volleyball</option>
                         <option value="4">Basketball</option>
-                    </select>
+                    </select> --}}
 
                     {{-- <label>Posicion</label>
                     <select class="input-label" id="posicion" name="posicion">
                         <option value="" selected>Selecciona una posicion</option>
                         <option value="1" selected >1</option>
-            
+
                         <!-- Las opciones de posición se llenarán dinámicamente -->
                     </select>
-            
+
                     <label for="equipo_id">Equipo</label>
                     <select name="equipo_id" required>
                         <option value="" selected>Selecciona un equipo</option> <!-- Opción en blanco al principio -->
@@ -46,16 +46,16 @@
                     {{-- <div class="section-title">Estadísticas</div>
                     <label>Puntos</label>
                     <input type="number" name="puntos" required>
-            
+
                     <label>Asistencias</label>
                     <input type="number" name="asistencias" required>
-            
+
                     <label>Tarjetas Rojas</label>
                     <input type="number" name="tarjetas_rojas" required>
-            
+
                     <label>Tarjetas Amarillas</label>
                     <input type="number" name="tarjetas_amarillas" required>
-            
+
                     <label>Faltas</label>
                     <input type="number" name="faltas" required> --}}
 
@@ -63,7 +63,7 @@
 
                     <button type="button" class="cancel-button" onclick="window.location.href='{{ route('instalacion.read') }}'">
                         Cancelar
-                    </button> 
+                    </button>
                 </form>
             </div>
         </div>
