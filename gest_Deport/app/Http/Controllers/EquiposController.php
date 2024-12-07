@@ -9,38 +9,34 @@ use App\Models\Jugador;
 use App\Models\Equipo;
 use Illuminate\Support\Facades\Storage;
 
-
-
-class EquiposController extends Controller{
-
+class EquiposController extends Controller
+{
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nombre_equipo' => 'required|string|max:255',
-            'patrocinador_equipo' => 'nullable|string|max:255',
-            'monto_patrocinador' => 'nullable|integer',
+            'nombre_equipo' => 'required|string|max:50',
+            'patrocinador_equipo' => 'nullable|string|max:20',
+            'monto_patrocinador' => 'nullable|integer|max:1000000',
             'escudos' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        try{
-        // Almacenar el archivo de imagen
-        $path = $request->file('escudos')->store('public/escudos');
-        $filename = basename($path);
+        try {
+            // Almacenar el archivo de imagen
+            $path = $request->file('escudos')->store('public/escudos');
+            $filename = basename($path);
 
-        Equipo::create([
-            'nombre_equipo' => $request->nombre_equipo,
-            'patrocinador_equipo' => $request->patrocinador_equipo ?? 'Sin patrocinador',
-            'monto_patrocinador' => $request->monto_patrocinador ?? 0,
-            'escudos' => $filename,
-        ]);
+            Equipo::create([
+                'nombre_equipo' => $request->nombre_equipo,
+                'patrocinador_equipo' => $request->patrocinador_equipo ?? 'Sin patrocinador',
+                'monto_patrocinador' => $request->monto_patrocinador ?? 0,
+                'escudos' => $filename,
+            ]);
 
-
-        return redirect()->route('equipos.read')->with('success', 'Equipo registrado exitosamente');
-    } catch (\Exception $e){
-        dd($e->getMessage());
+            return redirect()->route('equipos.read')->with('success', 'Equipo registrado exitosamente');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
-    }
-
 
     public function edit($id)
     {
@@ -49,39 +45,38 @@ class EquiposController extends Controller{
     }
 
     public function update(Request $request, $id)
-{
-    $equipos = Equipo::all();
+    {
+        $equipos = Equipo::all();
 
-    $request->validate([
-        'nombre_equipo' => 'required|string|max:255',
-        'patrocinador_equipo' => 'nullable|string|max:255',
-            'monto_patrocinador' => 'nullable|integer',
-        'escudos' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+        $request->validate([
+            'nombre_equipo' => 'required|string|max:50',
+            'patrocinador_equipo' => 'nullable|string|max:20',
+            'monto_patrocinador' => 'nullable|integer|max:1000000',
+            'escudos' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $equipo = Equipo::findOrFail($id);
+        $equipo = Equipo::findOrFail($id);
 
-    // Verificar si se subió un nuevo escudos
-    if ($request->hasFile('escudos')) {
-        // Eliminar el escudos anterior si existe
-        if ($equipo->escudo) {
-            Storage::delete('public/escudos/' . $equipo->escudo);
+        // Verificar si se subió un nuevo escudos
+        if ($request->hasFile('escudos')) {
+            // Eliminar el escudos anterior si existe
+            if ($equipo->escudo) {
+                Storage::delete('public/escudos/' . $equipo->escudo);
+            }
+
+            // Subir el nuevo escudos
+            $path = $request->file('escudos')->store('public/escudos');
+            $equipo->escudo = basename($path);
         }
 
-        // Subir el nuevo escudos
-        $path = $request->file('escudos')->store('public/escudos');
-        $equipo->escudo = basename($path);
+        // Actualizar los datos del equipo
+        $equipo->nombre_equipo = $request->nombre_equipo;
+        $equipo->patrocinador_equipo = $request->patrocinador_equipo ?? 'Sin patrocinador';
+        $equipo->monto_patrocinador = $request->monto_patrocinador ?? 0;
+        $equipo->save();
+
+        return redirect()->route('equipos.read')->with('success', 'Equipo actualizado correctamente.');
     }
-
-    // Actualizar los datos del equipo
-    $equipo->nombre_equipo = $request->nombre_equipo;
-    $equipo->patrocinador_equipo = $request->patrocinador_equipo ?? 'Sin patrocinador';
-    $equipo->monto_patrocinador = $request->monto_patrocinador ?? 0;
-    $equipo->save();
-
-    return redirect()->route('equipos.read')->with('success', 'Equipo actualizado correctamente.');
-}
-
 
     public function destroy($id)
     {
@@ -106,8 +101,7 @@ class EquiposController extends Controller{
     public function buscar(Request $request)
     {
         $nombre = $request->input('nombre');
-        $equipos = Equipo::where('nombre_equipo', 'LIKE', "%$nombre%")
-            ->get();
+        $equipos = Equipo::where('nombre_equipo', 'LIKE', "%$nombre%")->get();
         foreach ($equipos as $equipo) {
             $equipo->escudo_url = asset('storage/escudos/' . $equipo->escudos);
         }
