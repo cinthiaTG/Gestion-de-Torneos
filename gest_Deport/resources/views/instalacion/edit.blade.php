@@ -18,12 +18,12 @@
 
         <div class="form-group">
             <label for="nombre">Nombre Instalacion</label>
-            <input type="text" name="nombre_instalacion" class="form-control" value="{{ $instalacion->nombre_instalacion }}" required>
+            <input type="text" maxlength="50" name="nombre_instalacion" class="form-control" value="{{ $instalacion->nombre_instalacion }}" required>
         </div>
 
         <div class="form-group">
             <label for="apellido_paterno">Ubicacion</label>
-            <input type="text" name="ubicacion" class="form-control" value="{{ $instalacion->ubicacion }}" required>
+            <input type="text" maxlength="50" name="ubicacion" class="form-control" value="{{ $instalacion->ubicacion }}" required>
         </div>
 
         <button type="submit" class="actualizar">Actualizar</button>

@@ -9,12 +9,10 @@ class Instalacion extends Model
 {
     protected $table = 'instalaciones';
     use HasFactory;
-    protected $fillable = ['nombre_instalacion','ubicacion', 'id_deporte'];
+    protected $fillable = ['nombre_instalacion', 'ubicacion'];
 
-    public function deporte()
-    {
-        return $this->belongsTo(Deporte::class, 'id_deporte');
-    }
-
-
+    // public function deporte()
+    // {
+    //     return $this->belongsTo(Deporte::class, 'id_deporte');
+    // }
 }

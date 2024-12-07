@@ -7,28 +7,29 @@ use App\Models\Instalacion;
 use App\Models\Deporte;
 use Illuminate\Http\Request;
 
+
 class InstalacionController extends Controller
 {
     public function dashboard()
     {
-        return view("instalacion.dashboard");
+        return view('instalacion.dashboard');
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nombre_instalacion' => 'required|string|max:255',
-            'ubicacion' => 'required|string|max:255',
-            'id_deporte' => 'required|exists:deportes,id',
+            'nombre_instalacion' => 'required|string|max:50|unique:instalaciones,nombre_instalacion',
+            'ubicacion' => 'required|string|max:50',
+        ], [
+            'nombre_instalacion.unique' => 'El nombre de la instalación ya está registrado.',
         ]);
 
         Instalacion::create([
             'nombre_instalacion' => $request->nombre_instalacion,
             'ubicacion' => $request->ubicacion,
-            'id_deporte' => $request->id_deporte,
         ]);
 
-        return redirect()->route('instalacion.create')->with('success', 'Instalación registrada exitosamente');
+        return redirect()->route('instalacion.read')->with('success', 'Instalación registrada con éxito');
     }
 
     public function edit($id)
@@ -39,17 +40,18 @@ class InstalacionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nombre_instalacion' => 'required|string|max:255',
-            'ubicacion' => 'required|string|max:255',
-            'id_deporte' => 'required|exists:deportes,id',
+        $instalacion = Instalacion::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'nombre_instalacion' => 'required|string|max:50|unique:instalaciones,nombre_instalacion,' . $id,
+            'ubicacion' => 'required|string|max:50',
+        ], [
+            'nombre_instalacion.unique' => 'El nombre de la instalación ya está registrado.',
         ]);
 
-        $instalacion = Instalacion::findOrFail($id);
         $instalacion->update([
             'nombre_instalacion' => $request->nombre_instalacion,
             'ubicacion' => $request->ubicacion,
-            'id_deporte' => $request->id_deporte,
         ]);
 
         return redirect()->route('instalacion.read')->with('success', 'Instalación actualizada con éxito');
@@ -74,12 +76,10 @@ class InstalacionController extends Controller
         return view('instalacion.read', compact('instalaciones'));
     }
 
-
     public function buscar(Request $request)
     {
         $nombre = $request->input('nombre');
-        $instalaciones = Instalacion::where('nombre_instalacion', 'LIKE', "%$nombre%")
-            ->get();
+        $instalaciones = Instalacion::where('nombre_instalacion', 'LIKE', "%$nombre%")->get();
 
         return response()->json($instalaciones);
     }
@@ -92,6 +92,4 @@ class InstalacionController extends Controller
 
         return $pdf->download('instalaciones.pdf');
     }
-
 }
-

@@ -10,7 +10,7 @@
     <h1 class="form-title">Editar Instalación</h1>
     <a href="{{ route('instalacion.create') }}" class="btn btn-warning">Nuevo</a>
 
-    
+
     <!-- Sección de resultados -->
     <div class="results-section">
         <table class="table">
@@ -29,7 +29,7 @@
                     <td>
                         <!-- Botón de editar -->
                         <a href="{{ route('instalacion.edit', ['id' => $instalacion->id]) }}" class="btn btn-warning">Editar</a>
-                        
+
                         <!-- Botón de eliminar -->
                         <form action="{{ route('instalacion.destroy', ['id' => $instalacion->id]) }}" method="POST" style="display:inline;">
                             @csrf
