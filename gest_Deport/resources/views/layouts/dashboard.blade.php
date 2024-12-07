@@ -2,7 +2,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     @php
-        // Rutas principales del dashboard
         $dashboardRoutes = [
             'aficionado.dashboard',
             'entrenador.dashboard',
@@ -10,19 +9,46 @@
             'arbitro.dashboard',
             'admin.dashboard',
         ];
-
-        // Carrusel exclusivo para arbitro.dashboard
-        $arbitroDashboardOnly = 'arbitro.dashboard';
     @endphp
 
     <div class="flex flex-col min-h-screen">
-        <!-- Carrusel solo para arbitro.dashboard -->
-        @if(Route::currentRouteName() === $arbitroDashboardOnly)
-        <div class="relative mx-auto mt-8 w-3/4 overflow-hidden rounded-xl shadow-lg">
+
+        <!-- Carrusel en el encabezado para aficionados.dashboard -->
+        @if(Route::currentRouteName() === 'aficionado.dashboard')
+        <div class="relative mx-auto mt-4 w-full overflow-hidden rounded-lg shadow-md">
             <div id="text-carousel" class="flex transition-transform duration-700 ease-in-out">
+                <div class="w-full flex-shrink-0 text-center bg-blue-500 py-16">
+                    <h3 class="text-4xl font-bold text-white">{{ __("¡Bienvenido al espacio de aficionados!") }}</h3>
+                </div>
+                <div class="w-full flex-shrink-0 text-center bg-blue-600 py-16">
+                    <h3 class="text-4xl font-bold text-white">{{ __("¡Actualizaciones al alcance de tu mano!") }}</h3>
+                </div>
+                <div class="w-full flex-shrink-0 text-center bg-blue-800 py-16">
+                    <h3 class="text-4xl font-bold text-white">{{ __("¡Explora contenido nuevo y noticias!") }}</h3>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        <!-- Carrusel para Arbitro  -->
+        @if(Route::currentRouteName() === 'arbitro.dashboard')
+        <div class="relative mx-auto mt-4 w-3/4 overflow-hidden rounded-lg shadow-md">
+            <div id="arbitro-carousel" class="flex transition-transform duration-700 ease-in-out">
                 <div class="w-full flex-shrink-0 text-center p-8 bg-purple-500">
-                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("Bienvenido usuario Arbitro!") }}</h3>
-                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("Que deseas hacer el dia de hoy?") }}</h3>
+                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("¡Bienvenido usuario Arbitro!") }}</h3>
+                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("¿Qué deseas hacer hoy?") }}</h3>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        <!-- Carrusel para Entrenador -->
+        @if(Route::currentRouteName() === 'entrenador.dashboard')
+        <div class="relative mx-auto mt-4 w-3/4 overflow-hidden rounded-lg shadow-md">
+            <div id="entrenador-carousel" class="flex transition-transform duration-700 ease-in-out">
+                <div class="w-full flex-shrink-0 text-center p-8 bg-orange-500">
+                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("¡Bienvenido usuario Entrenador!") }}</h3>
+                    <h3 class="text-4xl font-bold text-white" style="font-size: 50px; margin-top: 10px">{{ __("¿Qué deseas hacer hoy?") }}</h3>
                 </div>
             </div>
         </div>
@@ -34,7 +60,7 @@
 
         <div class="flex-grow">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="p-8 bg-gradient-to-r from-blue-500 to-blue-200 rounded-xl shadow-md border overflow-hidden sm:rounded-lg" style="margin-top: 3%">
+                <div class="p-8 bg-gradient-to-r from-blue-500 to-white rounded-xl shadow-md border overflow-hidden sm:rounded-lg" style="margin-top: 3%">
                     <div class="p-6 text-gray-900">
                         @yield('content')
                     </div>
@@ -43,14 +69,96 @@
         </div>
         <br>
         <br>
+        <hr>
+
+        <!-- Este contenido solo se ve en el dashboard de arbitro -->
+        @if(Route::currentRouteName() === 'aficionado.dashboard')
+        <div class="container-fluid mt-6">
+            <h1 class="text-3xl font-bold mb-4 text-center">Noticias y Actualizaciones</h1> <!-- Cards de noticias 1 -->
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Noticia 1</h5>
+                            <p class="card-text">Noticia 1</p>
+                            <a href="#" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Noticia 2</h5>
+                            <p class="card-text">Noticia 2</p>
+                            <a href="#" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Noticia 3</h5>
+                            <p class="card-text">Noticia 3</p>
+                            <a href="#" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Noticia 4</h5>
+                            <p class="card-text">Resumen breve de la noticia 4 con información relevante.</p>
+                            <a href="#" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <main class="flex-grow container mx-auto py-16 px-20"> <!-- Cards de noticias 2 -->
+            <div class="bg-white shadow-md rounded-lg p-8 text-center">
+                <div class="cont">
+                    <h2 class="title">¡Empieza a gestionar tus torneos hoy!</h2>
+                    <p class="desc">
+                        Sportivo te ofrece todas las herramientas necesarias para organizar torneos, administrar equipos y seguir de cerca cada jugada. Conecta a tus jugadores, equipos y aficionados en un solo lugar. ¡Explora las funcionalidades y lleva tu pasión por los deportes al siguiente nivel!
+                    </p>
+                </div>
+        
+                <div class="mt-8 grid sm:grid-cols-1 md:grid-cols-1 gap-8">
+                    <div class="flex justify-center items-center">
+                        <img class="img" style="border-radius: 12px; width: 70%; display: flex; justify-content: center; align-items: center;" src="{{ asset('img/image.png') }}" alt="Sportivo Image">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="flex-grow container mx-auto py-16 px-20">
+            <div class="bg-white shadow-md rounded-lg p-8 text-center">
+                <div class="cont">
+                    <h2 class="title">¡Empieza a gestionar tus torneos hoy!</h2>
+                    <p class="desc">
+                        Sportivo te ofrece todas las herramientas necesarias para organizar torneos, administrar equipos y seguir de cerca cada jugada. Conecta a tus jugadores, equipos y aficionados en un solo lugar. ¡Explora las funcionalidades y lleva tu pasión por los deportes al siguiente nivel!
+                    </p>
+                </div>
+        
+                <div class="mt-8 grid sm:grid-cols-1 md:grid-cols-1 gap-8">
+                    <div class="flex justify-center items-center">
+                        <img class="img" style="border-radius: 12px; width: 70%; display: flex; justify-content: center; align-items: center;" src="{{ asset('img/image.png') }}" alt="Sportivo Image">
+                    </div>
+                </div>
+            </div>
+        </main>
+        @endif
 
         <footer class="mt-auto bg-gray-800 text-white text-center py-5">
-            <h2 class="text-3xl font-bold mb-2">
-                &copy; {{ date('Y') }} SPORTIVO
-            </h2>
-            <p class="text-lg mb-2">
-                {{ __("Todos los derechos reservados.") }}
-            </p>
+            <h2 class="text-3xl font-bold mb-2">&copy; {{ date('Y') }} SPORTIVO</h2>
+            <p class="text-lg mb-2">{{ __("Todos los derechos reservados.") }}</p>
         </footer>
     </div>
 

@@ -13,12 +13,18 @@
 </head>
 <body>
 
+
+
+
+    
+
 <div class="container mt-4">
     <h1>Lista de Usuarios</h1>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    
 
     <div class="mb-3">
         <label for="addOption" class="form-label">¿Que desea buscar?</label>
@@ -129,6 +135,10 @@
     <button id="downloadPdfButtonFacilities" class="btn btn-success" style="display:none;">Generar PDF</button>
     <button id="downloadPdfButtonTeams" class="btn btn-success" style="display:none;">Generar PDF</button>
     <button id="downloadPdfButtonTournament" class="btn btn-success" style="display:none;">Generar PDF</button>
+
+    <!-- contenido noticias -->
+
+    
 
     <!-- SCRIPT -->
     <!-- SCRIPT -->
@@ -429,6 +439,8 @@
             });
         });
     </script>
+
+    
 </div>
 </body>
 </html>
