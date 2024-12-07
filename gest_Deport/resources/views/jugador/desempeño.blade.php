@@ -25,7 +25,6 @@
                 <tr>
                     <td>{{ $jugador->nombre }}</td>
                     <td>{{ $jugador->edad }}</td>
-                    <td>{{ $jugador->posicion }}</td>
                     <td>{{ $jugador->id_equipo }}</td>
                     <td>{{ $jugador->puntos }}</td>
                     <td>{{ $jugador->asistencias }}</td>

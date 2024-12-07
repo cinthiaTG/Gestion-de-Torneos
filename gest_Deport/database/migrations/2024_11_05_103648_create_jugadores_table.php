@@ -12,11 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('edad');
-            $table->string('posicion');
             $table->unsignedBigInteger('id_equipo')->nullable();
-            $table->foreign('id_equipo')->references('id')->on('equipos')->onDelete('cascade');
-            $table->unsignedBigInteger('id_deporte')->nullable();
-            $table->foreign('id_deporte')->references('id')->on('deportes')->onDelete('cascade');
 
             // Stats fields
             $table->integer('puntos')->default(0);
@@ -27,7 +23,7 @@ return new class extends Migration
             $table->integer('minutos_jugados')->default(0);
             $table->integer('partidos_jugados')->default(0);
             $table->integer('goles_contra')->default(0);
-            
+
 
 
 

@@ -14,7 +14,7 @@
     <form class="player-form" action="{{ route('arbitro.update', $jugador->id) }}" method="POST">
         @csrf
         @method('PUT')
-    
+
 
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>
@@ -26,10 +26,7 @@
             <input type="number" name="edad" class="form-control" value="{{ $jugador->edad }}" required>
         </div>
 
-        <div class="form-group">
-            <label for="posicion">Posición</label>
-            <input type="text" name="posicion" class="form-control" value="{{ $jugador->posicion }}" required>
-        </div>
+
 
         <div class="form-group">
             <label for="puntos">Puntos</label>
@@ -58,7 +55,7 @@
 
         <button type="submit" class="actualizar">Actualizar</button>
         <a href="{{ route('arbitro.jugadores', ['id' => $equipo->id]) }}" class="btn btn-secondary">Cancelar</a>
-        
+
     </form>
 </div>
 

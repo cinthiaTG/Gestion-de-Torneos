@@ -18,22 +18,17 @@
 
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>
-            <input type="text" name="nombre" class="form-control" value="{{ $jugador->nombre }}" required>
+            <input type="text" maxlength="70" name="nombre" class="form-control" value="{{ $jugador->nombre }}" required>
         </div>
 
         <div class="form-group">
             <label for="edad">Edad</label>
-            <input type="number" name="edad" class="form-control" value="{{ $jugador->edad }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="posicion">Posición</label>
-            <input type="text" name="posicion" class="form-control" value="{{ $jugador->posicion }}" required>
+            <input type="number" min="5" max="100" name="edad" class="form-control" value="{{ $jugador->edad }}" required>
         </div>
 
         <button type="submit" class="actualizar">Actualizar</button>
         <a href="{{route('jugador.read')}}" class="btn btn-secondary">Cancelar</a>
-        
+
     </form>
 </div>
 

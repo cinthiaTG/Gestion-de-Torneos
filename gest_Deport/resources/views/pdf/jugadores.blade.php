@@ -48,7 +48,6 @@
             <td>{{ $jugador->apellido_materno }}</td>
             <td>{{ $jugador->edad }}</td>
             <td>{{ $jugador->id_equipo }}</td>
-            <td>{{ $jugador->posicion }}</td>
         </tr>
     @empty
         <tr>

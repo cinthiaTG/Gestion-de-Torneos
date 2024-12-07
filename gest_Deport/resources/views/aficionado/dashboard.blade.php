@@ -188,7 +188,6 @@
                                         <td>${jugador.apellido_paterno}</td>
                                         <td>${jugador.apellido_materno}</td>
                                         <td>${jugador.edad}</td>
-                                        <td>${jugador.posicion}</td>
                                         <td id="equipo-${jugador.id}">${idEquipo}</td>
                                     </tr>
                                 `);

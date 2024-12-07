@@ -48,7 +48,6 @@ class ArbitroController extends Controller{
         $request->validate([
             'nombre' => 'required',
             'edad' => 'required|integer',
-            'posicion' => 'required',
             'puntos' => 'required|integer',
             'asistencias' => 'required|integer',
             'tarjetas_amarillas' => 'required|integer',
@@ -61,7 +60,6 @@ class ArbitroController extends Controller{
         $jugador->update([
             'nombre' => $request->nombre,
             'edad' => $request->edad,
-            'posicion' => $request->posicion,
             'puntos' => $request->puntos,
             'asistencias' => $request->asistencias,
             'tarjetas_amarillas' => $request->tarjetas_amarillas,
