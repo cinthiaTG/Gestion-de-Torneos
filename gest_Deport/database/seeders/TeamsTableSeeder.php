@@ -86,7 +86,7 @@ class TeamsTableSeeder extends Seeder
             [
                 'id' => 9,
                 'nombre_equipo' => 'Karolg',
-                'escudos' => 'karolg.jpeg',
+                'escudos' => 'karolg.jpg',
                 'patrocinador_equipo' => 'Karolg',
                 'monto_patrocinador' => 8500,
                 'created_at' => now(),
@@ -95,7 +95,7 @@ class TeamsTableSeeder extends Seeder
             [
                 'id' => 10,
                 'nombre_equipo' => 'Katy',
-                'escudos' => 'katy.jpeg',
+                'escudos' => 'katy.jpg',
                 'patrocinador_equipo' => 'Katy',
                 'monto_patrocinador' => 8500,
                 'created_at' => now(),
@@ -105,7 +105,7 @@ class TeamsTableSeeder extends Seeder
             [
                 'id' => 11,
                 'nombre_equipo' => 'Lingling',
-                'escudos' => 'lingling.jpeg',
+                'escudos' => 'lingling.jpg',
                 'patrocinador_equipo' => 'Lingling',
                 'monto_patrocinador' => 8500,
                 'created_at' => now(),
@@ -114,7 +114,7 @@ class TeamsTableSeeder extends Seeder
             [
                 'id' => 12,
                 'nombre_equipo' => 'Morocha',
-                'escudos' => 'morocha.jpeg',
+                'escudos' => 'morocha.jpg',
                 'patrocinador_equipo' => 'Morocha',
                 'monto_patrocinador' => 8500,
                 'created_at' => now(),
@@ -150,7 +150,7 @@ class TeamsTableSeeder extends Seeder
             [
                 'id' => 16,
                 'nombre_equipo' => 'Erica',
-                'escudos' => 'erica.jpeg',
+                'escudos' => 'erica.png',
                 'patrocinador_equipo' => 'Erica',
                 'monto_patrocinador' => 8500,
                 'created_at' => now(),
