@@ -88,8 +88,10 @@ class PartidosController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'marcador_local' => 'required|integer|min:0',
-            'marcador_visitante' => 'required|integer|min:0',
+            'marcador_local' => ['required', 'integer', 'min:0'],
+            'marcador_visitante' => ['required', 'integer', 'min:0', 'different:marcador_local'],
+        ], [
+            'different' => 'El marcador del equipo local y visitante no pueden ser iguales.',
         ]);
 
         // Actualizar el partido con los resultados

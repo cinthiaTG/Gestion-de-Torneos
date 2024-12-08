@@ -8,11 +8,11 @@
 <div>
     <div class="p-8 bg-gradient-to-r from-white to-gray-500 rounded-xl shadow-md border border-blue-300">
         <div class="container">
-            
+
             <h1 class="torneo-title">Torneo: {{ $torneo->nombre_torneo }}</h1>
             <p><b>Patrocinador:</b> {{ $torneo->patrocinador_torneo }}</p>
             <p><b>Número de equipos:</b> {{ $torneo->numero_equipos }}</p>
-            <p><b>Estado:</b> 
+            <p><b>Estado:</b>
                 <span style="color: {{ $torneo->finalizado ? 'red' : 'green'}}">
                     {{ $torneo->finalizado ? 'Finalizado' : 'En curso' }}
                 </span>
@@ -43,7 +43,7 @@
                                         <td class="ticket">{{ $partido->equipoVisitante->nombre_equipo }}</td>
                                         <td class="ticket">{{ $partido->fecha }}</td>
                                         <td class="ticket">{{ $partido->hora }}</td>
-                                        <td class="ticket">{{ $partido->instalacion->nombre ?? 'Por asignar' }}</td>
+                                        <td class="ticket">{{ $partido->instalacion->nombre_instalacion ?? 'Por asignar' }}</td>
                                         <td class="ticket">
                                             @if($partido->finalizado)
                                                 {{ $partido->ganador->nombre_equipo ?? 'Empate' }}
