@@ -106,15 +106,6 @@ class JugadorController extends Controller
         $equipo = Equipo::findOrFail($id); // Obtener el equipo por ID
         $jugadores = $equipo->jugadores; // Obtener los jugadores del equipo
 
-        // Verificar si el usuario autenticado es parte de este equipo
-        $usuario = auth()->user();
-        $esTuEquipo = $jugadores->contains('id', $usuario->id);
-
-        if (!$esTuEquipo) {
-            // Redirigir o mostrar un mensaje si no es el equipo del usuario
-            return redirect()->route('jugador.dashboard')->with('error', 'Este no es tu equipo');
-        }
-
         // Filtrar los partidos en los que el equipo ha jugado como local o visitante
         $partidosFinalizados = Partido::where(function ($query) use ($id) {
             $query->where('id_equipo_local', $id)->orWhere('id_equipo_visitante', $id);
