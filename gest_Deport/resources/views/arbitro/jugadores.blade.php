@@ -71,8 +71,8 @@
                         <th>equipo</th>
                         <th>Puntos</th>
                         <th>Asistencias</th>
-                        <th>Targetas Amarillas</th>
-                        <th>Targetas Rojas</th>
+                        <th>Tarjetas Amarillas</th>
+                        <th>Tarjetas Rojas</th>
                         <th>Faltas</th>
                         <th>Acciones</th>
                     </tr>
