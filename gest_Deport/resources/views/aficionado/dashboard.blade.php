@@ -50,10 +50,7 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Apellido Paterno</th>
-            <th>Apellido Materno</th>
             <th>Edad</th>
-            <th>Posición</th>
             <th>ID de Equipo</th>
         </tr>
         </thead>
@@ -191,8 +188,6 @@
                                     <tr>
                                         <td>${jugador.id}</td>
                                         <td>${jugador.nombre}</td>
-                                        <td>${jugador.apellido_paterno}</td>
-                                        <td>${jugador.apellido_materno}</td>
                                         <td>${jugador.edad}</td>
                                         <td id="equipo-${jugador.id}">${idEquipo}</td>
                                     </tr>

@@ -15,14 +15,14 @@ class Jugador extends Model
         'nombre',
         'edad',
         'id_equipo',
-        'puntos',
-        'asistencias',
-        'tarjetas_amarillas',
-        'tarjetas_rojas',
-        'faltas',
-        'minutos_jugados',
-        'partidos_jugados',
-        'goles_contra',
+    // 'puntos',
+    // 'asistencias',
+    // 'tarjetas_amarillas',
+    // 'tarjetas_rojas',
+    // 'faltas',
+    // 'minutos_jugados',
+    // 'partidos_jugados',
+    // 'goles_contra',
     ];
 
     public function equipo()

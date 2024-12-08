@@ -11,13 +11,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Edad</th>
-                    <th>Posición</th>
                     <th>equipo</th>
-                    <th>Puntos</th>
-                    <th>Asistencias</th>
-                    <th>Tarjetas Amarillas</th>
-                    <th>Targetas Rojas</th>
-                    <th>Faltas</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,11 +20,6 @@
                     <td>{{ $jugador->nombre }}</td>
                     <td>{{ $jugador->edad }}</td>
                     <td>{{ $jugador->id_equipo }}</td>
-                    <td>{{ $jugador->puntos }}</td>
-                    <td>{{ $jugador->asistencias }}</td>
-                    <td>{{ $jugador->tarjetas_amarillas }}</td>
-                    <td>{{ $jugador->tarjetas_rojas }}</td>
-                    <td>{{ $jugador->faltas }}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -21,12 +21,12 @@
                     {{-- <label for="id_deporte">Deportes</label>
                     <select class="input-label" id="id_deporte" name="id_deporte" required>
                         <option value="" selected>Selecciona un deporte</option>
-                        <option value="1">Futbol Americano</option>
+                        {{-- <option value="1">Futbol Americano</option>
                         <option value="2">Futbol Soccer</option>
                         <option value="3">Volleyball</option>
                         <option value="4">Basketball</option>
-                    </select> --}}
-                    </select> --}}
+                    </select>
+                    </select>  --}}
 
                     {{-- <label>Posicion</label>
                     <select class="input-label" id="posicion" name="posicion">
