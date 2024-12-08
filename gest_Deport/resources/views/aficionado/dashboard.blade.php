@@ -12,9 +12,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    
+
+    @section('styles')
+    <link rel="stylesheet" href="{{ asset('Css/creartorneo.css') }}">
+@endsection
+
+
 <div class="container mt-4">
-    <h1>Lista de Usuarios</h1>
+    <h1 class="name">Panel de Búsqueda</h1>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -126,28 +131,11 @@
         </tbody>
     </table>
 
-    <button id="downloadPdfButtonPlayers" class="btn btn-success" style="display:none;">Generar PDF</button>
-    <button id="downloadPdfButtonFacilities" class="btn btn-success" style="display:none;">Generar PDF</button>
-    <button id="downloadPdfButtonTeams" class="btn btn-success" style="display:none;">Generar PDF</button>
-    <button id="downloadPdfButtonTournament" class="btn btn-success" style="display:none;">Generar PDF</button>
+    <button id="downloadPdfButtonPlayers" class="pdf" style="display:none;bac">Generar PDF</button>
+    <button id="downloadPdfButtonFacilities" class="pdf" style="display:none;">Generar PDF</button>
+    <button id="downloadPdfButtonTeams" class="pdf" style="display:none;">Generar PDF</button>
+    <button id="downloadPdfButtonTournament" class="pdf" style="display:none;">Generar PDF</button>
 
-    <!-- contenido noticias -->
-
-    
-
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
-    <!-- SCRIPT -->
     <script>
         $(document).ready(function () {
             $('#addOption').change(function () {
