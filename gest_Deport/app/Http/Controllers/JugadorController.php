@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Jugador;
 use App\Models\Equipo;
+use App\Models\Partido;
 
 class JugadorController extends Controller
 {
@@ -15,7 +16,7 @@ class JugadorController extends Controller
     {
         $usuario = auth()->user();
         $jugadores = Jugador::where('nombre', $usuario->name)->get();
-        return view("jugador.dashboard", compact('jugadores'));
+        return view('jugador.dashboard', compact('jugadores'));
     }
 
     // Crear jugador
@@ -100,13 +101,17 @@ class JugadorController extends Controller
         return view('jugador.read', compact('jugadores'));
     }
 
-    // Mostrar estadísticas de un equipo
     public function estadisticas_team($id)
     {
-        $equipo = Equipo::findOrFail($id);
-        $jugadores = $equipo->jugadores; // Usar la relación definida en el modelo
+        $equipo = Equipo::findOrFail($id); // Obtener el equipo por ID
+        $jugadores = $equipo->jugadores; // Obtener los jugadores del equipo
 
-        return view('jugador.estadisticas_equipo', compact('equipo', 'jugadores'));
+        // Filtrar los partidos en los que el equipo ha jugado como local o visitante
+        $partidosFinalizados = Partido::where(function ($query) use ($id) {
+            $query->where('id_equipo_local', $id)->orWhere('id_equipo_visitante', $id);
+        })->get();
+
+        return view('jugador.estadisticas_equipo', compact('equipo', 'jugadores', 'partidosFinalizados'));
     }
 
     // Ver desempeño de todos los jugadores
