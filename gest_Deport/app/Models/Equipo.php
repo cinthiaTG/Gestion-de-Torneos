@@ -14,15 +14,6 @@ class Equipo extends Model
         'escudos',
         'patrocinador_equipo',
         'monto_patrocinador',
-        'partidos_jugados',
-        'victorias',
-        'empates',
-        'derrotas',
-        'goles_favor',
-        'goles_contra',
-        'diferencia_goles',//goles_favor - goles_contra
-        'puntos',//victorias * 3 + empates
-        'id_deporte',
         ];
 
     public function jugadores(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -47,10 +47,10 @@
             <td>{{$equipo->nombre_equipo}}</td>
             <td>{{$equipo->patrocinador_equipo}}</td>
             <td>{{$equipo->monto_patrocinador}}</td>
-            <td>{{$equipo->partidos_jugados}}</td>
+            {{-- <td>{{$equipo->partidos_jugados}}</td>
             <td>{{$equipo->victorias}}</td>
             <td>{{$equipo->empates}}</td>
-            <td>{{$equipo->derrotas}}</td>
+            <td>{{$equipo->derrotas}}</td> --}}
         </tr>
     @empty
         <tr>

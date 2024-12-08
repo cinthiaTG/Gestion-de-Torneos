@@ -16,7 +16,7 @@
 
 
 
-    
+
 
 <div class="container mt-4">
     <h1>Lista de Usuarios</h1>
@@ -24,7 +24,7 @@
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    
+
 
     <div class="mb-3">
         <label for="addOption" class="form-label">¿Que desea buscar?</label>
@@ -100,10 +100,6 @@
             <th>Escudo</th>
             <th>Patrocinador</th>
             <th>Monto del Patrocinador</th>
-            <th>Partidos Jugados</th>
-            <th>Victorias</th>
-            <th>Empates</th>
-            <th>Derrotas</th>
         <tbody>
         <!-- Para mostrar los resultados -->
         </tbody>
@@ -138,7 +134,7 @@
 
     <!-- contenido noticias -->
 
-    
+
 
     <!-- SCRIPT -->
     <!-- SCRIPT -->
@@ -336,10 +332,6 @@
                                             <td>${equipo.nombre_equipo}</td>
                                             <td><img src="${equipo.escudo_url}" alt="Escudo de ${equipo.nombre_equipo}" style="width: 50px; height: auto;"></td>                                            <td>${equipo.patrocinador_equipo}</td>
                                             <td>${equipo.monto_patrocinador}</td>
-                                            <td>${equipo.partidos_jugados}</td>
-                                            <td>${equipo.victorias}</td>
-                                            <td>${equipo.empates}</td>
-                                            <td>${equipo.derrotas}</td>
                                         </tr>
                                     `);
                                         equiposContainer.append(row);
@@ -439,7 +431,7 @@
         });
     </script>
 
-    
+
 </div>
 </body>
 </html>

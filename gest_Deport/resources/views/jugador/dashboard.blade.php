@@ -6,9 +6,6 @@
 
 @section('content')
 <div class="card-container">
-    <a href="{{ route('jugador.desempeño') }}" class="card">
-        <div class="card-label">Consultar Desempeño</div>
-    </a>
 
     <!--
         solo aparecera un equipo ya que esta relacionada con el id_equipo y id de jugador
