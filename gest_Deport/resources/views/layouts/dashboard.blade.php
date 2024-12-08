@@ -73,12 +73,12 @@
 
         <!-- Este contenido solo se ve en el dashboard de arbitro -->
         @if(Route::currentRouteName() === 'aficionado.dashboard')
-        <div class="container-fluid mt-6">
-            <h1 class="text-3xl font-bold mb-4 text-center">Noticias y Actualizaciones</h1> <!-- Cards de noticias 1 -->
-            
-            <div class="row">
+        <div class="container">
+            <h1 class="text-3xl font-bold mb-4 text-center">Torneos</h1> <!-- Cards de noticias 1 -->
+        
+            <div class="row justify-content-center">
                 <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm text-center">
                         <div class="card-body">
                             <h5 class="card-title">Noticia 1</h5>
                             <p class="card-text">Noticia 1</p>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm text-center">
                         <div class="card-body">
                             <h5 class="card-title">Noticia 2</h5>
                             <p class="card-text">Noticia 2</p>
@@ -96,10 +96,10 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
+        
+            <div class="row justify-content-center">
                 <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm text-center">
                         <div class="card-body">
                             <h5 class="card-title">Noticia 3</h5>
                             <p class="card-text">Noticia 3</p>
@@ -108,20 +108,21 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm text-center">
                         <div class="card-body">
                             <h5 class="card-title">Noticia 4</h5>
-                            <p class="card-text">Resumen breve de la noticia 4 con información relevante.</p>
+                            <p class="card-text">Noticia 4</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+          
 
         <hr>
-
-        <main class="flex-grow container mx-auto py-16 px-20"> <!-- Cards de noticias 2 -->
+    <!-- Cards de noticias 2 -->
+        <main class="flex-grow container mx-auto py-16 px-20">
             <div class="bg-white shadow-md rounded-lg p-8 text-center">
                 <div class="cont">
                     <h2 class="title">¡Empieza a gestionar tus torneos hoy!</h2>
@@ -154,7 +155,83 @@
                 </div>
             </div>
         </main>
+
+        <hr>
+
+        <div class="container-fluid mt-6">
+            <h1 class="text-3xl font-bold mb-4 text-center">Noticias y Actualizaciones</h1>
+          
+            <!-- Noticia 1 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-6">
+                <div class="card shadow-sm text-center">
+                  <div class="card-body">
+                    <div class="img-container">
+                      <img src="{{ asset('img/gol.png') }}" alt="Noticia 1" class="card-img">
+                    </div>
+                    <h5 class="card-title mt-2">Rayados golea a San Luis y regresa a la final de Liga MX</h5>
+                    <p class="card-text mt-2">Rayados le propinó una goleada de 5-1 al Atlético de San Luis en el partido de vuelta de las semifinales del Apertura 2024, para dejar el global el 6-3, con lo cual consiguió su boleto a la final y ahora tendrá que esperar a su rival que saldrá del duelo entre Cruz Azul y América.</p>
+                    <a href="#" class="btn btn-primary mt-2">Ver</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Noticia 2 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-6">
+                <div class="card shadow-sm text-center">
+                  <div class="card-body">
+                    <div class="img-container">
+                      <img src="{{ asset('img/gol.png') }}" alt="Noticia 2" class="card-img">
+                    </div>
+                    <h5 class="card-title mt-2">Noticia 2</h5>
+                    <p class="card-text mt-2">Noticia 2</p>
+                    <a href="#" class="btn btn-primary mt-2">Ver</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Noticia 3 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-6">
+                <div class="card shadow-sm text-center">
+                  <div class="card-body">
+                    <div class="img-container">
+                      <img src="{{ asset('img/gol.png') }}" alt="Noticia 3" class="card-img">
+                    </div>
+                    <h5 class="card-title mt-2">Noticia 3</h5>
+                    <p class="card-text mt-2">Noticia 3</p>
+                    <a href="#" class="btn btn-primary mt-2">Ver</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Noticia 4 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-6">
+                <div class="card shadow-sm text-center">
+                  <div class="card-body">
+                    <div class="img-container">
+                      <img src="{{ asset('img/gol.png') }}" alt="Noticia 4" class="card-img">
+                    </div>
+                    <h5 class="card-title mt-2">Noticia 4</h5>
+                    <p class="card-text mt-2">Noticia 4</p>
+                    <a href="#" class="btn btn-primary mt-2">Ver</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        
+        <br>
         @endif
+
+        
 
         <footer class="mt-auto bg-gray-800 text-white text-center py-5">
             <h2 class="text-3xl font-bold mb-2">&copy; {{ date('Y') }} SPORTIVO</h2>
