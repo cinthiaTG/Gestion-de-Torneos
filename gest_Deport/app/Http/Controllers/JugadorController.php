@@ -103,15 +103,33 @@ class JugadorController extends Controller
 
     public function estadisticas_team($id)
     {
-        $equipo = Equipo::findOrFail($id); // Obtener el equipo por ID
-        $jugadores = $equipo->jugadores; // Obtener los jugadores del equipo
+        // Obtener el equipo por ID
+        $equipo = Equipo::findOrFail($id);
+
+        // Obtener el jugador autenticado (por nombre)
+        $usuario = auth()->user();
+        $jugador = Jugador::where('nombre', $usuario->name)->first(); // Buscar jugador por nombre del usuario
+
+        if (!$jugador) {
+            // Si no existe un jugador con el nombre del usuario
+            return redirect()->route('jugador.dashboard')->with('error', 'No se encontró un jugador con tu nombre.');
+        }
+
+        // Obtener el equipo al que pertenece el jugador
+        $equipoDelJugador = $jugador->equipo; // Relación de Equipo con Jugador
+
+        // Verificar si el jugador pertenece al equipo solicitado
+        if ($equipoDelJugador->id !== $equipo->id) {
+            // Si el equipo del jugador no coincide con el equipo solicitado
+            return redirect()->route('jugador.dashboard')->with('error', 'Este no es tu equipo.');
+        }
 
         // Filtrar los partidos en los que el equipo ha jugado como local o visitante
         $partidosFinalizados = Partido::where(function ($query) use ($id) {
             $query->where('id_equipo_local', $id)->orWhere('id_equipo_visitante', $id);
         })->get();
 
-        return view('jugador.estadisticas_equipo', compact('equipo', 'jugadores', 'partidosFinalizados'));
+        return view('jugador.estadisticas_equipo', compact('equipo', 'partidosFinalizados'));
     }
 
     // Ver desempeño de todos los jugadores
