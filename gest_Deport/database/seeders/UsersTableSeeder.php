@@ -58,6 +58,15 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id' => 6,
+                'name' => 'jugador',
+                'email' => 'jugador@gmail.com',
+                'password' => Hash::make('jugador'),
+                'rol_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 7,
                 'name' => 'arbitro',
                 'email' => 'arbitro@gmail.com',
                 'password' => Hash::make('arbitro'),
