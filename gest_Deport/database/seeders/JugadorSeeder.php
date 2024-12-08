@@ -42,14 +42,6 @@ class JugadorSeeder extends Seeder
                 'nombre' => $jugador['nombre'],
                 'edad' => $jugador['edad'],
                 'id_equipo' => 2, // Asociar al equipo con ID 2
-                'puntos' => rand(0, 50),
-                'asistencias' => rand(0, 20),
-                'tarjetas_amarillas' => rand(0, 5),
-                'tarjetas_rojas' => rand(0, 3),
-                'faltas' => rand(0, 15),
-                'minutos_jugados' => rand(0, 500),
-                'partidos_jugados' => rand(0, 30),
-                'goles_contra' => rand(0, 10),
             ]);
         }
     }

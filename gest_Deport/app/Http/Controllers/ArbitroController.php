@@ -8,8 +8,8 @@ use App\Models\User;
 use App\Models\Equipo;
 use App\Models\Jugador;
 
-class ArbitroController extends Controller{
-
+class ArbitroController extends Controller
+{
     public function dashboard()
     {
         // Obtener los torneos activos
@@ -22,26 +22,24 @@ class ArbitroController extends Controller{
         $equipos = Equipo::all();
 
         // Pasar los torneos activos, los inactivos y los equipos a la vista
-        return view("arbitro.dashboard", compact('equipos', 'torneos', 'torneosInactivos'));
+        return view('arbitro.dashboard', compact('equipos', 'torneos', 'torneosInactivos'));
     }
-
 
     public function jugadores($id)
     {
-    // Recuperar el equipo con sus jugadores asociados
-    $equipo = Equipo::with('jugadores')->findOrFail($id);
+        // Recuperar el equipo con sus jugadores asociados
+        $equipo = Equipo::with('jugadores')->findOrFail($id);
 
-    // Pasar el equipo y los jugadores a la vista
-    return view('arbitro.jugadores', compact('equipo'));
+        // Pasar el equipo y los jugadores a la vista
+        return view('arbitro.jugadores', compact('equipo'));
     }
 
     public function edit($id)
     {
-    $jugador = Jugador::findOrFail($id);
-    $equipo = $jugador->equipo;
-    return view('arbitro.edit', compact('jugador', 'equipo'));
+        $jugador = Jugador::findOrFail($id);
+        $equipo = $jugador->equipo;
+        return view('arbitro.edit', compact('jugador', 'equipo'));
     }
-
 
     public function update(Request $request, $id)
     {
@@ -67,7 +65,8 @@ class ArbitroController extends Controller{
             'faltas' => $request->faltas,
         ]);
 
-        return redirect()->route('arbitro.jugadores', ['id' => $jugador->id_equipo])
-        ->with('success', 'Jugador actualizado con éxito');
+        return redirect()
+            ->route('arbitro.jugadores', ['id' => $jugador->id_equipo])
+            ->with('success', 'Jugador actualizado con éxito');
     }
 }
