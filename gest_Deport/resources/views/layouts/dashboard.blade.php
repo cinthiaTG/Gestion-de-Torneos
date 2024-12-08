@@ -88,13 +88,27 @@
                         <div class="col-md-6 mb-4">
                             <div class="card shadow-sm">
                                 <div class="card-body">
-                                    <h5 class="card-title">Partido {{ $partido->id }}</h5>
                                     <p class="card-text">
-                                        <strong>Equipo Local:</strong> {{ $partido->equipoLocal->nombre_equipo ?? 'N/A' }}<br>
+                                        <strong>Equipo Local:</strong>
+                                        {{ $partido->equipoLocal->nombre_equipo ?? 'N/A' }}<br>
+                                        <td>
+                                            <a href="{{ asset('storage/escudos/' . ($partido->equipoLocal->escudos ?? 'default.png')) }}"
+                                                target="_blank">
+                                                <img src="{{ asset('storage/escudos/' . ($partido->equipoLocal->escudos ?? 'default.png')) }}"
+                                                    alt="Escudo del equipo local" class="team-logo" width="50">
+                                            </a>
+                                        </td>
                                         <strong>Equipo Visitante:</strong>
-
                                         {{ $partido->equipoVisitante->nombre_equipo ?? 'N/A' }}<br>
-                                        <strong>Ganador:</strong> {{ $partido->ganador->nombre_equipo ?? 'Empate' }}<br>
+                                        <td>
+                                            <a href="{{ asset('storage/escudos/' . ($partido->equipoVisitante->escudos ?? 'default.png')) }}"
+                                                target="_blank">
+                                                <img src="{{ asset('storage/escudos/' . ($partido->equipoVisitante->escudos ?? 'default.png')) }}"
+                                                    alt="Escudo del equipo visitante" class="team-logo" width="50">
+                                            </a>
+                                        </td>
+                                        <strong>Ganador:</strong>
+                                        {{ $partido->ganador->nombre_equipo ?? 'Empate' }}<br>
                                     </p>
                                 </div>
                             </div>
@@ -103,6 +117,7 @@
                         <p class="text-center">No hay partidos finalizados para mostrar.</p>
                     @endforelse
                 </div>
+
 
                 <hr>
 
