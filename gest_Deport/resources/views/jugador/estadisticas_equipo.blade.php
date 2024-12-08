@@ -14,11 +14,16 @@
     </head>
 
     <body>
+        @if (session('error'))
+            <p class="alert alert-danger">{{ session('error') }}</p>
+        @endif
+
         <strong>Estadísticas del Equipo</strong>
         <br>
         <strong>{{ $equipo->nombre_equipo }}</strong>
         <a href="{{ asset('storage/escudos/' . $equipo->escudos) }}" target="_blank">
-            <img src="{{ asset('storage/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo" style="width: 100px; height: auto;">
+            <img src="{{ asset('storage/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo"
+                style="width: 100px; height: auto;">
         </a>
 
         <p><strong>Patrocinador:</strong> {{ $equipo->patrocinador_equipo }}</p>
@@ -35,14 +40,14 @@
                                 <a href="{{ asset('storage/escudos/' . ($partido->equipoLocal->escudos ?? 'default.png')) }}"
                                     target="_blank">
                                     <img src="{{ asset('storage/escudos/' . ($partido->equipoLocal->escudos ?? 'default.png')) }}"
-                                         alt="Escudo del equipo local" class="team-logo" width="50">
+                                        alt="Escudo del equipo local" class="team-logo" width="50">
                                 </a>
                                 <strong>Equipo Visitante:</strong>
                                 {{ $partido->equipoVisitante->nombre_equipo ?? 'N/A' }}<br>
                                 <a href="{{ asset('storage/escudos/' . ($partido->equipoVisitante->escudos ?? 'default.png')) }}"
                                     target="_blank">
                                     <img src="{{ asset('storage/escudos/' . ($partido->equipoVisitante->escudos ?? 'default.png')) }}"
-                                         alt="Escudo del equipo visitante" class="team-logo" width="50">
+                                        alt="Escudo del equipo visitante" class="team-logo" width="50">
                                 </a>
                                 <strong>Ganador:</strong>
                                 {{ $partido->ganador->nombre_equipo ?? 'Empate' }}<br>
