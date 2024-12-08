@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+*{
+    font-family: 'Parkinsans', sans-serif;
+    
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Fila de títulos */
+.titles-row {
+  display: flex;
+  justify-content: space-between; /* Espaciado uniforme entre títulos */
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+/* Estilo de los títulos */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  flex: 1; /* Cada título ocupa espacio igual */
+}
+
+/* Fila de contenido */
+.content-row {
+  display: flex;
+  gap: 20px; /* Espaciado entre columnas */
+}
+
+/* Columnas debajo de cada título */
+.column {
+  flex: 1; /* Cada columna ocupa el mismo ancho */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaciado entre tarjetas */
+}
+
+/* Lista de tarjetas dentro de cada columna */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaciado entre tarjetas */
+}
+
+/* Tarjetas */
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Tarjetas ocupan toda la columna */
+  height: 150px;
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  background-color: red;
+  border-color: #04a3ec;
+}
+
+/* Mensaje cuando no hay elementos */
+.no-items {
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho disponible */
+    }
+}

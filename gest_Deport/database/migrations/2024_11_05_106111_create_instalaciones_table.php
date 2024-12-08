@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('nombre_instalacion');
             $table->string('ubicacion');
             $table->timestamps();
-        // $table->unsignedBigInteger('id_deporte')->nullable();
-        // $table->foreign('id_deporte')->references('id')->on('deportes')->onDelete('cascade');
-
         });
     }
 

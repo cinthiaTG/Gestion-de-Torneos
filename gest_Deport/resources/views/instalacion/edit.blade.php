@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('Css/registrarequipo.css') }}">
+    <link rel="stylesheet" href="{{ asset('Css/creartorneo.css') }}">
 @endsection
 
 @section('content')
@@ -12,9 +13,9 @@
         <p>{{ session('success') }}</p>
     @endif
 
-    <form class="player-form" action="{{ route('instalacion.update', $instalacion->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+                <form class="player-form" action="{{ route('instalacion.update', $instalacion->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
         <div class="form-group">
             <label for="nombre">Nombre Instalacion</label>

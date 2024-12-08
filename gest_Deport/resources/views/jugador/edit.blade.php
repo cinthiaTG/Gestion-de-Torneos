@@ -1,20 +1,19 @@
 @extends('layouts.dashboard')
+
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('Css/registrarequipo.css') }}">
+    <link rel="stylesheet" href="{{ asset('Css/registrarjugadores.css') }}">
 @endsection
 
 @section('content')
+    <div>
+        <div>
+            <div class="p-8 bg-gradient-to-r from-orange-400 to-orange-200 rounded-xl shadow-md border border-orange-300">
 
-<div class="container">
-    <h1>Editar Jugador</h1>
-    <br>
-    @if(session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+                <div class="form-title text-2xl font-bold text-gray-800 mb-4" style="text-align: center; font-size: 30px">Actualizar Jugador</div>
 
-    <form class="player-form" action="{{ route('jugadores.update', $jugador->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+                <form class="player-form" action="{{ route('jugadores.update', $jugador->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>

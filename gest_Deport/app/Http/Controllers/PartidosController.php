@@ -122,10 +122,10 @@ class PartidosController extends Controller
 
     public function edit($id)
     {
-        $partidos = Partido::findOrFail($id);
+        $partido = Partido::findOrFail($id);
         $torneo = Torneo::all();
         $equipos = Equipo::all();
-        return view('partidos.edit', compact('partidos', 'torneo', 'equipos'));
+        return view('partidos.edit', compact('partido', 'torneo', 'equipos'));
     }
 
     public function update(Request $request, $id)

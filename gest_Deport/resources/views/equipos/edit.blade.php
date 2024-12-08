@@ -31,7 +31,6 @@
         <input type="number" name="monto_patrocinador" class="form-control" value="{{ $equipo->monto_patrocinador }}"
             required>
 
-        <br class="jump">
 
         <!-- Campo para subir el escudos -->
         <label for="escudo">Escudo del Equipo</label>

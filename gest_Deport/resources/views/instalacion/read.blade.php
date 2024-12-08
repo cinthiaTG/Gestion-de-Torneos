@@ -8,7 +8,12 @@
 <div class="container">
     <!-- Título de la sección -->
     <h1 class="form-title">Editar Instalación</h1>
-    <a href="{{ route('instalacion.create') }}" class="btn btn-warning">Nuevo</a>
+    
+    <a href="{{ route('instalacion.create') }}">
+        <button class="torneo-register">
+            Registrar Instalación
+        </button>
+    </a>
 
 
     <!-- Sección de resultados -->
@@ -24,8 +29,8 @@
             <tbody>
                 @foreach ($instalaciones as $instalacion)
                 <tr>
-                    <td>{{ $instalacion->nombre_instalacion }}</td>
-                    <td>{{ $instalacion->ubicacion }}</td>
+                    <td class="date"><b>{{ $instalacion->nombre_instalacion }}</b></td>
+                    <td class="date"><b>{{ $instalacion->nombre_instalacion }}</b></td>
                     <td>
                         <!-- Botón de editar -->
                         <a href="{{ route('instalacion.edit', ['id' => $instalacion->id]) }}" class="btn btn-warning">Editar</a>

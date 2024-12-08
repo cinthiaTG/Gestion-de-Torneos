@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('Css/welcome.css') }}">
     <title>Bienvenido a Sportivo</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -40,6 +41,25 @@
                         <p class="mt-2 text-gray-500">
                             Proporciona información en tiempo real para tus equipos y aficionados.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <hr>
+
+        <main class="flex-grow container mx-auto py-16 px-20">
+            <div class="bg-white shadow-md rounded-lg p-8 text-center">
+                <div class="cont">
+                    <h2 class="title">¡Empieza a gestionar tus torneos hoy!</h2>
+                    <p class="desc">
+                        Sportivo te ofrece todas las herramientas necesarias para organizar torneos, administrar equipos y seguir de cerca cada jugada. Conecta a tus jugadores, equipos y aficionados en un solo lugar. ¡Explora las funcionalidades y lleva tu pasión por los deportes al siguiente nivel!
+                    </p>
+                </div>
+        
+                <div class="mt-8 grid sm:grid-cols-1 md:grid-cols-1 gap-8">
+                    <div class="flex justify-center items-center">
+                        <img class="img" style="border-radius: 12px; width: 70%; display: flex; justify-content: center; align-items: center;" src="{{ asset('img/image.png') }}" alt="Sportivo Image">
                     </div>
                 </div>
             </div>

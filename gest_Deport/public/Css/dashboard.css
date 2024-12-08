@@ -1,48 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+*{
+    font-family: 'Parkinsans', sans-serif;
+}
+
 /* Contenedor principal de las tarjetas */
 .card-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que las tarjetas ocupen múltiples líneas si es necesario */
-    gap: 20px; /* Espaciado entre las tarjetas en la dirección horizontal */
-    justify-content: center; /* Centra las tarjetas horizontalmente */
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 1200px; /* Limita el ancho del contenedor */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px; /* Espaciado entre las tarjetas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px; /* Limita el ancho del contenedor */
 }
 
 /* Estilo general de las tarjetas */
 .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 250px; /* Ancho fijo de la tarjeta */
-    height: 150px; /* Altura fija de la tarjeta */
-    background-color: #f4f4f4; /* Color de fondo */
-    border: 2px solid #ddd; /* Borde claro */
-    border-radius: 10px; /* Bordes redondeados */
-    text-decoration: none; /* Elimina el subrayado de los enlaces */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras sutiles */
-    transition: transform 0.3s, box-shadow 0.3s; /* Transición suave en hover */
-    cursor: pointer;
-    margin-top: 20px; /* Espacio superior */
-    margin-bottom: 20px; /* Espacio inferior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px; /* Ancho fijo de la tarjeta */
+  height: 150px; /* Altura fija de la tarjeta */
+  background-color:white; /* Color de fondo */
+  border: 2px solid #ddd; /* Borde claro */
+  border-radius: 10px; /* Bordes redondeados */
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  transition: 0.3s;
+  cursor: pointer;
+  border: 3px solid black;
 }
 
 /* Efecto hover para las tarjetas */
 .card:hover {
-    transform: translateY(-5px); /* Eleva la tarjeta al pasar el cursor */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Incrementa la sombra */
-    background-color: #04a3ec; /* Cambia el color de fondo */
-    color: #fff; /* Cambia el color del texto */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 3.0);
+  transform: translateY(-5px);
+  background-color: rgb(60, 201, 60);
+  border: #04a3ec;
+  
 }
 
 /* Etiqueta de texto dentro de las tarjetas */
 .card-label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333; /* Color inicial del texto */
-    text-align: center;
-    padding: 10px;
-    transition: color 0.3s; /* Transición para el cambio de color */
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Color inicial del texto */
+  text-align: center;
+  padding: 10px;
+  transition: color 0.3s; /* Transición para el cambio de color */
 }
 
 /* Cambia el color del texto en hover */
@@ -50,13 +57,9 @@
     color: #fff;
 }
 
-h2 {
-    font-family: 'Arial', sans-serif; /* Cambia la fuente si es necesario */
-    font-size: 24px; /* Tamaño de la fuente */
-    font-weight: normal; /* Peso normal de la fuente */
-    color: #0c4a71; /* Color del texto */
-    text-align: center; /* Alineación a la izquierda */
-    margin-bottom: 10px; /* Espacio debajo del h2 */
+.sup{
+  text-align: center;
+  border-radius: 8px;
 }
 
 /* Responsividad */

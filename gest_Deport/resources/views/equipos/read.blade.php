@@ -5,7 +5,14 @@
 @section('content')
     <div class="container">
         <div class="form-title">Equipos Registrados</div>
-        <a href="{{ route('equipos.create')}}" class="btn btn-warning">Nuevo</a>
+        <br>
+        
+        <a href="{{ route('equipos.create') }}">
+            <button class="torneo-register">
+                Registrar un Equipo
+            </button>
+        </a>
+        
         <style>
             .team-logo {
                 max-width: 100px;
@@ -29,9 +36,9 @@
                 <tbody>
                 @foreach ($equipos as $equipo)
                     <tr>
-                        <td>{{$equipo->nombre_equipo }}</td>
-                        <td>{{$equipo->patrocinador_equipo}}</td>
-                        <td>{{$equipo->monto_patrocinador}}</td>
+                        <td class="date"><b>{{ $equipo->nombre_equipo }}</b></td>
+                        <td class="date"><b>{{$equipo->patrocinador_equipo}}</b></td>
+                        <td class="date"><b>{{$equipo->monto_patrocinador}}</b></td>
                         <td>
                             <a href="{{ asset('storage/escudos/' . $equipo->escudos) }}" target="_blank">
                             <img src="{{ asset('storage/escudos/' . $equipo->escudos) }}" alt="Escudo del equipo" class="team-logo">

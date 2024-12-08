@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="text-xl font-bold text-black hover:text-white">
+                    <a href="{{ route('dashboard') }}" class="text-xl font-bold text-white hover:text-black">
                         SPORTIVO    
                     </a>
                 </div>
