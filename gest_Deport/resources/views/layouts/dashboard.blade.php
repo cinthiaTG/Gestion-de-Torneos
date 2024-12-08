@@ -80,7 +80,7 @@
         <!-- Este contenido solo se ve en el dashboard de arbitro -->
         @if (Route::currentRouteName() === 'aficionado.dashboard')
             <div class="container-fluid mt-6">
-                <h1 class="text-3xl font-bold mb-4 text-center">Noticias y Actualizaciones</h1>
+                <h1 class="text-3xl font-bold mb-4 text-center">Partidos</h1>
                 <!-- Cards de noticias 1 -->
 
                 <div class="row">
@@ -90,12 +90,12 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Partido {{ $partido->id }}</h5>
                                     <p class="card-text">
-                                        <strong>Equipo Local:</strong> {{ $partido->equipoLocal->nombre ?? 'N/A' }}<br>
+                                        <strong>Equipo Local:</strong> {{ $partido->equipoLocal->nombre_equipo ?? 'N/A' }}<br>
                                         <strong>Equipo Visitante:</strong>
-                                        {{ $partido->equipoVisitante->nombre ?? 'N/A' }}<br>
-                                        <strong>Ganador:</strong> {{ $partido->ganador->nombre ?? 'Empate' }}<br>
+
+                                        {{ $partido->equipoVisitante->nombre_equipo ?? 'N/A' }}<br>
+                                        <strong>Ganador:</strong> {{ $partido->ganador->nombre_equipo ?? 'Empate' }}<br>
                                     </p>
-                                    <a href="#" class="btn btn-primary">Ver Detalles</a>
                                 </div>
                             </div>
                         </div>
@@ -106,27 +106,6 @@
 
                 <hr>
 
-                <main class="flex-grow container mx-auto py-16 px-20"> <!-- Cards de noticias 2 -->
-                    <div class="bg-white shadow-md rounded-lg p-8 text-center">
-                        <div class="cont">
-                            <h2 class="title">¡Empieza a gestionar tus torneos hoy!</h2>
-                            <p class="desc">
-                                Sportivo te ofrece todas las herramientas necesarias para organizar torneos, administrar
-                                equipos y seguir de cerca cada jugada. Conecta a tus jugadores, equipos y aficionados en
-                                un solo lugar. ¡Explora las funcionalidades y lleva tu pasión por los deportes al
-                                siguiente nivel!
-                            </p>
-                        </div>
-
-                        <div class="mt-8 grid sm:grid-cols-1 md:grid-cols-1 gap-8">
-                            <div class="flex justify-center items-center">
-                                <img class="img"
-                                    style="border-radius: 12px; width: 70%; display: flex; justify-content: center; align-items: center;"
-                                    src="{{ asset('img/image.png') }}" alt="Sportivo Image">
-                            </div>
-                        </div>
-                    </div>
-                </main>
 
                 <main class="flex-grow container mx-auto py-16 px-20">
                     <div class="bg-white shadow-md rounded-lg p-8 text-center">
