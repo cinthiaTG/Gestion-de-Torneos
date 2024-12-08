@@ -18,7 +18,7 @@
                     @csrf
 
                     <label for="nombre_equipo">Nombre del Equipo</label>
-                    <input type="text" id="nombre_equipo" maxlength="50"  name="nombre_equipo" required>
+                    <input type="text" id="nombre_equipo" maxlength="50" name="nombre_equipo" required>
                     <br class="jump">
 
                     <label for="escudos">Escudo del Equipo</label>
@@ -27,7 +27,7 @@
                     <br>
 
                     <label for="patrocinador_equipo">Patrocinador del Equipo</label>
-                    <input type="text" id="patrocinador_equipo" maxlength="20"  name="patrocinador_equipo">
+                    <input type="text" id="patrocinador_equipo" maxlength="20" name="patrocinador_equipo">
                     <br class="jump">
 
                     <label for="monto_patrocinador">Monto patrocinador</label>
