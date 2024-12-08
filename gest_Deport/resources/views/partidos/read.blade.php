@@ -26,7 +26,7 @@
                 <th>Equipo Visitante</th>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Lugar</th>
+                <th>instalacion</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -39,9 +39,9 @@
                     <td>{{ $partido->equipoVisitante->nombre_equipo }}</td>
                     <td>{{ $partido->fecha }}</td>
                     <td>{{ $partido->hora }}</td>
-                    <td>{{ $partido->lugar }}</td>
+                    <td>{{ $partido->instalacion->nombre_instalacion }}</td>
                     <td>
-                        <a href="{{ route('partidos.edit', $partido->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    {{-- <a href="{{ route('partidos.edit', $partido->id) }}" class="btn btn-warning btn-sm">Editar</a> --}}
                         <form action="{{ route('partidos.destroy', $partido->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
